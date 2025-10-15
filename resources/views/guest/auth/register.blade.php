@@ -10,7 +10,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="Awaiken">
     <!-- Page Title -->
-    <title>Login || Desa Balam Sempurna</title>
+    <title>Register || Desa Balam Sempurna</title>
     <!-- Favicon Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
     <!-- Google Fonts Css-->
@@ -125,7 +125,7 @@
                         <img src="{{ asset('assets-guest/images/165x47 logo.svg') }}" alt="Logo" class="mb-3"
                             height="45">
 
-                        <h3 class="fw-bold text-white">Login Akun</h3>
+                        <h3 class="fw-bold text-white">Daftar Akun Anda</h3>
                         <p class="text-light mb-4">Masuk untuk memantau dan mengelola proyek desa</p>
 
                         <form action="" method="POST">
@@ -146,7 +146,7 @@
 
                             <div class="text-center mt-3 text-light">
                                 Belum punya akun?
-                                <a href="{{ route('register.show') }}" class="text-warning text-decoration-none">Daftar
+                                <a href="" class="text-warning text-decoration-none">Daftar
                                     Sekarang</a>
                             </div>
                         </form>

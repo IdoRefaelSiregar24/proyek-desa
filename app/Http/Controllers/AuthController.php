@@ -11,7 +11,17 @@ class AuthController extends Controller
      */
     public function index()
     {
-        return view("Guest/Auth/login");
+
+    }
+
+    public function showLoginForm()
+    {
+        return view('Guest/Auth/login');
+    }
+
+    public function showRegisterFrom()
+    {
+        return view("Guest/Auth/register");
     }
 
     /**

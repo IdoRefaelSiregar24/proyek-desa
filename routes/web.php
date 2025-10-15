@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\WargaController;
 
 Route::get('/', function () {
     return view('guest/dashboard');
@@ -10,7 +11,9 @@ Route::get('/', function () {
 
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-// Login
 
-Route::get('login', [AuthController::class, 'index'])->name('login.show');
+// Auth Routhes
+Route::get('login', [AuthController::class, 'showLoginForm'])->name('login.show');
+Route::get('register', [AuthController::class, 'showRegisterFrom'])->name('register.show');
 
+// Warga Routes
