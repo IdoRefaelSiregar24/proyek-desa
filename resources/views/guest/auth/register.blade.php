@@ -126,28 +126,73 @@
                             height="45">
 
                         <h3 class="fw-bold text-white">Daftar Akun Anda</h3>
-                        <p class="text-light mb-4">Masuk untuk memantau dan mengelola proyek desa</p>
+                        <p class="text-light mb-4">Daftar untuk memantau dan mengelola proyek desa</p>
 
-                        <form action="" method="POST">
+                        {{-- Flash message --}}
+                        @if (session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        @elseif(session('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        @endif
+
+                        {{-- Form Register --}}
+                        <form action="{{ route('register') }}" method="POST" novalidate>
                             @csrf
-                            <div class="mb-3 text-start">
-                                <label for="username" class="form-label text-light">Username</label>
-                                <input type="text" name="username" id="username" class="form-control"
-                                    placeholder="Masukkan username" required>
+
+                            {{-- Nama Lengkap --}}
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nama Lengkap</label>
+                                <input type="text" name="name" id="name"
+                                    class="form-control @error('name') is-invalid @enderror"
+                                    value="{{ old('name') }}" placeholder="Masukkan Nama Lengkap" required>
+                                @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
-                            <div class="mb-4 text-start">
-                                <label for="password" class="form-label text-light">Kata Sandi</label>
-                                <input type="password" name="password" id="password" class="form-control"
-                                    placeholder="Masukkan password" required>
+                            {{-- Alamat Email --}}
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Alamat Email</label>
+                                <input type="email" name="email" id="email"
+                                    class="form-control @error('email') is-invalid @enderror"
+                                    value="{{ old('email') }}" placeholder="Masukkan Email" required>
+                                @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-danger w-100 py-2">Masuk</button>
+                            {{-- Password --}}
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Kata Sandi</label>
+                                <input type="password" name="password" id="password"
+                                    class="form-control @error('password') is-invalid @enderror"
+                                    placeholder="Masukkan Password" required>
+                                @error('password')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                            <div class="text-center mt-3 text-light">
-                                Belum punya akun?
-                                <a href="" class="text-warning text-decoration-none">Daftar
-                                    Sekarang</a>
+                            {{-- Konfirmasi Password --}}
+                            <div class="mb-4">
+                                <label for="password_confirmation" class="form-label">Konfirmasi Kata Sandi</label>
+                                <input type="password" name="password_confirmation" id="password_confirmation"
+                                    class="form-control" placeholder="Ulangi Password" required>
+                            </div>
+
+                            {{-- Tombol Submit --}}
+                            <button type="submit" class="btn btn-warning w-100 fw-bold py-2">Daftar Sekarang</button>
+
+                            <div class="text-center mt-3">
+                                <small class="text-light">Sudah punya akun?
+                                    <a href="{{ route('login') }}" class="text-warning text-decoration-none">Masuk di
+                                        sini</a>
+                                </small>
                             </div>
                         </form>
                     </div>

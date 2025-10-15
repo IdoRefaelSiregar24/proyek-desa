@@ -128,12 +128,17 @@
                         <h3 class="fw-bold text-white">Login Akun</h3>
                         <p class="text-light mb-4">Masuk untuk memantau dan mengelola proyek desa</p>
 
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <form action="" method="POST">
                             @csrf
                             <div class="mb-3 text-start">
-                                <label for="username" class="form-label text-light">Username</label>
-                                <input type="text" name="username" id="username" class="form-control"
-                                    placeholder="Masukkan username" required>
+                                <label for="email" class="form-label text-light">Email</label>
+                                <input type="email" name="email" id="email" class="form-control"
+                                    placeholder="Masukkan Email" required>
                             </div>
 
                             <div class="mb-4 text-start">
@@ -149,6 +154,7 @@
                                 <a href="{{ route('register.show') }}" class="text-warning text-decoration-none">Daftar
                                     Sekarang</a>
                             </div>
+
                         </form>
                     </div>
                 </div>
