@@ -55,6 +55,9 @@
 </head>
 <body>
 
+    {{-- Navbar --}}
+    @include('guest/layouts.navbar')
+
     <!-- Preloader Start -->
 	<div class="preloader">
 		<div class="loading-container">
@@ -63,60 +66,6 @@
 		</div>
 	</div>
 	<!-- Preloader End -->
-
-    <!-- Header Start -->
-	<header class="main-header">
-		<div class="header-sticky">
-			<nav class="navbar navbar-expand-lg">
-				<div class="container-fluid">
-					<!-- Logo Start -->
-					<a class="navbar-brand" href="./">
-						<img src="{{ asset('assets-guest/images/165x47 logo.svg') }}" alt="Logo">
-					</a>
-					<!-- Logo End -->
-
-					<!-- Main Menu Start -->
-					<div class="collapse navbar-collapse main-menu">
-                        <div class="nav-menu-wrapper">
-                            <ul class="navbar-nav mr-auto" id="menu">
-                                <li class="nav-item submenu"><a class="nav-link" href="./">Home</a>
-                                    <ul class="sub-menu">
-                                        <li class="nav-item"><a class="nav-link" href="index.html">Home - Image</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="index-2.html">Home - Slider</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="index-3.html">Home - Video</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                                <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
-                                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                <li class="nav-item submenu"><a class="nav-link" href="#">Pages</a>
-                                    <ul>
-                                        <li class="nav-item"><a class="nav-link" href="service-single.html">Service Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="blog-single.html">Blog Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="project.html">Project</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="project-single.html">Project Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="team.html">Our Team</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="faqs.html">FAQ</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="404.html">404</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item highlighted-menu"><a class="nav-link" href="contact.html">Contact Us</a></li>
-                            </ul>
-                        </div>
-                        <!-- Let’s Start Button Start -->
-                        <div class="header-btn d-inline-flex">
-                            <a href="{{route('login.show')}}" class="btn-default">Login</a>
-                        </div>
-                        <!-- Let’s Start Button End -->
-					</div>
-					<!-- Main Menu End -->
-					<div class="navbar-toggle"></div>
-				</div>
-			</nav>
-			<div class="responsive-menu"></div>
-		</div>
-	</header>
-	<!-- Header End -->
 
     <!-- Hero Section Start -->
 	<div class="hero bg-section parallaxie">
@@ -1183,132 +1132,9 @@
     </div>
     <!-- Contact Us Section End -->
 
-    <!-- Footer Start -->
-	<footer class="main-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-12">
-                    <!-- About Footer Start -->
-                    <div class="about-footer">
-                        <!-- Footer Logo Start -->
-                        <div class="footer-logo">
-                            <figure>
-                                <img src="images/footer-logo.svg" alt="">
-                            </figure>
-                        </div>
-                        <!-- Footer Logo End -->
+    {{-- Footer --}}
+    @include('guest/layouts.footer')
 
-                        <!-- Footer Content Start -->
-                        <div class="footer-content">
-                            <p>Our post-construction services gives you peace of mind knowing that we are still here for you even after.</p>
-                        </div>
-                        <!-- Footer Content End -->
-                    </div>
-
-                    <!-- About Footer End -->
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-12">
-                    <!-- Footer Quick Links Start -->
-                    <div class="footer-links">
-                        <h3>our services</h3>
-                        <ul>
-                            <li><a href="#">building construction</a></li>
-                            <li><a href="#">architecture design</a></li>
-                            <li><a href="#">building renovation</a></li>
-                            <li><a href="#">flooring & roofing</a></li>
-                            <li><a href="#">building maintenance</a></li>
-                        </ul>
-                    </div>
-                    <!-- Footer Quick Links End -->
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-12">
-                    <!-- Footer Links Start -->
-                    <div class="footer-links">
-                        <h3>company</h3>
-                        <ul>
-                            <li><a href="#">about us</a></li>
-                            <li><a href="#">services</a></li>
-                            <li><a href="#">blog</a></li>
-                            <li><a href="#">faqs</a></li>
-                            <li><a href="#">contact us</a></li>
-                        </ul>
-                    </div>
-                    <!-- Footer Links End -->
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-12">
-                    <!-- Footer Contact Info Box Start -->
-                    <div class="footer-links footer-contact-box">
-                        <h3>contact us</h3>
-                        <!-- Info Box Start -->
-                        <div class="footer-info-box">
-                            <!-- Icon Box Start -->
-                            <div class="icon-box">
-                                <img src="images/icon-phone.svg" alt="">
-                            </div>
-                            <!-- Icon Box End -->
-                            <p>+0123456789</p>
-                        </div>
-                        <!-- Info Box End -->
-
-                        <!-- Info Box Start -->
-                        <div class="footer-info-box">
-                            <!-- Icon Box Start -->
-                            <div class="icon-box">
-                                <img src="images/icon-mail.svg" alt="">
-                            </div>
-                            <!-- Icon Box End -->
-                            <p>demo@yahoo.co.in</p>
-                        </div>
-                        <!-- Info Box End -->
-
-                        <!-- Info Box Start -->
-                        <div class="footer-info-box">
-                            <!-- Icon Box Start -->
-                            <div class="icon-box">
-                                <img src="images/icon-location.svg" alt="">
-                            </div>
-                            <!-- Icon Box End -->
-                            <p>babua</p>
-                        </div>
-                        <!-- Info Box End -->
-                    </div>
-                    <!-- Footer Contact Info Box End -->
-                </div>
-            </div>
-
-            <!-- Footer Copyright Section Start -->
-            <div class="footer-copyright">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-7">
-                        <!-- Footer Copyright Start -->
-                        <div class="footer-copyright-text">
-                            <p>Copyright © 2024 jassa. All Rights Reserved.</p>
-                        </div>
-                        <!-- Footer Copyright End -->
-                    </div>
-
-                    <div class="col-lg-6 col-md-5">
-                        <!-- Footer Social Link Start -->
-                        <div class="footer-social-links">
-                            <ul>
-                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                        <!-- Footer Social Link End -->
-                    </div>
-                </div>
-            </div>
-            <!-- Footer Copyright Section End -->
-        </div>
-	</footer>
-	<!-- Footer End -->
 
     <!-- Jquery Library File -->
     <script src="{{ asset('assets-guest/js/jquery-3.7.1.min.js') }}"></script>
