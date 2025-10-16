@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WargaController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardAdminController;
 
 Route::get('/', function () {
     return view('guest/dashboard');
@@ -19,3 +20,4 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 
 // Warga Routes
+Route::resource('warga', DashboardAdminController::class);

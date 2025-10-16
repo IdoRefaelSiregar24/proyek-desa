@@ -15,12 +15,12 @@ return new class extends Migration
             $table->bigIncrements('warga_id');
             $table->string('no_ktp', 20)->unique();
             $table->string('nama', 100);
-            $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->string('agama', 30)->nullable();
             $table->string('pekerjaan', 100)->nullable();
             $table->string('telp', 20)->nullable();
             $table->string('email', 100)->nullable();
-            $table->timestamps(); 
+            $table->timestamps();
         });
     }
 
