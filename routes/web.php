@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProyekAdminController;
 use App\Http\Controllers\DashboardAdminController;
 
 Route::get('/', function () {
@@ -21,3 +22,6 @@ Route::post('register', [AuthController::class, 'register'])->name('register');
 
 // Warga Routes
 Route::resource('warga', DashboardAdminController::class);
+
+// Proyek Routes
+Route::resource('proyek', ProyekAdminController::class);

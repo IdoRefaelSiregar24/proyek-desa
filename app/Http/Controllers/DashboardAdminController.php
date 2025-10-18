@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Warga;
+use App\Models\Proyek;
 use Illuminate\Http\Request;
 
 class DashboardAdminController extends Controller
@@ -12,6 +13,7 @@ class DashboardAdminController extends Controller
     public function index()
     {
         $data['dataWarga'] = Warga::all();
+        $data['dataProyek'] = Proyek::all();
         return view('admin.warga.index', $data);
     }
 

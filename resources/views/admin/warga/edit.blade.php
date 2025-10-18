@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tambah Data Warga - Flexy Admin Template</title>
+    <title>Update Data Warga - Flexy Admin Template</title>
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets-admin/images/logos/favicon.png') }}" />
     <link rel="stylesheet" href="{{ asset('assets-admin/css/styles.min.css') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
@@ -39,10 +39,6 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
                     <ul id="sidebarnav">
-                        <li class="nav-small-cap">
-                            <iconify-icon icon="solar:menu-dots-linear" class="nav-small-cap-icon fs-4"></iconify-icon>
-                            <span class="hide-menu">Home</span>
-                        </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('warga.index') }}" aria-expanded="false">
                                 <i class="ti ti-atom"></i>
@@ -208,7 +204,7 @@
                                             <i class="bi bi-arrow-clockwise me-1"></i> Reset
                                         </button>
                                         <button type="submit" class="btn btn-success">
-                                            <i class="bi bi-plus-circle me-1"></i> Tambah Data
+                                            <i class="bi bi-plus-circle me-1"></i> Update Data
                                         </button>
                                     </div>
                                 </form>

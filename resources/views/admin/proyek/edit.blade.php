@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tambah Data Warga - Flexy Admin Template</title>
+    <title>Update Data Proyek - Flexy Admin Template</title>
     <link rel="shortcut icon" type="image/png" href="{{ asset('assets-admin/images/logos/favicon.png') }}" />
     <link rel="stylesheet" href="{{ asset('assets-admin/css/styles.min.css') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
@@ -46,7 +46,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="#" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('proyek.index') }}" aria-expanded="false">
                                 <i class="ti ti-atom"></i>
                                 <span class="hide-menu">Daftar Proyek</span>
                             </a>
@@ -132,69 +132,73 @@
                             <div class="card-body">
                                 <div class="d-md-flex align-items-center mb-4">
                                     <div>
-                                        <h4 class="card-title">Form Tambah Data Warga</h4>
+                                        <h4 class="card-title">Form Tambah Data Proyek</h4>
                                         <p class="card-subtitle">
-                                            Isi form berikut untuk menambahkan data warga baru
+                                            Isi form berikut untuk menambahkan data proyek baru
                                         </p>
                                     </div>
                                     <div class="ms-auto mt-3 mt-md-0">
-                                        <a href="{{ route('warga.index') }}" class="btn btn-secondary text-white">
+                                        <a href="{{ route('proyek.index') }}" class="btn btn-secondary text-white">
                                             <i class="bi bi-arrow-left me-1"></i>
                                             Kembali
                                         </a>
                                     </div>
                                 </div>
 
-                                <!-- Form Tambah Data Warga -->
-                                <form action="{{ route('warga.store') }}" method="POST">
+                                <!-- Form Tambah Data Proyek -->
+                                <form action="{{ route('proyek.update',$dataProyek->proyek_id) }}" method="POST">
                                     @csrf
+                                    @method('PUT')
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="no_ktp" class="form-label">NIK</label>
-                                            <input type="text" class="form-control" id="no_ktp" name="no_ktp"
-                                                   placeholder="Masukkan NIK" required value="{{ old('no_ktp') }}">
+                                            <label for="kode_proyek" class="form-label">Kode Proyek</label>
+                                            <input type="text" class="form-control" id="kode_proyek"
+                                                name="kode_proyek" placeholder="Masukkan kode proyek" required
+                                                value="{{ $dataProyek->kode_proyek }}">
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label for="nama" class="form-label">Nama Lengkap</label>
-                                            <input type="text" class="form-control" id="nama" name="nama"
-                                                   placeholder="Masukkan nama lengkap" required value="{{ old('nama') }}">
+                                            <label for="nama_proyek" class="form-label">Nama Proyek</label>
+                                            <input type="text" class="form-control" id="nama_proyek"
+                                                name="nama_proyek" placeholder="Masukkan nama proyek" required
+                                                value="{{ $dataProyek->nama_proyek }}">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                                            <select class="form-select" id="jenis_kelamin" name="jenis_kelamin" required value="{{ old('jenis_kelamin') }}">
-                                                <option value="" selected disabled>Pilih Jenis Kelamin</option>
-                                                <option value="Laki-laki">Laki-laki</option>
-                                                <option value="Perempuan">Perempuan</option>
-                                            </select>
+                                            <label for="tahun" class="form-label">Tahun</label>
+                                            <input type="number" class="form-control" id="tahun" name="tahun"
+                                                placeholder="Masukkan tahun proyek" required min="1900"
+                                                max="{{ date('Y') + 1 }}" value="{{ $dataProyek->tahun }}">
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label for="agama" class="form-label">Agama</label>
-                                            <input type="text" class="form-control" id="agama" name="agama"
-                                                   placeholder="Masukkan agama anda" required value="{{ old('agama') }}">
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="pekerjaan" class="form-label">Pekerjaan</label>
-                                            <input type="text" class="form-control" id="pekerjaan" name="pekerjaan"
-                                                   placeholder="Masukkan pekerjaan" required value="{{ old('pekerjaan') }}">
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="telp" class="form-label">No. HP</label>
-                                            <input type="text" class="form-control" id="telp" name="telp"
-                                                   placeholder="Masukkan nomor telepon" required value="{{ old('telp') }}">
+                                            <label for="lokasi" class="form-label">Lokasi</label>
+                                            <input type="text" class="form-control" id="lokasi" name="lokasi"
+                                                placeholder="Masukkan lokasi proyek" required
+                                                value="{{ $dataProyek->lokasi}}">
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="email" class="form-label">Email</label>
-                                            <input type="email" class="form-control" id="email" name="email"
-                                                   placeholder="Masukkan alamat email" value="{{ old('email') }}">
+                                            <label for="anggaran" class="form-label">Anggaran</label>
+                                            <input type="number" step="0.01" class="form-control" id="anggaran"
+                                                name="anggaran" placeholder="Masukkan anggaran proyek" required
+                                                value="{{ $dataProyek->anggaran }}">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="sumber_dana" class="form-label">Sumber Dana</label>
+                                            <input type="text" class="form-control" id="sumber_dana"
+                                                name="sumber_dana" placeholder="Masukkan sumber dana" required
+                                                value="{{ $dataProyek->sumber_dana }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 mb-3">
+                                            <label for="deskripsi" class="form-label">Deskripsi</label>
+                                            <textarea class="form-control" id="deskripsi" name="deskripsi" rows="4"
+                                                placeholder="Masukkan deskripsi proyek" required>{{ $dataProyek->deskripsi }}</textarea>
                                         </div>
                                     </div>
 
@@ -203,7 +207,7 @@
                                             <i class="bi bi-arrow-clockwise me-1"></i> Reset
                                         </button>
                                         <button type="submit" class="btn btn-success">
-                                            <i class="bi bi-plus-circle me-1"></i> Tambah Data
+                                            <i class="bi bi-plus-circle me-1"></i> Update Data
                                         </button>
                                     </div>
                                 </form>
