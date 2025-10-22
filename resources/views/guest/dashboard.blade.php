@@ -1,91 +1,27 @@
-<!DOCTYPE html>
-<html lang="zxx">
-<head>
-	<!-- Meta -->
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	<meta name="author" content="Awaiken">
-	<!-- Page Title -->
-	<title>Desa Balam Sempurna</title>
-	<!-- Favicon Icon -->
-	<link rel="shortcut icon" type="image/x-icon" href="{{{ asset('assets-guest/images/favicon.png') }}}">
-	<!-- Google Fonts Css-->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-	<!-- Bootstrap Css -->
-	<link href="{{ asset('assets-guest/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
-	<!-- SlickNav Css -->
-	<link href="{{ asset('assets-guest/css/slicknav.min.css') }}" rel="stylesheet">
-	<!-- Swiper Css -->
-	<link rel="stylesheet" href="{{ asset('assets-guest/css/swiper-bundle.min.css') }}">
-	<!-- Font Awesome Icon Css-->
-	<link href="{{ asset('assets-guest./css/all.css') }}" rel="stylesheet" media="screen">
-	<!-- Animated Css -->
-	<link href="{{ asset('assets-guest/css/animate.css') }}" rel="stylesheet">
-	<!-- Magnific Popup Core Css File -->
-	<link rel="stylesheet" href="{{ asset('assets-guest/css/magnific-popup.css') }}">
-	<!-- Mouse Cursor Css File -->
-	<link rel="stylesheet" href="{{ asset('assets-guest/css/mousecursor.css') }}">
-	<!-- Main Custom Css -->
-	<link href="{{ asset('assets-guest/css/custom.css') }}" rel="stylesheet" media="screen">
-    <style>
-        .btn-default, .preloader, .testimonial-slider .swiper-pagination .swiper-pagination-bullet, .btn-default.btn-highlighted::after, .main-menu ul ul
+@extends('guest.layouts.app')
 
-        {
-            background: #EF151B!important;
-        }
-        .section-title h3, .about-content-body ul li:before, .testimonial-rating i, .faq-accordion .accordion-button:not(.collapsed), .post-item-footer .readmore-btn,
-        .footer-links h3, .footer-copyright .footer-social-links ul li a, .service-content-footer .readmore-btn, .project-content-footer .readmore-btn
-        {
-            color: #EF151B!important;
-        }
-        .footer-copyright .footer-social-links ul li a
-        {
-            border: 2px solid #EF151B!important;
-        }
-        .btn-default.btn-highlighted:hover, .btn-default.btn-highlighted
-        {
-            border-color: #EF151B!important;
-        }
-    </style>
-</head>
-<body>
-
-    {{-- Navbar --}}
-    @include('guest/layouts.navbar')
-
-    <!-- Preloader Start -->
-	@include('guest.layouts.preloader')
-	<!-- Preloader End -->
-
-    <!-- Hero Section Start -->
-	<div class="hero bg-section parallaxie">
-		<div class="container">
+@section('content')
+    <div class="hero bg-section parallaxie">
+        <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <!-- Hero Content Start -->
                     <div class="hero-content">
                         <div class="section-title">
-                            <h3 class="wow fadeInUp">Welcome To JassaConstructions</h3>
-                            <h1 class="text-anime-style-3" data-cursor="-opaque">OVER 20 YEARS EXPERIENCE IN BUILDING CONSTRUCTION</h1>
-                            <p class="wow fadeInUp" data-wow-delay="0.25s">We specialize in turning visions into reality with exceptional craftsmanship and meticulous attention to detail. With years of experience and a commitment to quality.</p>
+                            <h3 class="wow fadeInUp">Selamat Datang, {{ Auth::user()->name }}</h3>
+                            <h1 class="text-anime-style-3" data-cursor="-opaque">Pembangunan & Monitoring Proyek</h1>
+                            <p class="wow fadeInUp" data-wow-delay="0.25s">Deskripsi Pembangunan & Monitoring Proyek</p>
                         </div>
-
                         <div class="hero-content-body wow fadeInUp" data-wow-delay="0.5s">
                             <a href="#" class="btn-default">get started</a>
-                            <a href="#" class="btn-default btn-highlighted">view Projects</a>
+                            <a href="{{ route('proyek.index') }}" class="btn-default btn-highlighted">view Projects</a>
                         </div>
                     </div>
-                    <!-- Hero Content End -->
                 </div>
             </div>
         </div>
-	</div>
-	<!-- Hero Section End -->
+    </div>
+    <!-- Hero Section End -->
 
     <!-- About Section Start -->
     <div class="about-us">
@@ -110,7 +46,9 @@
                         <div class="section-title">
                             <h3 class="wow fadeInUp">about us</h3>
                             <h2 class="text-anime-style-3" data-cursor="-opaque">Building the Future Across Punjab</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.25s">Since its inception, JassaConstructions has led real estate development in Ludhiana, Punjab, with numerous completed, ongoing, and upcoming projects, and has expanded services to Haryana, Himachal Pradesh, and Jammu & Kashmir.</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.25s">Since its inception, JassaConstructions has led
+                                real estate development in Ludhiana, Punjab, with numerous completed, ongoing, and upcoming
+                                projects, and has expanded services to Haryana, Himachal Pradesh, and Jammu & Kashmir.</p>
                         </div>
                         <!-- Section Title End -->
 
@@ -157,7 +95,8 @@
                         <div class="section-title">
                             <h3 class="wow fadeInUp">our services</h3>
                             <h2 class="text-anime-style-3" data-cursor="-opaque">Our construction services</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.25s">We specialize in a wide range of construction services, including residential, commercial, and industrial projects.</p>
+                            <p class="wow fadeInUp" data-wow-delay="0.25s">We specialize in a wide range of construction
+                                services, including residential, commercial, and industrial projects.</p>
                         </div>
                         <!-- Section Title End -->
                     </div>
@@ -187,7 +126,8 @@
 
                                 <!-- Service Content Start -->
                                 <div class="service-content">
-                                    <p>Our post-construction services gives you peace of mind knowing that we are still here for you even after.</p>
+                                    <p>Our post-construction services gives you peace of mind knowing that we are still here
+                                        for you even after.</p>
                                     <div class="service-content-footer">
                                         <a href="#" class="readmore-btn">view more</a>
                                     </div>
@@ -222,7 +162,8 @@
 
                                 <!-- Service Content Start -->
                                 <div class="service-content">
-                                    <p>Our post-construction services gives you peace of mind knowing that we are still here for you even after.</p>
+                                    <p>Our post-construction services gives you peace of mind knowing that we are still here
+                                        for you even after.</p>
                                     <div class="service-content-footer">
                                         <a href="#" class="readmore-btn">view more</a>
                                     </div>
@@ -257,7 +198,8 @@
 
                                 <!-- Service Content Start -->
                                 <div class="service-content">
-                                    <p>Our post-construction services gives you peace of mind knowing that we are still here for you even after.</p>
+                                    <p>Our post-construction services gives you peace of mind knowing that we are still here
+                                        for you even after.</p>
                                     <div class="service-content-footer">
                                         <a href="#" class="readmore-btn">view more</a>
                                     </div>
@@ -292,7 +234,8 @@
 
                                 <!-- Service Content Start -->
                                 <div class="service-content">
-                                    <p>Our post-construction services gives you peace of mind knowing that we are still here for you even after.</p>
+                                    <p>Our post-construction services gives you peace of mind knowing that we are still here
+                                        for you even after.</p>
                                     <div class="service-content-footer">
                                         <a href="#" class="readmore-btn">view more</a>
                                     </div>
@@ -324,7 +267,9 @@
                     <div class="section-title">
                         <h3 class="wow fadeInUp">why choose us?</h3>
                         <h2 class="text-anime-style-3" data-cursor="-opaque">Why we're your best choice</h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.25s">Developed in close collaboration with our partners and clients, combines industry knowledge, decades of experience, ingenuity and adaptability to deliver excellence to our clients.</p>
+                        <p class="wow fadeInUp" data-wow-delay="0.25s">Developed in close collaboration with our partners
+                            and clients, combines industry knowledge, decades of experience, ingenuity and adaptability to
+                            deliver excellence to our clients.</p>
                     </div>
                     <!-- Section Title End -->
                 </div>
@@ -339,7 +284,8 @@
                         </div>
                         <div class="why-choose-content">
                             <h3>innovation solutions</h3>
-                            <p>Simple actions make a difference. It starts and ends with each employee striving to work safer every single day so they can return.</p>
+                            <p>Simple actions make a difference. It starts and ends with each employee striving to work
+                                safer every single day so they can return.</p>
                         </div>
                         <div class="why-choose-counter">
                             <h3><span class="counter">800</span>+</h3>
@@ -361,13 +307,14 @@
 
                 <div class="col-lg-4 col-md-6">
                     <!-- Why Choose Item Start -->
-                    <div class="why-choose-item wow fadeInUp"  data-wow-delay="0.25s">
+                    <div class="why-choose-item wow fadeInUp" data-wow-delay="0.25s">
                         <div class="icon-box">
                             <img src="images/icon-why-choose-2.svg" alt="">
                         </div>
                         <div class="why-choose-content">
                             <h3>quality craftsmanship</h3>
-                            <p>Simple actions make a difference. It starts and ends with each employee striving to work safer every single day so they can return.</p>
+                            <p>Simple actions make a difference. It starts and ends with each employee striving to work
+                                safer every single day so they can return.</p>
                         </div>
                         <div class="why-choose-counter">
                             <h3><span class="counter">800</span>+</h3>
@@ -395,7 +342,8 @@
                         </div>
                         <div class="why-choose-content">
                             <h3>expertise and experience</h3>
-                            <p>Simple actions make a difference. It starts and ends with each employee striving to work safer every single day so they can return.</p>
+                            <p>Simple actions make a difference. It starts and ends with each employee striving to work
+                                safer every single day so they can return.</p>
                         </div>
                         <div class="why-choose-counter">
                             <h3><span class="counter">800</span>+</h3>
@@ -428,8 +376,10 @@
                         <!-- Section Title Start -->
                         <div class="section-title">
                             <h3 class="wow fadeInUp">our projects</h3>
-                            <h2 class="text-anime-style-3" data-cursor="-opaque">Explore our diverse range of projects</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.25s">We specialize in a wide range of construction services, including residential, commercial, and industrial projects.</p>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque">Explore our diverse range of projects
+                            </h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.25s">We specialize in a wide range of construction
+                                services, including residential, commercial, and industrial projects.</p>
                         </div>
                         <!-- Section Title End -->
                     </div>
@@ -459,7 +409,8 @@
 
                                 <!-- Project Content Start -->
                                 <div class="project-content">
-                                    <p>Our post-construction services gives you peace of mind knowing that we are still here for you even after.</p>
+                                    <p>Our post-construction services gives you peace of mind knowing that we are still here
+                                        for you even after.</p>
                                     <div class="project-content-footer">
                                         <a href="#" class="readmore-btn">view more</a>
                                     </div>
@@ -495,7 +446,8 @@
 
                                 <!-- Project Content Start -->
                                 <div class="project-content">
-                                    <p>Our post-construction services gives you peace of mind knowing that we are still here for you even after.</p>
+                                    <p>Our post-construction services gives you peace of mind knowing that we are still here
+                                        for you even after.</p>
                                     <div class="project-content-footer">
                                         <a href="#" class="readmore-btn">view more</a>
                                     </div>
@@ -530,7 +482,8 @@
 
                                 <!-- Project Content Start -->
                                 <div class="project-content">
-                                    <p>Our post-construction services gives you peace of mind knowing that we are still here for you even after.</p>
+                                    <p>Our post-construction services gives you peace of mind knowing that we are still here
+                                        for you even after.</p>
                                     <div class="project-content-footer">
                                         <a href="#" class="readmore-btn">view more</a>
                                     </div>
@@ -565,7 +518,8 @@
 
                                 <!-- Project Content Start -->
                                 <div class="project-content">
-                                    <p>Our post-construction services gives you peace of mind knowing that we are still here for you even after.</p>
+                                    <p>Our post-construction services gives you peace of mind knowing that we are still here
+                                        for you even after.</p>
                                     <div class="project-content-footer">
                                         <a href="#" class="readmore-btn">view more</a>
                                     </div>
@@ -596,7 +550,8 @@
                     <!-- Section Title Start -->
                     <div class="section-title">
                         <h2 class="text-anime-style-3" data-cursor="-opaque">Let's bulid something great together!</h2>
-                        <p class="wow fadeInUp">Don't wait any longer to bring your construction dreams to life. Partner with jassa and experience unparalleled service and quality.</p>
+                        <p class="wow fadeInUp">Don't wait any longer to bring your construction dreams to life. Partner
+                            with jassa and experience unparalleled service and quality.</p>
                     </div>
                     <!-- Section Title End -->
 
@@ -630,7 +585,8 @@
                     <div class="section-title">
                         <h3 class="wow fadeInUp">testimonials</h3>
                         <h2 class="text-anime-style-3" data-cursor="-opaque">What people are saying about us</h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.25s">We specialize in a wide range of construction services, including residential, commercial, and industrial projects.</p>
+                        <p class="wow fadeInUp" data-wow-delay="0.25s">We specialize in a wide range of construction
+                            services, including residential, commercial, and industrial projects.</p>
                     </div>
                     <!-- Section Title End -->
                 </div>
@@ -654,7 +610,11 @@
                                                 <i class="fa-solid fa-star"></i>
                                             </div>
                                             <div class="testimonial-content">
-                                                <p>The project was successfully completed within the agreed timeframe, meeting all our expectations. A team of skilled and experienced technical staff, along with the required equipment and facilities, was employed for the task. The project period spanned from 2021-22 to 2022-23 for Kanwal Duroparts Pvt. Ltd.</p>
+                                                <p>The project was successfully completed within the agreed timeframe,
+                                                    meeting all our expectations. A team of skilled and experienced
+                                                    technical staff, along with the required equipment and facilities, was
+                                                    employed for the task. The project period spanned from 2021-22 to
+                                                    2022-23 for Kanwal Duroparts Pvt. Ltd.</p>
                                             </div>
                                         </div>
                                         <div class="testimonial-body">
@@ -684,7 +644,10 @@
                                                 <i class="fa-solid fa-star"></i>
                                             </div>
                                             <div class="testimonial-content">
-                                                <p>JassaConstructions surpassed our expectations by completing the project on schedule. Their construction quality is excellent, technical expertise is top-notch, and their team's professionalism is commendable. We wish them continued success in their future endeavors.</p>
+                                                <p>JassaConstructions surpassed our expectations by completing the project
+                                                    on schedule. Their construction quality is excellent, technical
+                                                    expertise is top-notch, and their team's professionalism is commendable.
+                                                    We wish them continued success in their future endeavors.</p>
                                             </div>
                                         </div>
                                         <div class="testimonial-body">
@@ -694,7 +657,7 @@
                                                 </figure>
                                             </div>
                                             <div class="author-content">
-                                                <h3>HUHA  Enterprises</h3>
+                                                <h3>HUHA Enterprises</h3>
                                                 <p>Industrial</p>
                                             </div>
                                         </div>
@@ -714,7 +677,10 @@
                                                 <i class="fa-solid fa-star"></i>
                                             </div>
                                             <div class="testimonial-content">
-                                                <p>JassaConstructions exceeded our expectations by completing their work on time. The quality of constructions is good, technical proficiency is best and experienced general behavior was good. We wish them every success in their future projects.</p>
+                                                <p>JassaConstructions exceeded our expectations by completing their work on
+                                                    time. The quality of constructions is good, technical proficiency is
+                                                    best and experienced general behavior was good. We wish them every
+                                                    success in their future projects.</p>
                                             </div>
                                         </div>
                                         <div class="testimonial-body">
@@ -744,7 +710,10 @@
                                                 <i class="fa-solid fa-star"></i>
                                             </div>
                                             <div class="testimonial-content">
-                                                <p>JassaConstructions surpassed our expectations by completing the project on schedule. Their construction quality is excellent, technical expertise is top-notch, and their team's professionalism is commendable. We wish them continued success in their future endeavors.</p>
+                                                <p>JassaConstructions surpassed our expectations by completing the project
+                                                    on schedule. Their construction quality is excellent, technical
+                                                    expertise is top-notch, and their team's professionalism is commendable.
+                                                    We wish them continued success in their future endeavors.</p>
                                             </div>
                                         </div>
                                         <div class="testimonial-body">
@@ -781,7 +750,8 @@
                     <div class="section-title">
                         <h3 class="wow fadeInUp">faqs</h3>
                         <h2 class="text-anime-style-3" data-cursor="-opaque">Got questions? we've got answers</h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.25s">We specialize in a wide range of construction services, including residential, commercial, and industrial projects.</p>
+                        <p class="wow fadeInUp" data-wow-delay="0.25s">We specialize in a wide range of construction
+                            services, including residential, commercial, and industrial projects.</p>
                     </div>
                     <!-- Section Title End -->
                 </div>
@@ -842,76 +812,80 @@
 
                 <div class="col-lg-7">
                     <!-- FAQ Accordion Start -->
-					<div class="faq-accordion" id="accordion">
-						<!-- FAQ Item Start -->
-						<div class="accordion-item wow fadeInUp" data-wow-delay="0.25s">
-							<h2 class="accordion-header" id="headingOne">
-								<button class="accordion-button" type="button" data-bs-toggle="collapse"
-									data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-									Do you offer a free, no obligation quotation?
-								</button>
-							</h2>
-							<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-								data-bs-parent="#accordion">
-								<div class="accordion-body">
-									<p>Our post-construction services gives you peace of mind knowing that we are still here for you even after.</p>
-								</div>
-							</div>
-						</div>
-						<!-- FAQ Item End -->
-
-						<!-- FAQ Item Start -->
-						<div class="accordion-item wow fadeInUp" data-wow-delay="0.5s">
-							<h2 class="accordion-header" id="headingTwo">
-								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-									data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-									What services do you offer?
-								</button>
-							</h2>
-							<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-								data-bs-parent="#accordion">
-								<div class="accordion-body">
-									<p>Our post-construction services gives you peace of mind knowing that we are still here for you even after.</p>
-								</div>
-							</div>
-						</div>
-						<!-- FAQ Item End -->
-
-						<!-- FAQ Item Start -->
-						<div class="accordion-item wow fadeInUp" data-wow-delay="0.75s">
-							<h2 class="accordion-header" id="headingThree">
-								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-									data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-									What types of projects do you specialize in?
-								</button>
-							</h2>
-							<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-								data-bs-parent="#accordion">
-								<div class="accordion-body">
-									<p>Our post-construction services gives you peace of mind knowing that we are still here for you even after.</p>
-								</div>
-							</div>
-						</div>
-						<!-- FAQ Item End -->
+                    <div class="faq-accordion" id="accordion">
+                        <!-- FAQ Item Start -->
+                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.25s">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Do you offer a free, no obligation quotation?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                                data-bs-parent="#accordion">
+                                <div class="accordion-body">
+                                    <p>Our post-construction services gives you peace of mind knowing that we are still here
+                                        for you even after.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FAQ Item End -->
 
                         <!-- FAQ Item Start -->
-						<div class="accordion-item wow fadeInUp" data-wow-delay="1s">
+                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.5s">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    What services do you offer?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#accordion">
+                                <div class="accordion-body">
+                                    <p>Our post-construction services gives you peace of mind knowing that we are still here
+                                        for you even after.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FAQ Item End -->
+
+                        <!-- FAQ Item Start -->
+                        <div class="accordion-item wow fadeInUp" data-wow-delay="0.75s">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    What types of projects do you specialize in?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#accordion">
+                                <div class="accordion-body">
+                                    <p>Our post-construction services gives you peace of mind knowing that we are still here
+                                        for you even after.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FAQ Item End -->
+
+                        <!-- FAQ Item Start -->
+                        <div class="accordion-item wow fadeInUp" data-wow-delay="1s">
                             <h2 class="accordion-header" id="headingfour">
-								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-									data-bs-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
-									How do I start a project with your company?
-								</button>
-							</h2>
-							<div id="collapsefour" class="accordion-collapse collapse" aria-labelledby="headingfour"
-								data-bs-parent="#accordion">
-								<div class="accordion-body">
-									<p>Our post-construction services gives you peace of mind knowing that we are still here for you even after.</p>
-								</div>
-							</div>
-						</div>
-						<!-- FAQ Item End -->
-					</div>
-					<!-- FAQ Accordion End -->
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
+                                    How do I start a project with your company?
+                                </button>
+                            </h2>
+                            <div id="collapsefour" class="accordion-collapse collapse" aria-labelledby="headingfour"
+                                data-bs-parent="#accordion">
+                                <div class="accordion-body">
+                                    <p>Our post-construction services gives you peace of mind knowing that we are still here
+                                        for you even after.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FAQ Item End -->
+                    </div>
+                    <!-- FAQ Accordion End -->
                 </div>
             </div>
         </div>
@@ -927,7 +901,8 @@
                     <div class="section-title">
                         <h3 class="wow fadeInUp">news & blog</h3>
                         <h2 class="text-anime-style-3" data-cursor="-opaque">Articles & blog posts</h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.25s">We specialize in a wide range of construction services, including residential, commercial, and industrial projects.</p>
+                        <p class="wow fadeInUp" data-wow-delay="0.25s">We specialize in a wide range of construction
+                            services, including residential, commercial, and industrial projects.</p>
                     </div>
                     <!-- Section Title End -->
                 </div>
@@ -1089,22 +1064,26 @@
                         <form id="contactForm" action="#" method="POST" data-toggle="validator">
                             <div class="row">
                                 <div class="form-group col-md-6 mb-4">
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Enter Your name" required="">
+                                    <input type="text" name="name" class="form-control" id="name"
+                                        placeholder="Enter Your name" required="">
                                     <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group col-md-6 mb-4">
-                                    <input type="email" name="email" class="form-control" id="email" placeholder="Enter Your email" required="">
+                                    <input type="email" name="email" class="form-control" id="email"
+                                        placeholder="Enter Your email" required="">
                                     <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group col-md-6 mb-4">
-                                    <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone number" required="">
+                                    <input type="text" name="phone" class="form-control" id="phone"
+                                        placeholder="Phone number" required="">
                                     <div class="help-block with-errors"></div>
                                 </div>
 
                                 <div class="form-group col-md-6 mb-4">
-                                    <input type="text" name="website" class="form-control" id="website" placeholder="Subject" required="">
+                                    <input type="text" name="website" class="form-control" id="website"
+                                        placeholder="Subject" required="">
                                     <div class="help-block with-errors"></div>
                                 </div>
 
@@ -1126,8 +1105,4 @@
         </div>
     </div>
     <!-- Contact Us Section End -->
-
-    {{-- Footer --}}
-    @include('guest/layouts.footer')
-</body>
-</html>
+@endsection

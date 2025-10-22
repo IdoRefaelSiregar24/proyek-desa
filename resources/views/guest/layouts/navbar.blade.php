@@ -21,7 +21,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="about.html">Proyek</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{route('proyek.index')}}">Proyek</a></li>
                                 <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
                                 <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
                                 <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>

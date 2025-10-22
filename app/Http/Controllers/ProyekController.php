@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Proyek;
 use Illuminate\Http\Request;
 
 class ProyekController extends Controller
@@ -11,7 +12,8 @@ class ProyekController extends Controller
      */
     public function index()
     {
-        return view("guest/proyek");
+        $data['dataProyek'] = Proyek::all();
+        return view('guest.proyek.index', $data);
     }
 
     /**

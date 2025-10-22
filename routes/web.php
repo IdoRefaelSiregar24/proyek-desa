@@ -29,7 +29,10 @@ Route::resource('warga', DashboardAdminController::class);
 // Proyek Admin Routes
 Route::resource('proyek', ProyekAdminController::class);
 
-// Proyek Guest Routes
+// Warga Guest Routes
 Route::resource('warga', WargaController::class);
+
+// Proyek Guest Routes
+Route::resource('proyek', ProyekController::class);
 
 
