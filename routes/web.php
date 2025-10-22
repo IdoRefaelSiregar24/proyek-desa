@@ -23,5 +23,7 @@ Route::post('register', [AuthController::class, 'register'])->name('register');
 // Warga Routes
 Route::resource('warga', DashboardAdminController::class);
 
-// Proyek Routes
+// Proyek Admin Routes
 Route::resource('proyek', ProyekAdminController::class);
+
+

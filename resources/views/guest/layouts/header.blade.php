@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -52,30 +49,5 @@
         {
             border-color: #EF151B!important;
         }
-        .overlay-dark {
-        pointer-events: none;
-        z-index: 1;
-        }
-        .login-card {
-        position: relative;
-        z-index: 2;
-        }
-
     </style>
 </head>
-
-
-<body>
-    {{-- Navbar --}}
-    @include('guest/layouts.navbar')
-
-    {{-- Content --}}
-    @yield('content')
-
-    <br>
-</body>
-
-    {{-- Footer --}}
-    @include('guest/layouts.footer')
-
-</html>
