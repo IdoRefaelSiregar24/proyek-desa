@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use App\Models\Warga;
 
 class AuthController extends Controller
 {
@@ -77,6 +78,7 @@ class AuthController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
     public function create()
     {
         //
@@ -117,8 +119,24 @@ class AuthController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+public function destroy(Request $request)
     {
-        //
+        $user = Auth::user(); // Ambil user yang sedang login
+
+        if ($user) {
+            // Hapus data warga yang terkait (kalau ada)
+            Warga::where('user_id', $user->id)->delete();
+
+            // Hapus akun user
+            $user->delete();
+
+            // Logout setelah dihapus
+            Auth::logout();
+
+            // Redirect ke halaman utama
+            return redirect('/')->with('success', 'Akun Anda telah berhasil dihapus.');
+        }
+
+        return redirect()->back()->with('error', 'Gagal menghapus akun.');
     }
 }

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
-use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Warga;
 
 class WargaController extends Controller
 {
@@ -12,8 +15,11 @@ class WargaController extends Controller
      */
     public function index()
     {
-        return view("guest/warga/index");
+        $user = Auth::user();
+        $warga = Warga::where('user_id', $user->id)->first();
+        return view("guest.warga.index", compact('warga'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -29,26 +35,31 @@ class WargaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nik' => 'required|numeric',
-            'tempat_lahir' => 'required|string',
-            'tanggal_lahir' => 'required|date',
+            'no_ktp' => 'required|numeric',
+            'nama' => 'required|string',
             'jenis_kelamin' => 'required|string',
-            'alamat' => 'required|string',
+            'agama' => 'required|string',
+            'pekerjaan' => 'required|string',
+            'telp' => 'required|string',
+            'email' => 'required|email',
         ]);
 
-        $user = AuthController::user();
-        $user->update([
-            'nik' => $request->nik,
-            'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'no_telepon' => $request->no_telepon,
-            'alamat' => $request->alamat,
-            'rt_rw' => $request->rt_rw,
-            'desa_kelurahan' => $request->desa_kelurahan,
-            'kecamatan' => $request->kecamatan,
-            'pekerjaan' => $request->pekerjaan,
-        ]);
+        $user = Auth::user();
+
+        Warga::updateOrCreate(
+            ['user_id' => $user->id],
+            [
+                'user_id' => $user->id,
+                'no_ktp' => $request->no_ktp,
+                'nama' => $request->nama,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'agama' => $request->agama,
+                'pekerjaan' => $request->pekerjaan,
+                'telp' => $request->telp,
+                'email' => $request->email,
+            ]
+        );
+
 
         return redirect()->route('warga.index')->with('success', 'Data profil berhasil disimpan.');
     }
@@ -64,17 +75,51 @@ class WargaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $warga = Warga::where('user_id', $id)->firstOrFail();
+        return view('guest.warga.edit', compact('warga'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email',
+            'telp' => 'required|string|max:20',
+            'no_ktp' => 'required|numeric',
+            'jenis_kelamin' => 'required|string',
+            'agama' => 'required|string',
+            'pekerjaan' => 'required|string',
+        ]);
+
+        $user = Auth::user();
+
+        // Update tabel user
+        $user->update([
+            'name' => $request->nama,
+            'email' => $request->email,
+        ]);
+
+        // Update atau buat data warga
+        Warga::updateOrCreate(
+            ['user_id' => $user->id],
+            [
+                'no_ktp' => $request->no_ktp,
+                'nama' => $request->nama,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'agama' => $request->agama,
+                'pekerjaan' => $request->pekerjaan,
+                'telp' => $request->telp,
+                'email' => $request->email,
+            ]
+        );
+
+        return redirect()->route('warga.index')->with('success', 'Profil berhasil diperbarui.');
     }
 
     /**

@@ -19,7 +19,9 @@ Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard'
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login.show');
 Route::get('register', [AuthController::class, 'showRegisterFrom'])->name('register.show');
 Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('register', [AuthController::class, 'register'])->name('register');
+Route::delete('delete', [AuthController::class, 'destroy'])->name('auth.destroy');
 
 // Warga Routes
 Route::resource('warga', DashboardAdminController::class);

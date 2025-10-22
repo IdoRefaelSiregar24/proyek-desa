@@ -3,16 +3,15 @@
         <div class="header-sticky">
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
-                    <!-- Logo Start -->
+                    <!-- Logo -->
                     <a class="navbar-brand" href="./">
                         <img src="{{ asset('assets-guest/images/165x47 logo.svg') }}" alt="Logo">
                     </a>
-                    <!-- Logo End -->
 
-                    <!-- Main Menu Start -->
+                    <!-- Menu -->
                     <div class="collapse navbar-collapse main-menu">
                         <div class="nav-menu-wrapper">
-                            <ul class="navbar-nav mr-auto" id="menu">
+                            <ul class="navbar-nav me-auto" id="menu">
                                 <li class="nav-item submenu"><a class="nav-link" href="./">Home</a>
                                     <ul class="sub-menu">
                                         <li class="nav-item"><a class="nav-link" href="index.html">Home - Image</a></li>
@@ -40,34 +39,70 @@
                                         <li class="nav-item"><a class="nav-link" href="404.html">404</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item highlighted-menu"><a class="nav-link" href="contact.html">Contact
-                                        Us</a></li>
-                            </ul>
-                            <ul class="navbar-nav mr-auto" id="menu">
-
                             </ul>
                         </div>
-                        <!-- Tombol Login / Profil -->
-                        @guest
-                            <!-- Tampilkan tombol login jika belum login -->
-                            <a href="{{ route('login.show') }}" class="btn-default">Login</a>
-                        @endguest
 
-                        <a href="{{ route('warga.index') }}"class="btn-profile flex items-center gap-2 px-3 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition">
+                        <div class="position-relative ms-auto">
                             @auth
-                                <div class="welcome-message text-gray-700 font-semibold">
-                                    Hai, Selamat Datang {{ Auth::user()->name }}!
-                                </div>
-                            @endauth
-                        </a>
+                                <button id="dropdownButton"
+                                    class="d-flex align-items-center gap-2 px-3 py-2 bg-danger text-white rounded-pill border-0 shadow-sm">
+                                    <span class="fw-semibold">
+                                        Hai, {{ Auth::user()->name }}!
+                                    </span>
+                                    <i class="bi bi-caret-down-fill"></i>
+                                </button>
 
-                        <!-- Tombol Login / Profil End -->
+                                <div id="dropdownMenu"
+                                    class="dropdown-menu dropdown-menu-end shadow mt-2 rounded-3 border-0"
+                                    style="display: none; position: absolute; right: 0;">
+                                    <a class="dropdown-item" href="{{ route('warga.index') }}">Dashboard Warga</a>
+                                    <a class="dropdown-item" href="{{ route('warga.index') }}">Data Diri</a>
+                                    <div class="dropdown-divider"></div>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item text-danger">
+                                            Keluar
+                                        </button>
+                                    </form>
+                                </div>
+                            @else
+                                <a href="{{ route('login') }}" class="btn btn-outline-danger px-3 py-2">
+                                    Login
+                                </a>
+                            @endauth
+                        </div>
                     </div>
-                    <!-- Main Menu End -->
-                    <div class="navbar-toggle"></div>
                 </div>
             </nav>
-            <div class="responsive-menu"></div>
+
+            <!-- Script Toggle Dropdown -->
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    const button = document.getElementById("dropdownButton");
+                    const menu = document.getElementById("dropdownMenu");
+
+                    if (button) {
+                        button.addEventListener("click", (e) => {
+                            e.stopPropagation();
+                            const isVisible = menu.style.display === "block";
+                            menu.style.display = isVisible ? "none" : "block";
+                        });
+                    }
+
+                    // Tutup dropdown saat klik di luar
+                    window.addEventListener("click", (e) => {
+                        if (menu && !menu.contains(e.target) && !button.contains(e.target)) {
+                            menu.style.display = "none";
+                        }
+                    });
+                });
+            </script>
+        </div>
+        <!-- Main Menu End -->
+        <div class="navbar-toggle"></div>
+        </div>
+        </nav>
+        <div class="responsive-menu"></div>
         </div>
     </header>
     <!-- Header End -->
