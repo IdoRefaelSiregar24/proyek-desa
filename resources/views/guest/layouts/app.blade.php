@@ -73,9 +73,8 @@
     @yield('content')
 
     <br>
-</body>
-
     {{-- Footer --}}
     @include('guest/layouts.footer')
+</body>
 
 </html>

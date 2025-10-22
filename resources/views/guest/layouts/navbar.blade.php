@@ -53,7 +53,7 @@
                             <a href="{{ route('login.show') }}" class="btn-default">Login</a>
                         @endguest
 
-                        <a href=""class="btn-profile flex items-center gap-2 px-3 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition">
+                        <a href="{{ route('warga.index') }}"class="btn-profile flex items-center gap-2 px-3 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition">
                             @auth
                                 <div class="welcome-message text-gray-700 font-semibold">
                                     Hai, Selamat Datang {{ Auth::user()->name }}!

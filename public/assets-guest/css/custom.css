@@ -27,7 +27,7 @@
 19. Blog Single css
 20. Project Page css
 21. Project Single css
-22. Team Page css  
+22. Team Page css
 23. Contact us Page css
 24.	FAQs Page css
 25. 404 Page css
@@ -36,7 +36,7 @@
 
 /************************************/
 /*** 	 01. Global Variables	  ***/
-/************************************/	
+/************************************/
 
 :root{
 	--primary-color			: #12223B;
@@ -64,6 +64,27 @@ body{
 	color: var(--text-color);
 	background-color: var(--white-color);
 }
+
+.overlay-dark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.card {
+    position: relative;
+    z-index: 3;
+}
+
 
 p{
 	line-height: 1.6em;
@@ -224,7 +245,7 @@ body{
 	transition: 0.4s ease-in-out;
 }
 
-.btn-default::after{ 
+.btn-default::after{
 	content: '';
     display: block;
     position: absolute;
@@ -2347,7 +2368,7 @@ header.main-header .header-sticky.active{
 	color: var(--white-color);
 	margin: 0;
 }
- 
+
 .cta-contact-info{
 	display: flex;
 	flex-wrap: wrap;
@@ -2379,7 +2400,7 @@ header.main-header .header-sticky.active{
 	border-radius: 50%;
 	margin-right: 10px;
 }
- 
+
 .cta-contact-info .cta-contact-item .cta-contact-content{
 	width: calc(100% - 47px);
 }
@@ -2628,7 +2649,7 @@ header.main-header .header-sticky.active{
     transition: all 0.3s ease-in-out;
 }
 
-.post-pagination ul li.active a, 
+.post-pagination ul li.active a,
 .post-pagination ul li a:hover{
     background: var(--accent-color);
 	color: var(--white-color);
@@ -3305,7 +3326,7 @@ header.main-header .header-sticky.active{
 .error-page-content-heading h2 span{
 	color: var(--accent-color);
 }
- 
+
 /************************************/
 /***     26. responsive css       ***/
 /************************************/
@@ -3315,7 +3336,7 @@ header.main-header .header-sticky.active{
 	.navbar{
         padding: 20px 0px;
     }
-	
+
 	.main-menu ul li{
 		margin-left: 0;
 	}
@@ -3434,7 +3455,7 @@ header.main-header .header-sticky.active{
 		margin-left: 0px;
 	}
 
-	.about-content-body ul{		
+	.about-content-body ul{
 		padding: 20px;
 	}
 
@@ -3489,7 +3510,7 @@ header.main-header .header-sticky.active{
 	.why-choose-item .icon-box{
 		margin-bottom: 20px;
 	}
-	
+
 	.why-choose-item .icon-box img{
 		max-width: 60px;
 	}
@@ -3698,7 +3719,7 @@ header.main-header .header-sticky.active{
 		margin-left: 0px;
 	}
 
-	.about-us-content-body ul{		
+	.about-us-content-body ul{
 		padding: 20px;
 	}
 
@@ -3718,10 +3739,10 @@ header.main-header .header-sticky.active{
 	.about-us-support-content h3{
 		font-size: 22px;
 	}
-	
+
 	.our-company-history{
 		padding: 50px 0;
-	}	
+	}
 
 	.company-history-image{
 		margin-bottom: 30px;
@@ -3739,7 +3760,7 @@ header.main-header .header-sticky.active{
 	.company-experience-content h3{
 		font-size: 46px;
 	}
-	
+
 	.our-mission-vision{
 		padding: 50px 0 20px;
 	}
@@ -3761,7 +3782,7 @@ header.main-header .header-sticky.active{
 		height: calc(100% - 30px);
 		margin-bottom: 30px;
 	}
-	
+
 	.intro-video-box .video-image img{
 		aspect-ratio: 1/0.55;
 	}
@@ -3774,7 +3795,7 @@ header.main-header .header-sticky.active{
 	.video-play-button a i{
 		font-size: 26px;
 	}
-	
+
 	.what-we-do{
 		padding: 50px 0 20px;
 	}
@@ -3792,7 +3813,7 @@ header.main-header .header-sticky.active{
 	.company-counter-item .company-counter-content h3{
 		font-size: 46px;
 	}
-	
+
 	.our-team{
 		padding: 50px 0 20px;
 	}
@@ -3800,7 +3821,7 @@ header.main-header .header-sticky.active{
 	.team-content{
 		margin-bottom: 15px;
 	}
-	
+
 	.team-content h3{
 		font-size: 22px;
 		margin-bottom: 5px;
@@ -3809,7 +3830,7 @@ header.main-header .header-sticky.active{
 	.page-service{
 		padding: 50px 0 20px;
 	}
-	
+
 	.page-service-single{
 		padding: 50px 0;
 	}
@@ -4024,7 +4045,7 @@ header.main-header .header-sticky.active{
 	.google-map-iframe iframe{
 		height: 400px;
 	}
-	
+
 	.page-faq{
 		padding: 50px 0;
 	}
@@ -4066,7 +4087,7 @@ header.main-header .header-sticky.active{
 	.error-page{
 		padding: 50px 0;
 	}
-	
+
 	.error-page-image{
 		margin-bottom: 30px;
 	}
@@ -4074,7 +4095,7 @@ header.main-header .header-sticky.active{
 	.error-page-content-heading{
 		margin-bottom: 20px;
 	}
-	
+
 	.error-page-content-heading h2{
 		font-size: 46px;
 	}
@@ -4227,7 +4248,7 @@ header.main-header .header-sticky.active{
 
 	.faqs-img-2 img{
 		width: 140px;
-	} 
+	}
 
 	.author-content h3{
         font-size: 20px;
@@ -4359,7 +4380,7 @@ header.main-header .header-sticky.active{
 	.company-history-image{
 		padding-bottom: 50px;
 	}
-	
+
 	.company-experience{
 		padding: 15px;
 		bottom: 0;
@@ -4369,7 +4390,7 @@ header.main-header .header-sticky.active{
 	.company-experience-content h3{
 		font-size: 36px;
 	}
-	
+
 	.mission-vision-item{
 		padding: 20px;
 	}
@@ -4377,12 +4398,12 @@ header.main-header .header-sticky.active{
 	.mission-vision-item .icon-box{
 		margin-bottom: 15px;
 	}
-	
+
 	.mission-vision-item .mission-vision-content h3{
 		font-size: 20px;
 		margin-bottom: 15px;
 	}
-	
+
 	.company-counter-item{
 		padding: 30px 20px;
 	}
@@ -4390,11 +4411,11 @@ header.main-header .header-sticky.active{
 	.company-counter-item .company-counter-content h3{
 		font-size: 36px;
 	}
-	
+
 	.team-body{
 		padding: 20px;
 	}
-	
+
 	.team-content h3{
 		font-size: 20px;
 	}
@@ -4438,7 +4459,7 @@ header.main-header .header-sticky.active{
 	.working-process-item .step-number h2{
 		font-size: 24px;
 	}
-	
+
 	.working-process-item .working-process-content h3{
 		font-size: 20px;
 		margin-bottom: 15px;
@@ -4458,7 +4479,7 @@ header.main-header .header-sticky.active{
 		background-size: 35px;
 		padding: 55px 20px 20px 20px;
 	}
-	
+
 	.post-entry h2{
 		font-size: 30px;
 	}
@@ -4531,7 +4552,7 @@ header.main-header .header-sticky.active{
 	.google-map-iframe iframe{
         height: 350px;
     }
-	
+
 	.faq-section .faq-accordion .accordion-item .accordion-button{
 		font-size: 20px;
 		padding: 10px 35px 10px 0px;

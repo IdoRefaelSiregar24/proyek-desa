@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\WargaController;
+use App\Http\Controllers\ProyekController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProyekAdminController;
 use App\Http\Controllers\DashboardAdminController;
@@ -25,5 +26,8 @@ Route::resource('warga', DashboardAdminController::class);
 
 // Proyek Admin Routes
 Route::resource('proyek', ProyekAdminController::class);
+
+// Proyek Guest Routes
+Route::resource('warga', WargaController::class);
 
 
