@@ -35,7 +35,7 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('warga.store') }}" method="POST" novalidate>
+                            <form action="{{ route('warga-guest.store') }}" method="POST" novalidate>
                                 @csrf
 
                                 <div class="row text-start">
@@ -157,7 +157,7 @@
                                     <button type="submit" class="btn btn-success fw-semibold px-5 py-2">
                                         <i class="bi bi-save2"></i> Simpan Data
                                     </button>
-                                    <a href="{{ route('warga.index') }}"
+                                    <a href="{{ route('warga-guest.index') }}"
                                         class="btn btn-outline-secondary fw-semibold px-4 py-2 ms-2">
                                         <i class="bi bi-arrow-left-circle"></i> Batal
                                     </a>

@@ -16,7 +16,7 @@
                 <div class="col-lg-7 col-md-9 col-12">
                     <div class="card shadow-lg border-0 rounded-4 bg-white text-dark">
                         <div class="card-body bg-white p-5">
-                            <form action="{{ route('warga.update', $warga->user_id) }}" method="POST">
+                            <form action="{{ route('warga-guest.update', $warga->user_id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
 
@@ -84,7 +84,7 @@
 
                                 <div class="row text-start">
                                     <div class="d-flex justify-content-end gap-2">
-                                        <a href="{{ route('warga.index') }}"
+                                        <a href="{{ route('warga-guest.index') }}"
                                             class="btn btn-outline-secondary px-4 py-2">Batal</a>
                                         <button type="submit" class="btn btn-success px-4 py-2">Simpan Perubahan</button>
                                     </div>

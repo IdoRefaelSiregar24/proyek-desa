@@ -14,7 +14,7 @@
                         </div>
                         <div class="hero-content-body wow fadeInUp" data-wow-delay="0.5s">
                             <a href="#" class="btn-default">get started</a>
-                            <a href="{{ route('proyek.index') }}" class="btn-default btn-highlighted">view Projects</a>
+                            <a href="{{ route('proyek.index') }}" class="btn-default btn-highlighted">Lihat Proyek</a>
                         </div>
                     </div>
                 </div>

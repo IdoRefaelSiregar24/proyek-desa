@@ -87,11 +87,11 @@
 
                                 <div class="text-center mt-4">
                                     @if (!$dataLengkap)
-                                        <a href="{{ route('warga.create') }}" class="btn btn-success fw-semibold px-4 py-2">
+                                        <a href="{{ route('warga-guest.create') }}" class="btn btn-success fw-semibold px-4 py-2">
                                             <i class="bi bi-person-plus"></i> Isi Data Diri
                                         </a>
                                     @else
-                                        <a href="{{ route('warga.edit', Auth::user()->id) }}"
+                                        <a href="{{ route('warga-guest.edit', Auth::user()->id) }}"
                                             class="btn btn-outline-success fw-semibold px-4 py-2">
                                             <i class="bi bi-pencil-square"></i> Edit Profil
                                         </a>

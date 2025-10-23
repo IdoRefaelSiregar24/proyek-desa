@@ -55,8 +55,8 @@
                                 <div id="dropdownMenu"
                                     class="dropdown-menu dropdown-menu-end shadow mt-2 rounded-3 border-0"
                                     style="display: none; position: absolute; right: 0;">
-                                    <a class="dropdown-item" href="{{ route('warga.index') }}">Dashboard Warga</a>
-                                    <a class="dropdown-item" href="{{ route('warga.index') }}">Data Diri</a>
+                                    <a class="dropdown-item" href="{{ route('warga-guest.index') }}">Dashboard Warga</a>
+                                    <a class="dropdown-item" href="{{ route('warga-guest.index') }}">Data Diri</a>
                                     <div class="dropdown-divider"></div>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf

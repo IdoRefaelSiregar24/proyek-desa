@@ -23,6 +23,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::delete('delete', [AuthController::class, 'destroy'])->name('auth.destroy');
 
+
 // Warga Routes
 Route::resource('warga', DashboardAdminController::class);
 
@@ -30,7 +31,7 @@ Route::resource('warga', DashboardAdminController::class);
 Route::resource('proyek', ProyekAdminController::class);
 
 // Warga Guest Routes
-Route::resource('warga', WargaController::class);
+Route::resource('warga-guest', WargaController::class);
 
 // Proyek Guest Routes
 Route::resource('proyek', ProyekController::class);

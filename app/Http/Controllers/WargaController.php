@@ -61,7 +61,7 @@ class WargaController extends Controller
         );
 
 
-        return redirect()->route('warga.index')->with('success', 'Data profil berhasil disimpan.');
+        return redirect()->route('warga-guest.index')->with('success', 'Data profil berhasil disimpan.');
     }
 
     /**
@@ -119,7 +119,7 @@ class WargaController extends Controller
             ]
         );
 
-        return redirect()->route('warga.index')->with('success', 'Profil berhasil diperbarui.');
+        return redirect()->route('warga-guest.index')->with('success', 'Profil berhasil diperbarui.');
     }
 
     /**
