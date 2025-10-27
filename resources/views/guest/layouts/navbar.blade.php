@@ -12,7 +12,9 @@
                     <div class="collapse navbar-collapse main-menu">
                         <div class="nav-menu-wrapper">
                             <ul class="navbar-nav me-auto" id="menu">
-                                <li class="nav-item submenu"><a class="nav-link" href="{{route('dashboard')}}">Home</a>
+                                <li class="nav-item submenu">
+                                    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}"
+                                        href="{{ route('dashboard') }}">Home</a>
                                     <ul class="sub-menu">
                                         <li class="nav-item"><a class="nav-link" href="index.html">Home - Image</a></li>
                                         <li class="nav-item"><a class="nav-link" href="index-2.html">Home - Slider</a>
@@ -21,11 +23,29 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="{{route('proyek-guest.index')}}">Proyek</a></li>
-                                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                                <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
-                                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                <li class="nav-item submenu"><a class="nav-link" href="#">Pages</a>
+
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->routeIs('proyek-guest.index') ? 'active' : '' }}"
+                                        href="{{ route('proyek-guest.index') }}">Proyek</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
+                                        href="">About Us</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->routeIs('service') ? 'active' : '' }}"
+                                        href="">Services</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->routeIs('blog') ? 'active' : '' }}"
+                                        href="">Blog</a>
+                                </li>
+
+                                <li class="nav-item submenu">
+                                    <a class="nav-link" href="#">Pages</a>
                                     <ul>
                                         <li class="nav-item"><a class="nav-link" href="service-single.html">Service
                                                 Details</a></li>
@@ -55,9 +75,19 @@
                                 <div id="dropdownMenu"
                                     class="dropdown-menu dropdown-menu-end shadow mt-2 rounded-3 border-0"
                                     style="display: none; position: absolute; right: 0;">
-                                    <a class="dropdown-item" href="{{ route('warga-guest.index') }}">Dashboard Warga</a>
-                                    <a class="dropdown-item" href="{{ route('warga-guest.index') }}">Data Diri</a>
+
+                                    <a class="dropdown-item {{ request()->routeIs('dashboard') ? 'active' : '' }}"
+                                        href="{{ route('dashboard') }}">
+                                        Dashboard Warga
+                                    </a>
+
+                                    <a class="dropdown-item {{ request()->routeIs('warga-guest.index') ? 'active' : '' }}"
+                                        href="{{ route('warga-guest.index') }}">
+                                        Data Diri
+                                    </a>
+
                                     <div class="dropdown-divider"></div>
+
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
                                         <button type="submit" class="dropdown-item text-danger">
