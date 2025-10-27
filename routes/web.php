@@ -9,7 +9,7 @@ use App\Http\Controllers\ProyekAdminController;
 use App\Http\Controllers\DashboardAdminController;
 
 Route::get('/', function () {
-    return view('guest/dashboard');
+    return view('guest/auth/login');
 });
 
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -34,6 +34,6 @@ Route::resource('proyek', ProyekAdminController::class);
 Route::resource('warga-guest', WargaController::class);
 
 // Proyek Guest Routes
-Route::resource('proyek', ProyekController::class);
+Route::resource('proyek-guest', ProyekController::class);
 
 

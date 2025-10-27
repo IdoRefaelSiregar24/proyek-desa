@@ -2,77 +2,120 @@
 
 @section('content')
     <!-- Start Hero Section -->
-    <div class="hero bg-section parallaxie py-5">
-        <div class="container text-center text-white">
-            <h1 class="display-4 fw-bold">Tambah Proyek Baru</h1>
-            <p>Isi form berikut untuk menambahkan proyek baru</p>
-        </div>
-    </div>
-    <!-- Hero Section End -->
-
-    
-
-    <!-- Start Form Section -->
-    <section class="project-form py-5">
+    <div class="hero bg-section parallaxie">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="card shadow-sm">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="mb-0">Form Tambah Proyek</h5>
-                        </div>
-                        <div class="card-body">
-                            <!-- Form untuk menambahkan proyek -->
-                            <form action="{{ route('guest.proyek.store') }}" method="POST">
-                                @csrf
-                                <div class="mb-3">
-                                    <label for="kode_proyek" class="form-label">Kode Proyek</label>
-                                    <input type="text" name="kode_proyek" id="kode_proyek" class="form-control" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="nama_proyek" class="form-label">Nama Proyek</label>
-                                    <input type="text" name="nama_proyek" id="nama_proyek" class="form-control" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="tahun" class="form-label">Tahun</label>
-                                    <input type="number" name="tahun" id="tahun" class="form-control" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="lokasi" class="form-label">Lokasi</label>
-                                    <input type="text" name="lokasi" id="lokasi" class="form-control" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="anggaran" class="form-label">Anggaran</label>
-                                    <input type="number" name="anggaran" id="anggaran" class="form-control" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="sumber_dana" class="form-label">Sumber Dana</label>
-                                    <input type="text" name="sumber_dana" id="sumber_dana" class="form-control" required>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="deskripsi" class="form-label">Deskripsi</label>
-                                    <textarea name="deskripsi" id="deskripsi" rows="4" class="form-control" required></textarea>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="progress" class="form-label">Progress (%)</label>
-                                    <input type="number" name="progress" id="progress" class="form-control" min="0"
-                                        max="100" value="0" required>
-                                </div>
-
-                                <button type="submit" class="btn btn-success w-100">Simpan Proyek</button>
-                            </form>
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <!-- Hero Content Start -->
+                    <div class="hero-content">
+                        <div class="section-title">
+                            <h1 class="text-anime-style-3" data-cursor="-opaque">Proyek Desa</h1>
+                            <p class="wow fadeInUp" data-wow-delay="0.25s">Perbarui data proyek</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+    <!-- Hero Section End -->
+
+    <!-- Proyek Form start -->
+    <div class="contact-form wow fadeInUp" data-wow-delay="0.25s">
+        <div class="section-title">
+            <h3 class="wow fadeInUp">Desa Balam Sempurna</h3>
+            <h2 class="text-anime-style-3" data-cursor="-opaque">Proyek Desa</h2>
+        </div>
+
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
+        <form action="{{ route('proyek-guest.update', $proyek->proyek_id) }}" method="POST" novalidate>
+            @csrf
+            @method('PUT')
+
+            <div class="row">
+                <div class="form-group col-md-6 mb-4">
+                    <input type="text" name="kode_proyek" class="form-control" id="kode_proyek" placeholder="Kode Proyek"
+                        value="{{ old('kode_proyek', $proyek->kode_proyek) }}" required>
+                    @error('kode_proyek')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group col-md-6 mb-4">
+                    <input type="text" name="nama_proyek" class="form-control" id="nama_proyek" placeholder="Nama Proyek"
+                        value="{{ old('nama_proyek', $proyek->nama_proyek) }}" required>
+                    @error('nama_proyek')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group col-md-6 mb-4">
+                    <input type="number" name="tahun" class="form-control" id="tahun" placeholder="Tahun"
+                        value="{{ old('tahun', $proyek->tahun) }}" required>
+                    @error('tahun')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group col-md-6 mb-4">
+                    <input type="text" name="lokasi" class="form-control" id="lokasi" placeholder="Lokasi"
+                        value="{{ old('lokasi', $proyek->lokasi) }}" required>
+                    @error('lokasi')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group col-md-6 mb-4">
+                    <input type="number" name="anggaran" class="form-control" id="anggaran" placeholder="Anggaran"
+                        value="{{ old('anggaran', $proyek->anggaran) }}" required>
+                    @error('anggaran')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group col-md-6 mb-4">
+                    <input type="text" name="sumber_dana" class="form-control" id="sumber_dana" placeholder="Sumber Dana"
+                        value="{{ old('sumber_dana', $proyek->sumber_dana) }}" required>
+                    @error('sumber_dana')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group col-md-6 mb-4">
+                    <input type="number" name="progress" class="form-control" id="progress" placeholder="Progress (%)"
+                        value="{{ old('progress', $proyek->progress) }}" required>
+                    @error('progress')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group col-md-12 mb-5">
+                    <textarea name="deskripsi" class="form-control" id="deskripsi" rows="3" placeholder="Deskripsi" required>{{ old('deskripsi', $proyek->deskripsi) }}</textarea>
+                    @error('deskripsi')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-12 mt-4 d-flex gap-3 justify-content-center">
+                    <button type="submit" class="btn-default">
+                        <i class="bi bi-save"></i> Perbarui Proyek
+                    </button>
+
+                    <form action="{{ route('proyek-guest.destroy', $proyek->proyek_id) }}" method="POST"
+                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus proyek ini? Data proyek akan hilang permanen.')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn-default bg-danger text-white border-0">
+                            <i class="bi bi-trash"></i> Hapus Proyek
+                        </button>
+                    </form>
+                </div>
+
+
+            </div>
+        </form>
+    </div>
     <!-- End Form Section -->
 @endsection

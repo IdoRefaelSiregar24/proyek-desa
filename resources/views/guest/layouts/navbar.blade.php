@@ -12,7 +12,7 @@
                     <div class="collapse navbar-collapse main-menu">
                         <div class="nav-menu-wrapper">
                             <ul class="navbar-nav me-auto" id="menu">
-                                <li class="nav-item submenu"><a class="nav-link" href="./">Home</a>
+                                <li class="nav-item submenu"><a class="nav-link" href="{{route('dashboard')}}">Home</a>
                                     <ul class="sub-menu">
                                         <li class="nav-item"><a class="nav-link" href="index.html">Home - Image</a></li>
                                         <li class="nav-item"><a class="nav-link" href="index-2.html">Home - Slider</a>
@@ -21,7 +21,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="{{route('proyek.index')}}">Proyek</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{route('proyek-guest.index')}}">Proyek</a></li>
                                 <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
                                 <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
                                 <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
