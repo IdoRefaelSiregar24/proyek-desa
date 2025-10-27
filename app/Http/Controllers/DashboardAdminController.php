@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Warga;
 use App\Models\Proyek;
 use Illuminate\Http\Request;
@@ -14,7 +15,8 @@ class DashboardAdminController extends Controller
     {
         $data['dataWarga'] = Warga::all();
         $data['dataProyek'] = Proyek::all();
-        return view('admin.warga.index', $data);
+        $data['dataUser'] = User::all();
+        return view('admin.dashboard', $data);
     }
 
     /**
