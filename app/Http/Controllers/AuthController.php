@@ -35,8 +35,8 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6|confirmed',
-        ],[
-            'password'=> 'Password tidak sesuai',
+        ], [
+            'password' => 'Password tidak sesuai',
         ]);
 
         // Simpan user ke tabel users
@@ -44,7 +44,9 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'user',
         ]);
+
 
         return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
@@ -55,17 +57,17 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // Gunakan Auth facade, bukan AuthController
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate(); // proteksi session fixation
-            return redirect()->intended(route('dashboard'))  // redirect ke intended atau dashboard
+            $request->session()->regenerate();
+            return redirect()->intended(route('dashboard'))
                 ->with('success', 'Berhasil login!');
         }
 
         return back()->withErrors([
             'email' => 'Email atau password salah.',
-        ])->withInput(); // dengan ->withInput() agar email repopulate
+        ])->withInput();
     }
+
 
     public function logout(Request $request)
     {
@@ -119,7 +121,7 @@ class AuthController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-public function destroy(Request $request)
+    public function destroy(Request $request)
     {
         $user = Auth::user(); // Ambil user yang sedang login
 

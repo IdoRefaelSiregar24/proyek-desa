@@ -19,17 +19,29 @@ class ProyekController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function store(Request $request)
     {
-        //
+        // dd($request->all());
+
+        $data['kode_proyek'] = $request->kode_proyek;
+        $data['nama_proyek'] = $request->nama_proyek;
+        $data['tahun'] = $request->tahun;
+        $data['lokasi'] = $request->lokasi;
+        $data['anggaran'] = $request->anggaran;
+        $data['sumber_dana'] = $request->sumber_dana;
+        $data['deskripsi'] = $request->deskripsi;
+
+        Proyek::create($data);
+
+        return redirect()->route('proyek-guest.index')->with('success', 'Penambahan Data Berhasil!');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function create()
     {
-        //
+        return view('guest.proyek.create');
     }
 
     /**
@@ -45,15 +57,31 @@ class ProyekController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data['proyek'] = Proyek::findOrFail($id);
+        return view('guest.proyek.edit', $data);
     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        // dd($request->all());
+
+        $proyek_id = $id;
+        $proyek    = Proyek::findOrFail($proyek_id);
+
+        $proyek->kode_proyek = $request->kode_proyek;
+        $proyek->nama_proyek = $request->nama_proyek;
+        $proyek->tahun       = $request->tahun;
+        $proyek->lokasi      = $request->lokasi;
+        $proyek->anggaran    = $request->anggaran;
+        $proyek->sumber_dana = $request->sumber_dana;
+        $proyek->deskripsi   = $request->deskripsi;
+
+        $proyek->save();
+        return redirect()->route('proyek-guest.index')->with('success', 'Perubahan Data Berhasil!');
     }
 
     /**
@@ -61,6 +89,8 @@ class ProyekController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $proyek = Proyek::findOrFail($id);
+        $proyek->delete();
+        return redirect()->route('proyek-guest.index')->with('success', 'Data berhasil dihapus!');
     }
 }
