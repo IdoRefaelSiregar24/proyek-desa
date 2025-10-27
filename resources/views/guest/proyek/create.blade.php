@@ -32,7 +32,7 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <form action="{{ route('proyek-guest.store') }}" method="POST" novalidate>
+        <form action="{{ route('proyek-guest.store') }}" method="POST" validate>
             @csrf
             <div class="row">
                 <div class="form-group col-md-6 mb-4">

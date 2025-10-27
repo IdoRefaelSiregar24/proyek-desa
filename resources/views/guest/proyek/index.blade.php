@@ -29,53 +29,50 @@
     </div>
 
     <!-- Start Project Cards Section -->
-    <section class="project-cards py-5">
-        <div class="container">
-            <div class="row g-4">
-                @forelse ($dataProyek as $proyek)
-                    <div class="col-md-6 col-lg-4">
-                        <a href="{{ route('proyek-guest.edit', $proyek->proyek_id) }}" class="text-decoration-none text-dark">
-                            <div class="card h-100 shadow-sm">
-                                <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title">{{ $proyek->nama_proyek }}</h5>
-                                    <p class="text-muted mb-1"><strong>Kode:</strong> {{ $proyek->kode_proyek }}</p>
-                                    <p class="text-muted mb-1"><strong>Tahun:</strong> {{ $proyek->tahun }}</p>
-                                    <p class="text-muted mb-1"><strong>Lokasi:</strong> {{ $proyek->lokasi }}</p>
-                                    <p class="text-muted mb-2"><strong>Anggaran:</strong> Rp
-                                        {{ number_format($proyek->anggaran, 0, ',', '.') }}</p>
-                                    <p class="card-text mb-3">{{ Str::limit($proyek->deskripsi, 100) }}</p>
+    <section>
+        <div class="our-projects">
+            <div class="light-bg-section">
+                <div class="container-fluid">
 
-                                    <div class="mb-3">
-                                        <div class="progress" style="height: 20px;">
-                                            <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
-                                                role="progressbar" style="width: {{ $proyek->progress ?? 0 }}%;"
-                                                aria-valuenow="{{ $proyek->progress ?? 0 }}" aria-valuemin="0"
-                                                aria-valuemax="100">
-                                                {{ $proyek->progress ?? 0 }}%
+                    <div class="row">
+                        @forelse ($dataProyek as $proyek)
+                            <div class="col-lg-3 col-md-6">
+                                <!-- Project Item Start -->
+                                <div class="project-item wow fadeInUp" data-wow-delay="0.25s">
+                                    <div class="project-image" data-cursor-text="View">
+                                        <a href="#">
+                                            <figure>
+                                                <img src="images/our-project-1.jpg" alt="">
+                                            </figure>
+                                        </a>
+                                    </div>
+
+                                    <div class="project-body">
+                                        <div class="project-body-title">
+                                            <h3>{{ $proyek->nama_proyek }}</h3>
+                                        </div>
+
+                                        <div class="project-content">
+                                            <p>{{ Str::limit($proyek->deskripsi, 100) }}</p>
+                                            <div class="project-content-footer">
+                                                <a href="{{ route('proyek-guest.edit', $proyek->proyek_id) }}"
+                                                    class="readmore-btn">Lihat Selengkapnya</a>
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="mt-auto text-end">
-                                        @if (($proyek->progress ?? 0) == 100)
-                                            <span class="badge bg-success">Selesai</span>
-                                        @else
-                                            <span class="badge bg-warning text-dark">Dalam Proses</span>
-                                        @endif
-                                    </div>
                                 </div>
+                                <!-- Project Item End -->
                             </div>
-                        </a>
+                        @empty
+                            <div class="col-12 text-center">
+                                <p>Belum ada data proyek</p>
+                            </div>
+                        @endforelse
                     </div>
-                @empty
-                    <div class="col-12 text-center">
-                        <p>Belum ada data proyek</p>
-                    </div>
-                @endforelse
 
+                </div>
             </div>
         </div>
     </section>
-
     <!-- End Project Cards Section -->
 @endsection

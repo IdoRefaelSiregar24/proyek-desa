@@ -102,20 +102,20 @@
                     <button type="submit" class="btn-default">
                         <i class="bi bi-save"></i> Perbarui Proyek
                     </button>
-
-                    <form action="{{ route('proyek-guest.destroy', $proyek->proyek_id) }}" method="POST"
-                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus proyek ini? Data proyek akan hilang permanen.')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn-default bg-danger text-white border-0">
-                            <i class="bi bi-trash"></i> Hapus Proyek
-                        </button>
-                    </form>
-                </div>
-
-
-            </div>
         </form>
+        <form action="{{ route('proyek-guest.destroy', $proyek->proyek_id) }}" method="POST"
+            onsubmit="return confirm('Apakah Anda yakin ingin menghapus proyek ini? Data proyek akan hilang permanen.')">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn-default bg-danger text-white border-0">
+                <i class="bi bi-trash"></i> Hapus Proyek
+            </button>
+        </form>
+    </div>
+
+
+    </div>
+
     </div>
     <!-- End Form Section -->
 @endsection

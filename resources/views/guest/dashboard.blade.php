@@ -14,7 +14,7 @@
                         </div>
                         <div class="hero-content-body wow fadeInUp" data-wow-delay="0.5s">
                             <a href="#" class="btn-default">get started</a>
-                            <a href="{{ route('proyek-guest.index') }}" class="btn-default btn-highlighted">Lihat Proyek</a>
+                            <a href="{{ route('proyek-guest.index') }}" class="btn-default">Lihat Proyek</a>
                         </div>
                     </div>
                 </div>
@@ -44,20 +44,22 @@
                     <div class="about-content">
                         <!-- Section Title Start -->
                         <div class="section-title">
-                            <h3 class="wow fadeInUp">about us</h3>
-                            <h2 class="text-anime-style-3" data-cursor="-opaque">Building the Future Across Punjab</h2>
-                            <p class="wow fadeInUp" data-wow-delay="0.25s">Since its inception, JassaConstructions has led
-                                real estate development in Ludhiana, Punjab, with numerous completed, ongoing, and upcoming
-                                projects, and has expanded services to Haryana, Himachal Pradesh, and Jammu & Kashmir.</p>
+                            <h3 class="wow fadeInUp">Selamat datang di</h3>
+                            <h2 class="text-anime-style-3" data-cursor="-opaque"> Dashboard Proyek Desa Balam Sempurna</h2>
+                            <p class="wow fadeInUp" data-wow-delay="0.25s">Halaman ini dirancang untuk memudahkan
+                                pengelolaan, pemantauan, dan pelaporan berbagai proyek pembangunan desa secara transparan
+                                dan efisien.
+                                <br>
+                                Melalui sistem ini, kami berkomitmen untuk:</p>
                         </div>
                         <!-- Section Title End -->
 
                         <!-- About Content Body Start -->
                         <div class="about-content-body wow fadeInUp" data-wow-delay="0.5s">
                             <ul>
-                                <li>Comprehensive Services</li>
-                                <li>Advanced Technology</li>
-                                <li>Transparent Communication</li>
+                                <li>Meningkatkan efisiensi dalam penginputan dan pembaruan data proyek</li>
+                                <li>Menyediakan informasi real-time terkait perkembangan dan progres pembangunan</li>
+                                <li>Mendorong transparansi dan akuntabilitas dalam penggunaan anggaran serta pelaksanaan kegiatan</li>
                             </ul>
                         </div>
                         <!-- About Content Body End -->
@@ -175,7 +177,7 @@
                         <!-- Service Item End -->
                     </div>
 
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6">Mendorong transparansi dan akuntabilitas dalam penggunaan anggaran serta pelaksanaan kegiatan
                         <!-- Service Item Start -->
                         <div class="service-item wow fadeInUp" data-wow-delay="0.75s">
                             <!-- Service Image Start -->

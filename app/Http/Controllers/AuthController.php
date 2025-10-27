@@ -37,6 +37,7 @@ class AuthController extends Controller
             'password' => 'required|min:6|confirmed',
         ], [
             'password' => 'Password tidak sesuai',
+            'email.unique' => 'Email sudah terdaftar',
         ]);
 
         // Simpan user ke tabel users
