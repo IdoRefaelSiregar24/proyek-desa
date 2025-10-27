@@ -11,6 +11,9 @@
                             <thead>
                                 <tr>
                                     <th>
+                                        No.
+                                    </th>
+                                    <th>
                                         NIK
                                     </th>
                                     <th>
@@ -36,6 +39,7 @@
                             <tbody>
                                 @foreach ($dataWarga as $item)
                                     <tr>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->no_ktp }}</td>
                                         <td>{{ $item->nama }}</td>
                                         <td>{{ $item->jenis_kelamin }}</td>
@@ -57,6 +61,9 @@
                         <table class="table datanew">
                             <thead>
                                 <tr>
+                                    <th scope="col" class="px-2 text-muted" style="width: 100px;">
+                                        No.
+                                    </th>
                                     <th scope="col" class="px-2 text-muted" style="width: 100px;">
                                         Kode Proyek
                                     </th>
@@ -83,6 +90,7 @@
                             <tbody>
                                 @foreach ($dataProyek as $item)
                                     <tr>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td class="px-2">{{ $item->kode_proyek }}</td>
                                         <td class="px-2">{{ $item->nama_proyek }}</td>
                                         <td class="px-2">{{ $item->tahun }}</td>
@@ -106,6 +114,9 @@
                             <thead>
                                 <tr>
                                     <th>
+                                        No.
+                                    </th>
+                                    <th>
                                         Username
                                     </th>
                                     <th>
@@ -119,6 +130,7 @@
                             <tbody>
                                 @foreach ($dataUser as $item)
                                     <tr>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->password }}</td>

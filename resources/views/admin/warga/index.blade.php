@@ -35,6 +35,12 @@
                             <thead>
                                 <tr>
                                     <th>
+                                        <label class="checkboxs">
+                                            <input type="checkbox" id="select-all">
+                                            <span class="checkmarks"></span>
+                                        </label>
+                                    </th>
+                                    <th>
                                         NIK
                                     </th>
                                     <th>
@@ -63,6 +69,12 @@
                             <tbody>
                                 @foreach ($dataWarga as $item)
                                     <tr>
+                                        <td>
+                                            <label class="checkboxs">
+                                                <input type="checkbox">
+                                                <span class="checkmarks"></span>
+                                            </label>
+                                        </td>
                                         <td>{{ $item->no_ktp }}</td>
                                         <td>{{ $item->nama }}</td>
                                         <td>{{ $item->jenis_kelamin }}</td>
@@ -76,8 +88,8 @@
                                                     href="{{ route('warga-admin.edit', $item->warga_id) }}">
                                                     <i class="fe fe-edit"></i>
                                                 </a>
-                                                <form action="{{ route('warga-admin.destroy', $item->warga_id) }}" method="POST"
-                                                    class="d-inline delete-form">
+                                                <form action="{{ route('warga-admin.destroy', $item->warga_id) }}"
+                                                    method="POST" class="d-inline delete-form">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn-action btn-delete" title="Hapus Data">
