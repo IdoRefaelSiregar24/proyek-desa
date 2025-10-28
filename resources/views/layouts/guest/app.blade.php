@@ -16,11 +16,12 @@
 
 
 <body>
+    @include('layouts.guest.preloader')
     {{-- Navbar --}}
     @include('layouts.guest.navbar')
-    @include('layouts.guest.wa')
     {{-- Content --}}
     @yield('content')
+    @include('layouts.guest.wa')
 
     <br>
     {{-- Footer --}}

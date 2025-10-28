@@ -40,10 +40,10 @@
                                     <div class="mb-4">
                                         <label class="form-label fw-semibold">Jenis Kelamin</label>
                                         <select name="jenis_kelamin" class="form-select" required>
-                                            <option value="Laki-laki"
+                                            <option value="L"
                                                 {{ old('jenis_kelamin', $warga->jenis_kelamin ?? '') == 'Laki-laki' ? 'selected' : '' }}>
                                                 Laki-laki</option>
-                                            <option value="Perempuan"
+                                            <option value="P"
                                                 {{ old('jenis_kelamin', $warga->jenis_kelamin ?? '') == 'Perempuan' ? 'selected' : '' }}>
                                                 Perempuan</option>
                                         </select>

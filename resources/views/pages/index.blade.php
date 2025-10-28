@@ -190,8 +190,7 @@
                         <!-- Service Item End -->
                     </div>
 
-                    <div class="col-lg-4 col-md-6">Mendorong transparansi dan akuntabilitas dalam penggunaan anggaran serta
-                        pelaksanaan kegiatan
+                    <div class="col-lg-4 col-md-6">
                         <!-- Service Item Start -->
                         <div class="service-item wow fadeInUp" data-wow-delay="0.75s">
                             <!-- Service Image Start -->
