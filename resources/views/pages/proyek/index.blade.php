@@ -22,8 +22,9 @@
     <div class="container py-4 text-end">
         <a href="{{ route('proyek-guest.create') }}">
             <div class="col-md-12">
-                <button type="submit" class="btn-default">Tambah Proyek</button>
-                <div id="msgSubmit" class="h3"></div>
+                <button type="submit" class="btn-default">
+                    <i class="fa-solid fa-plus me-2"></i> Tambah Proyek
+                </button>
             </div>
         </a>
     </div>

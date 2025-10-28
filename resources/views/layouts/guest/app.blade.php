@@ -18,7 +18,7 @@
 <body>
     {{-- Navbar --}}
     @include('layouts.guest.navbar')
-
+    @include('layouts.guest.wa')
     {{-- Content --}}
     @yield('content')
 

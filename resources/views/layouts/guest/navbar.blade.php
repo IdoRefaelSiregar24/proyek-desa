@@ -31,7 +31,7 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
-                                        href="">About Us</a>
+                                        href="{{route('about')}}">About Us</a>
                                 </li>
 
                                 <li class="nav-item">
@@ -71,27 +71,26 @@
                                     </span>
                                     <i class="bi bi-caret-down-fill"></i>
                                 </button>
-
                                 <div id="dropdownMenu"
                                     class="dropdown-menu dropdown-menu-end shadow mt-2 rounded-3 border-0"
                                     style="display: none; position: absolute; right: 0;">
 
-                                    <a class="dropdown-item {{ request()->routeIs('dashboard') ? 'active' : '' }}"
+                                    <a class="dropdown-item d-flex align-items-center {{ request()->routeIs('dashboard') ? 'active' : '' }}"
                                         href="{{ route('dashboard') }}">
-                                        Dashboard Warga
+                                        <i class="fa-solid fa-gauge-high me-2 text-dark"></i> Dashboard Warga</i>
                                     </a>
 
-                                    <a class="dropdown-item {{ request()->routeIs('warga-guest.index') ? 'active' : '' }}"
+                                    <a class="dropdown-item d-flex align-items-center {{ request()->routeIs('warga-guest.index') ? 'active' : '' }}"
                                         href="{{ route('warga-guest.index') }}">
-                                        Data Diri
+                                        <i class="fa-regular fa-id-card me-2 text-success"></i> Data Diri
                                     </a>
 
                                     <div class="dropdown-divider"></div>
 
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-                                        <button type="submit" class="dropdown-item text-danger">
-                                            Keluar
+                                        <button type="submit" class="dropdown-item d-flex align-items-center text-danger">
+                                            <i class="fa-solid fa-right-from-bracket me-2"></i> Keluar
                                         </button>
                                     </form>
                                 </div>

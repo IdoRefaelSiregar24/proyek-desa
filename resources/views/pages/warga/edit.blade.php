@@ -84,9 +84,17 @@
 
                                 <div class="row text-start">
                                     <div class="d-flex justify-content-end gap-2">
+                                        <!-- Tombol Batal -->
                                         <a href="{{ route('warga-guest.index') }}"
-                                            class="btn btn-outline-secondary px-4 py-2">Batal</a>
-                                        <button type="submit" class="btn btn-success px-4 py-2">Simpan Perubahan</button>
+                                            class="btn btn-outline-secondary d-flex align-items-center gap-2 px-4 py-2">
+                                            <i data-feather="x-circle"></i> Batal
+                                        </a>
+
+                                        <!-- Tombol Simpan -->
+                                        <button type="submit"
+                                            class="btn btn-success d-flex align-items-center gap-2 px-4 py-2">
+                                            <i data-feather="check-circle"></i> Simpan Perubahan
+                                        </button>
                                     </div>
                                 </div>
                             </form>

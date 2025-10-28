@@ -58,7 +58,7 @@ class ProyekController extends Controller
     public function edit(string $id)
     {
         $data['proyek'] = Proyek::findOrFail($id);
-        return view('pages.guest.proyek.edit', $data);
+        return view('pages.proyek.edit', $data);
     }
 
 

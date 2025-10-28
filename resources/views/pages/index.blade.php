@@ -20,8 +20,12 @@
                             <p class="wow fadeInUp" data-wow-delay="0.25s">Deskripsi Pembangunan & Monitoring Proyek</p>
                         </div>
                         <div class="hero-content-body wow fadeInUp" data-wow-delay="0.5s">
-                            <a href="#" class="btn-default">get started</a>
-                            <a href="{{ route('proyek-guest.index') }}" class="btn-default">Lihat Proyek</a>
+                            <a href="#" class="btn-default">
+                                <i class="fa-solid fa-rocket me-2"></i> Get Started
+                            </a>
+                            <a href="{{ route('proyek-guest.index') }}" class="btn-default">
+                                <i class="fa-solid fa-folder-open me-2"></i> Lihat Proyek
+                            </a>
                         </div>
                     </div>
                 </div>

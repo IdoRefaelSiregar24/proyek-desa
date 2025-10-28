@@ -1,22 +1,25 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\WargaController;
-use App\Http\Controllers\ProyekController;
 use App\Http\Controllers\AuthAdminController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProyekAdminController;
+use App\Http\Controllers\ProyekController;
 use App\Http\Controllers\UsersAdminController;
 use App\Http\Controllers\WargaAdminController;
-use App\Http\Controllers\ProyekAdminController;
-use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\WargaController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('pages.guest.index');
+    return view('pages.index');
 });
 
+// Route Dashboard
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+// Route Halaman About
+Route::get('about', [DashboardController::class, 'about'])->name('about');
 
 // Auth Routhes
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login.show');
@@ -25,7 +28,6 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::delete('delete', [AuthController::class, 'destroy'])->name('auth.destroy');
-
 
 // Warga Admin Routes
 Route::resource('warga-admin', WargaAdminController::class);
@@ -50,5 +52,3 @@ Route::get('/admin/login', [AuthAdminController::class, 'index'])->name('login')
 Route::post('/admin/login', [AuthAdminController::class, 'login'])->name('admin.login');
 Route::get('/admin/register', [AuthAdminController::class, 'regis'])->name('register');
 Route::post('/admin/register', [AuthAdminController::class, 'register'])->name('admin.register');
-
-

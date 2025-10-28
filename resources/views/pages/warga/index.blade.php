@@ -87,21 +87,25 @@
 
                                 <div class="text-center mt-4">
                                     @if (!$dataLengkap)
-                                        <a href="{{ route('warga-guest.create') }}" class="btn btn-success fw-semibold px-4 py-2">
-                                            <i class="bi bi-person-plus"></i> Isi Data Diri
+                                    
+                                        <a href="{{ route('warga-guest.create') }}"
+                                            class="btn btn-success fw-semibold px-4 py-2 d-inline-flex align-items-center gap-2">
+                                            <i data-feather="user-plus"></i> Isi Data Diri
                                         </a>
                                     @else
+
                                         <a href="{{ route('warga-guest.edit', Auth::user()->id) }}"
-                                            class="btn btn-outline-success fw-semibold px-4 py-2">
-                                            <i class="bi bi-pencil-square"></i> Edit Profil
+                                            class="btn btn-outline-success fw-semibold px-4 py-2 d-inline-flex align-items-center gap-2">
+                                            <i data-feather="edit-3"></i> Edit Profil
                                         </a>
 
                                         <form action="{{ route('auth.destroy') }}" method="POST" class="d-inline"
                                             onsubmit="return confirm('Apakah Anda yakin ingin menghapus akun ini? Data Anda akan hilang permanen.')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger fw-semibold px-4 py-2">
-                                                <i class="bi bi-trash"></i> Hapus Akun
+                                            <button type="submit"
+                                                class="btn btn-outline-danger fw-semibold px-4 py-2 d-inline-flex align-items-center gap-2">
+                                                <i data-feather="trash-2"></i> Hapus Akun
                                             </button>
                                         </form>
                                     @endif
