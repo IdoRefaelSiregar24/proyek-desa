@@ -49,5 +49,23 @@
         {
             border-color: #EF151B!important;
         }
+        /* Styling dasar logo */
+.logo {
+    width: 150px;             /* Atur lebar logo */
+    max-width: 100%;          /* Responsif di layar kecil */
+    height: auto;             /* Pertahankan rasio asli */
+    display: block;           /* Hilangkan inline spacing */
+    margin: 0 auto;           /* Center secara horizontal jika block */
+    border-radius: 10px;      /* Sudut membulat */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Bayangan halus */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animasi hover */
+}
+
+/* Efek hover */
+.logo:hover {
+    transform: scale(1.05);   /* Memperbesar logo sedikit */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
     </style>
 </head>

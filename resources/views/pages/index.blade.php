@@ -43,7 +43,7 @@
                     <div class="about-image">
                         <div class="about-img">
                             <figure class="reveal">
-                                <img src="{{ asset('assets-guest/images/about-us-img.png') }}" alt="">
+                                <img src="{{ asset('images/about-desa.jpg') }}" alt="">
                             </figure>
                         </div>
                     </div>
