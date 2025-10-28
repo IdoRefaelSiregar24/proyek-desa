@@ -42,6 +42,9 @@ class WargaController extends Controller
             'pekerjaan' => 'required|string',
             'telp' => 'required|string',
             'email' => 'required|email',
+        ],[
+            'agama.required' => 'kolom agama harus diisi',
+            'email.email' => 'Format email tidak valid',
         ]);
 
         $user = Auth::user();
