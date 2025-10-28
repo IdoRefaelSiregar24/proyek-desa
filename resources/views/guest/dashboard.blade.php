@@ -8,7 +8,14 @@
                     <!-- Hero Content Start -->
                     <div class="hero-content">
                         <div class="section-title">
-                            <h3 class="wow fadeInUp">Selamat Datang, {{ Auth::user()->name }}</h3>
+                            <h3 class="wow fadeInUp">
+                                {{-- Jika user sudah login --}}
+                                @auth
+                                    <h3 class="wow fadeInUp">Selamat Datang, {{ Auth::user()->name }}</h3>
+                                @endauth
+                                @guest
+                                @endguest
+                            </h3>
                             <h1 class="text-anime-style-3" data-cursor="-opaque">Pembangunan & Monitoring Proyek</h1>
                             <p class="wow fadeInUp" data-wow-delay="0.25s">Deskripsi Pembangunan & Monitoring Proyek</p>
                         </div>
@@ -50,7 +57,8 @@
                                 pengelolaan, pemantauan, dan pelaporan berbagai proyek pembangunan desa secara transparan
                                 dan efisien.
                                 <br>
-                                Melalui sistem ini, kami berkomitmen untuk:</p>
+                                Melalui sistem ini, kami berkomitmen untuk:
+                            </p>
                         </div>
                         <!-- Section Title End -->
 
@@ -59,7 +67,8 @@
                             <ul>
                                 <li>Meningkatkan efisiensi dalam penginputan dan pembaruan data proyek</li>
                                 <li>Menyediakan informasi real-time terkait perkembangan dan progres pembangunan</li>
-                                <li>Mendorong transparansi dan akuntabilitas dalam penggunaan anggaran serta pelaksanaan kegiatan</li>
+                                <li>Mendorong transparansi dan akuntabilitas dalam penggunaan anggaran serta pelaksanaan
+                                    kegiatan</li>
                             </ul>
                         </div>
                         <!-- About Content Body End -->
@@ -177,7 +186,8 @@
                         <!-- Service Item End -->
                     </div>
 
-                    <div class="col-lg-4 col-md-6">Mendorong transparansi dan akuntabilitas dalam penggunaan anggaran serta pelaksanaan kegiatan
+                    <div class="col-lg-4 col-md-6">Mendorong transparansi dan akuntabilitas dalam penggunaan anggaran serta
+                        pelaksanaan kegiatan
                         <!-- Service Item Start -->
                         <div class="service-item wow fadeInUp" data-wow-delay="0.75s">
                             <!-- Service Image Start -->
