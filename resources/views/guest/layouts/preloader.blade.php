@@ -5,4 +5,4 @@
             <div id="loading-icon"><img src="images/loader.svg" alt=""></div>
         </div>
     </div>
-    <!-- Preloader End -->
+<!-- Preloader End -->
