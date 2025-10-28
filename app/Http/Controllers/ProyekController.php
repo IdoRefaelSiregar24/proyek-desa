@@ -13,7 +13,7 @@ class ProyekController extends Controller
     public function index()
     {
         $data['dataProyek'] = Proyek::all();
-        return view('pages.guest.proyek.index', $data);
+        return view('pages.proyek.index', $data);
     }
 
     /**
@@ -41,7 +41,7 @@ class ProyekController extends Controller
      */
     public function create()
     {
-        return view('pages.guest.proyek.create');
+        return view('pages.proyek.create');
     }
 
     /**

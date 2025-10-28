@@ -21,12 +21,12 @@ class AuthController extends Controller
 
     public function showLoginForm()
     {
-        return view('pages/Guest/Auth/login');
+        return view('pages/Auth/login');
     }
 
     public function showRegisterFrom()
     {
-        return view("pages/Guest/Auth/register");
+        return view("pages/Auth/register");
     }
 
     public function register(Request $request)

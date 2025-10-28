@@ -11,7 +11,7 @@ class dashboardController extends Controller
      */
     public function index()
     {
-        return view("pages/guest/index");
+        return view("pages/index");
     }
 
     /**
