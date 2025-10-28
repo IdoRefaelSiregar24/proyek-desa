@@ -17,7 +17,7 @@ class WargaController extends Controller
     {
         $user = Auth::user();
         $warga = Warga::where('user_id', $user->id)->first();
-        return view("guest.warga.index", compact('warga'));
+        return view("pages.guest.warga.index", compact('warga'));
     }
 
 
@@ -26,7 +26,7 @@ class WargaController extends Controller
      */
     public function create()
     {
-        return view('guest.warga.create');
+        return view('pages.guest.warga.create');
     }
 
     /**
@@ -78,7 +78,7 @@ class WargaController extends Controller
     public function edit($id)
     {
         $warga = Warga::where('user_id', $id)->firstOrFail();
-        return view('guest.warga.edit', compact('warga'));
+        return view('pages.guest.warga.edit', compact('warga'));
     }
 
 

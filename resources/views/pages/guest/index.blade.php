@@ -1,4 +1,4 @@
-@extends('guest.layouts.app')
+@extends('layouts.guest.app')
 
 @section('content')
     <div class="hero bg-section parallaxie">
@@ -9,6 +9,7 @@
                     <div class="hero-content">
                         <div class="section-title">
                             <h3 class="wow fadeInUp">
+                                {{-- Jika user sudah login --}}
                                 @auth
                                     <h3 class="wow fadeInUp">Selamat Datang, {{ Auth::user()->name }}</h3>
                                 @endauth

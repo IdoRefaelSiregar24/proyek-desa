@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    @include('guest.layouts.preloader')
 	<!-- Meta -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,21 +11,21 @@
 	<meta name="author" content="Awaiken">
 	<!-- Page Title -->
 	<title>Desa Balam Sempurna</title>
-    @include('guest.layouts.css')
+    @include('layouts.guest.css')
 </head>
 
 
 <body>
     {{-- Navbar --}}
-    @include('guest/layouts.navbar')
+    @include('layouts.guest.navbar')
 
     {{-- Content --}}
     @yield('content')
 
     <br>
     {{-- Footer --}}
-    @include('guest/layouts.footer')
-    @include('guest/layouts.js')
+    @include('layouts.guest.footer')
+    @include('layouts.guest.js')
 </body>
 
 </html>
