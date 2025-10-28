@@ -12,7 +12,7 @@ use App\Http\Controllers\ProyekAdminController;
 use App\Http\Controllers\DashboardAdminController;
 
 Route::get('/', function () {
-    return view('guest/auth/login');
+    return view('guest.dashboard');
 });
 
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
