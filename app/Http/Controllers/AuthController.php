@@ -40,7 +40,6 @@ class AuthController extends Controller
             'email.unique' => 'Email sudah terdaftar',
         ]);
 
-        // Simpan user ke tabel users
         User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -51,23 +50,40 @@ class AuthController extends Controller
 
         return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
+
     public function login(Request $request)
     {
-        $credentials = $request->validate([
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+        ],[
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'password.required' => 'Password wajib diisi.',
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended(route('dashboard'))
-                ->with('success', 'Berhasil login!');
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors([
+                'email' => 'Email tidak terdaftar.',
+            ])->withInput();
         }
 
-        return back()->withErrors([
-            'email' => 'Email atau password salah.',
-        ])->withInput();
+        if (!Hash::check($request->password, $user->password)) {
+            return back()->withErrors([
+                'password' => 'Password salah.',
+            ])->withInput();
+        }
+
+        Auth::login($user);
+
+        $request->session()->regenerate();
+
+        return redirect()->intended(route('dashboard'))
+            ->with('success', 'Berhasil login!');
     }
+
 
 
     public function logout(Request $request)

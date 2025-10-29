@@ -35,7 +35,7 @@ class WargaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'no_ktp' => 'required|numeric',
+            'no_ktp' => 'required|numeric|max:14',
             'nama' => 'required|string',
             'jenis_kelamin' => 'required|string',
             'agama' => 'required|string',
@@ -45,6 +45,13 @@ class WargaController extends Controller
         ],[
             'agama.required' => 'kolom agama harus diisi',
             'email.email' => 'Format email tidak valid',
+            'no_ktp.numeric' => 'No KTP harus berupa angka',
+            'no_ktp.max' => 'No KTP maksimal 14 digit',
+            'nama.required' => 'kolom nama harus diisi',
+            'jenis_kelamin.required' => 'kolom jenis kelamin harus diisi',
+            'pekerjaan.required' => 'kolom pekerjaan harus diisi',
+            'telp.required' => 'kolom telepon harus diisi',
+            'email.required' => 'kolom email harus diisi',
         ]);
 
         $user = Auth::user();
@@ -62,7 +69,6 @@ class WargaController extends Controller
                 'email' => $request->email,
             ]
         );
-
 
         return redirect()->route('warga-guest.index')->with('success', 'Data profil berhasil disimpan.');
     }
@@ -98,6 +104,16 @@ class WargaController extends Controller
             'jenis_kelamin' => 'required|string',
             'agama' => 'required|string',
             'pekerjaan' => 'required|string',
+        ],[
+            'nama.required' => 'kolom nama harus diisi',
+            'email.required' => 'kolom email harus diisi',
+            'email.email' => 'Format email tidak valid',
+            'telp.required' => 'kolom telepon harus diisi',
+            'no_ktp.required' => 'kolom No KTP harus diisi',
+            'no_ktp.numeric' => 'No KTP harus berupa angka',
+            'jenis_kelamin.required' => 'kolom jenis kelamin harus diisi',
+            'agama.required' => 'kolom agama harus diisi',
+            'pekerjaan.required' => 'kolom pekerjaan harus diisi',
         ]);
 
         $user = Auth::user();

@@ -63,30 +63,6 @@
                                         @enderror
                                     </div>
 
-                                    {{-- Tempat Lahir --}}
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label fw-semibold">Tempat Lahir <span
-                                                class="text-danger">*</span></label>
-                                        <input type="text" name="tempat_lahir"
-                                            class="form-control @error('tempat_lahir') is-invalid @enderror"
-                                            placeholder="Contoh: Pekanbaru" value="{{ old('tempat_lahir') }}" required>
-                                        @error('tempat_lahir')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    {{-- Tanggal Lahir --}}
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label fw-semibold">Tanggal Lahir <span
-                                                class="text-danger">*</span></label>
-                                        <input type="date" name="tanggal_lahir"
-                                            class="form-control @error('tanggal_lahir') is-invalid @enderror"
-                                            value="{{ old('tanggal_lahir') }}" required>
-                                        @error('tanggal_lahir')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
                                     {{-- Jenis Kelamin --}}
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-semibold">Jenis Kelamin <span

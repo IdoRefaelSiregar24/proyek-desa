@@ -20,6 +20,14 @@
                                 @php
                                     $warga = $warga ?? null;
                                 @endphp
+                                @if (session('success'))
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ session('success') }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @endif
+
 
                                 <div class="text-center mb-4">
                                     <img src="{{ asset('assets-guest/images/avatar-default.png') }}" alt="User Avatar"
@@ -87,13 +95,11 @@
 
                                 <div class="text-center mt-4">
                                     @if (!$dataLengkap)
-                                    
                                         <a href="{{ route('warga-guest.create') }}"
                                             class="btn btn-success fw-semibold px-4 py-2 d-inline-flex align-items-center gap-2">
                                             <i data-feather="user-plus"></i> Isi Data Diri
                                         </a>
                                     @else
-
                                         <a href="{{ route('warga-guest.edit', Auth::user()->id) }}"
                                             class="btn btn-outline-success fw-semibold px-4 py-2 d-inline-flex align-items-center gap-2">
                                             <i data-feather="edit-3"></i> Edit Profil
