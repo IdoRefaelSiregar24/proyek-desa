@@ -14,7 +14,6 @@
     @include('layouts.guest.css')
 </head>
 
-
 <body>
     @include('layouts.guest.preloader')
     {{-- Navbar --}}

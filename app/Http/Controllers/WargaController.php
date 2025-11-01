@@ -35,7 +35,7 @@ class WargaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'no_ktp' => 'required|numeric|max:14',
+            'no_ktp' => 'required|numeric|digits:16',
             'nama' => 'required|string',
             'jenis_kelamin' => 'required|string',
             'agama' => 'required|string',
@@ -46,7 +46,7 @@ class WargaController extends Controller
             'agama.required' => 'kolom agama harus diisi',
             'email.email' => 'Format email tidak valid',
             'no_ktp.numeric' => 'No KTP harus berupa angka',
-            'no_ktp.max' => 'No KTP maksimal 14 digit',
+            'no_ktp.digits' => 'No KTP maksimal 16 digit',
             'nama.required' => 'kolom nama harus diisi',
             'jenis_kelamin.required' => 'kolom jenis kelamin harus diisi',
             'pekerjaan.required' => 'kolom pekerjaan harus diisi',

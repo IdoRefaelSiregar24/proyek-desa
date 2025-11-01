@@ -42,7 +42,7 @@
             <div class="col-lg-3 col-md-4 col-12">
                 <!-- Footer Links Start -->
                 <div class="footer-links">
-                    <h3>company</h3>
+                    <h3>Perusahaan</h3>
                     <ul>
                         <li><a href="#">about us</a></li>
                         <li><a href="#">services</a></li>

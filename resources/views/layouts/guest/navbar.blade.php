@@ -14,7 +14,7 @@
                             <ul class="navbar-nav me-auto" id="menu">
                                 <li class="nav-item submenu">
                                     <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}"
-                                        href="{{ route('dashboard') }}">Home</a>
+                                        href="{{ route('dashboard') }}">Beranda</a>
                                     <ul class="sub-menu">
                                         <li class="nav-item"><a class="nav-link" href="index.html">Home - Image</a></li>
                                         <li class="nav-item"><a class="nav-link" href="index-2.html">Home - Slider</a>
