@@ -107,15 +107,15 @@
                 <div class="col-lg-7 col-md-8">
                     <!-- Section Title Start -->
                     <div class="section-title">
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Let's bulid something great together!</h2>
-                        <p class="wow fadeInUp">Don't wait any longer to bring your construction dreams to life. Partner
-                            with jassa and experience unparalleled service and quality.</p>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Mari Bangun Kemajuan Desa Bersama!</h2>
+                        <p class="wow fadeInUp">Mari berkolaborasi untuk mewujudkan proyek desa yang membawa manfaat bagi
+                            masyarakat. Bersama, kita ciptakan perubahan nyata!</p>
                     </div>
                     <!-- Section Title End -->
 
                     <!-- Section Btn Start -->
                     <div class="section-btn wow fadeInUp" data-wow-delay="0.25s">
-                        <a href="#" class="btn-default btn-large">get free quote</a>
+                        <a href="#" class="btn-default btn-large">Lihat Proyek</a>
                     </div>
                     <!-- Section Btn End -->
                 </div>
