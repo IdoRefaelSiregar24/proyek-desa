@@ -83,14 +83,6 @@
                     @enderror
                 </div>
 
-                <div class="form-group col-md-6 mb-4">
-                    <input type="number" name="progress" class="form-control" id="progress" placeholder="Progress (%)"
-                        value="{{ old('progress') }}" required>
-                    @error('progress')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
                 <div class="form-group col-md-12 mb-5">
                     <textarea name="deskripsi" class="form-control" id="deskripsi" rows="3" placeholder="Deskripsi" required>{{ old('deskripsi') }}</textarea>
                     @error('deskripsi')

@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProyekAdminController;
 use App\Http\Controllers\ProyekController;
+use App\Http\Controllers\TahapanController;
 use App\Http\Controllers\UsersAdminController;
 use App\Http\Controllers\WargaAdminController;
 use App\Http\Controllers\WargaController;
@@ -40,6 +41,12 @@ Route::resource('warga-guest', WargaController::class);
 
 // Proyek Guest Routes
 Route::resource('proyek-guest', ProyekController::class);
+
+// Tahapan Guest Routes
+Route::resource('tahapan-guest', TahapanController::class);
+Route::get('/listTahapan/{proyek_id}', [TahapanController::class, 'listTahapan'])->name('listTahapan');
+Route::get('/createTahapan/{proyek_id}', [TahapanController::class, 'createTahapan'])->name('createTahapan');
+
 
 //Dashboard Admin Routes
 Route::resource('dashboard-admin', DashboardAdminController::class);

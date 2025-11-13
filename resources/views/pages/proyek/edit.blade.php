@@ -83,14 +83,6 @@
                     @enderror
                 </div>
 
-                <div class="form-group col-md-6 mb-4">
-                    <input type="number" name="progress" class="form-control" id="progress" placeholder="Progress (%)"
-                        value="{{ old('progress', $proyek->progress) }}" required>
-                    @error('progress')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-
                 <div class="form-group col-md-12 mb-5">
                     <textarea name="deskripsi" class="form-control" id="deskripsi" rows="3" placeholder="Deskripsi" required>{{ old('deskripsi', $proyek->deskripsi) }}</textarea>
                     @error('deskripsi')
@@ -107,6 +99,13 @@
                             <i data-feather="save"></i> Perbarui Proyek
                         </button>
                     </form>
+
+                    <a href="{{ route('listTahapan', $proyek->proyek_id) }}"
+                        class="btn-default bg-danger text-white border-0 d-flex align-items-center gap-2">
+                        <i data-feather="plus-circle"></i>
+                        Lihat Tahapan Proyek
+                    </a>
+
 
                     <form action="{{ route('proyek-guest.destroy', $proyek->proyek_id) }}" method="POST"
                         onsubmit="return confirm('Apakah Anda yakin ingin menghapus proyek ini? Data proyek akan hilang permanen.')">

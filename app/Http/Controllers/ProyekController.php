@@ -55,9 +55,9 @@ class ProyekController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $tahap_id)
     {
-        $data['proyek'] = Proyek::findOrFail($id);
+        $data['proyek'] = Proyek::findOrFail($tahap_id);
         return view('pages.proyek.edit', $data);
     }
 
