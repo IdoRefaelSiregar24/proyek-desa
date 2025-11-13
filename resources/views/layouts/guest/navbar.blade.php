@@ -31,12 +31,12 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
-                                        href="{{route('about')}}">About Us</a>
+                                        href="{{route('about')}}">Tentang</a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('service') ? 'active' : '' }}"
-                                        href="">Services</a>
+                                        href="">Layanan</a>
                                 </li>
 
                                 <li class="nav-item">
@@ -45,7 +45,7 @@
                                 </li>
 
                                 <li class="nav-item submenu">
-                                    <a class="nav-link" href="#">Pages</a>
+                                    <a class="nav-link" href="#">Halaman</a>
                                     <ul>
                                         <li class="nav-item"><a class="nav-link" href="service-single.html">Service
                                                 Details</a></li>

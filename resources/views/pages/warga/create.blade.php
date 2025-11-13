@@ -70,10 +70,10 @@
                                         <select name="jenis_kelamin"
                                             class="form-select @error('jenis_kelamin') is-invalid @enderror" required>
                                             <option value="" selected disabled>Pilih jenis kelamin</option>
-                                            <option value="L"
+                                            <option value="Laki-laki"
                                                 {{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki
                                             </option>
-                                            <option value="P"
+                                            <option value="Perempuan"
                                                 {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan
                                             </option>
                                         </select>
