@@ -31,7 +31,7 @@
 
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
-                                        href="{{route('about')}}">Tentang</a>
+                                        href="{{ route('about') }}">Tentang</a>
                                 </li>
 
                                 <li class="nav-item">
@@ -40,25 +40,7 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->routeIs('blog') ? 'active' : '' }}"
-                                        href="">Blog</a>
-                                </li>
-
-                                <li class="nav-item submenu">
-                                    <a class="nav-link" href="#">Halaman</a>
-                                    <ul>
-                                        <li class="nav-item"><a class="nav-link" href="service-single.html">Service
-                                                Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="blog-single.html">Blog
-                                                Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="project.html">Project</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="project-single.html">Project
-                                                Details</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="team.html">Our Team</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="faqs.html">FAQ</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="404.html">404</a></li>
-                                    </ul>
-                                </li>
+                                    <a class="nav-link"  href="">Kontak</a>
                             </ul>
                         </div>
 
