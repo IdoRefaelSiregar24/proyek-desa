@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('tahapan_proyek', function (Blueprint $table) {
-            $table->id('tahap_id');
+            $table->bigIncrements('tahap_id');
             $table->foreignId('proyek_id')
                 ->constrained('proyek', 'proyek_id')
                 ->onDelete('cascade');

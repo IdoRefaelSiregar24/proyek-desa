@@ -7,25 +7,25 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Jalankan migration.
      */
     public function up(): void
     {
         Schema::create('proyek', function (Blueprint $table) {
-            $table->increments('proyek_id');
+            $table->bigIncrements('proyek_id');
             $table->string('kode_proyek', 10)->unique();
             $table->string('nama_proyek', 100);
             $table->year('tahun');
             $table->string('lokasi', 100);
             $table->decimal('anggaran', 15, 2);
             $table->string('sumber_dana', 100);
-            $table->text('deskripsi');
+            $table->text('deskripsi')->nullable();
             $table->timestamps();
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Rollback migration.
      */
     public function down(): void
     {
