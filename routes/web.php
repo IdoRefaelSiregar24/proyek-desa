@@ -53,8 +53,9 @@ Route::get('/createTahapan/{proyek_id}', [TahapanController::class, 'createTahap
 // Progress Guest Routes
 Route::resource('progress-guest', ProgressController::class);
 Route::get('/listProgress/{proyek_id}', [ProgressController::class, 'listProgress'])->name('listProgress');
-Route::get('/listProgress/{proyek_id}', [TahapanController::class, 'createTahapan'])->name('createTahapan');
-
+// Route::get('/progress/create/{proyek_id}', [ProgressController::class, 'createProgress'])
+//     ->name('progress-guest-createProgress');
+Route::get('/createProgress/{proyek_id}', [ProgressController::class, 'createProgress'])->name('createProgress');
 
 //Dashboard Admin Routes
 Route::resource('dashboard-admin', DashboardAdminController::class);

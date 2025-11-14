@@ -48,15 +48,13 @@ class ProyekController extends Controller
      * Display the specified resource.
      */
     public function detail(string $id)
-    {
+{
+    // ambil satu proyek beserta relasi tahapan + progress
+    $proyek = Proyek::with(['tahapan.progress'])->findOrFail($id);
 
-        $proyek = Proyek::with([
-            'tahapan.progress'
-        ])->findOrFail($id);
-
-        return view('pages.proyek.detail', compact('proyek'));
-    }
-
+    // kirim variabel $proyek ke view
+    return view('pages.proyek.detail', compact('proyek'));
+}
 
     /**
      * Show the form for editing the specified resource.

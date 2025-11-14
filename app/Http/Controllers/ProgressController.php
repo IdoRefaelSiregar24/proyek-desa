@@ -24,15 +24,21 @@ class ProgressController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function createProgress($proyek_id)
     {
-        $proyek = Proyek::all();
-        $tahaoan = Tahapan::all();
-        return view('pages.progress.create', [
-            'proyek' => Proyek::all(),
-            'tahapan' => Tahapan::all()
-        ]);
+        $proyek = Proyek::with('tahapan')->findOrFail($proyek_id);
+
+        $tahapan = $proyek->tahapan;
+
+        if ($tahapan->isEmpty()) {
+            return redirect()
+                ->back()
+                ->with('error', 'Belum ada tahapan untuk proyek ini. Silakan tambahkan tahapan terlebih dahulu.');
+        }
+
+        return view('pages.progress.create', compact('proyek', 'tahapan'));
     }
+
 
 
     /**
@@ -40,8 +46,29 @@ class ProgressController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'proyek_id' => 'required|exists:proyek,proyek_id',
+            'tahap_id' => 'required|exists:tahapan_proyek,tahap_id',
+            'persen_real' => 'required|numeric|min:0|max:100',
+            'tanggal' => 'required|date',
+            'catatan' => 'nullable|string'
+        ]);
+
+        // Simpan progress ke database
+        Progress::create([
+            'proyek_id' => $request->proyek_id,
+            'tahap_id' => $request->tahap_id,
+            'persen_real' => $request->persen_real,
+            'tanggal' => $request->tanggal,
+            'catatan' => $request->catatan,
+        ]);
+
+        return redirect()
+            ->route('detail-proyek', $request->proyek_id)
+            ->with('success', 'Progress berhasil ditambahkan!');
     }
+
+
 
     /**
      * Display the specified resource.

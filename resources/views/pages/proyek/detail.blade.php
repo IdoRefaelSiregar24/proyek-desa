@@ -1,7 +1,6 @@
 @extends('layouts.guest.app')
 
 @section('content')
-
     <!-- Start Hero Section -->
     <div class="hero bg-section parallaxie">
         <div class="container">
@@ -9,139 +8,174 @@
                 <div class="col-lg-12">
                     <div class="hero-content">
                         <div class="section-title">
-                            <h1 class="text-anime-style-3" data-cursor="-opaque">Detail Proyek Desa</h1>
-                            <p class="wow fadeInUp" data-wow-delay="0.25s">Informasi lengkap pembangunan & monitoring</p>
+                            <h1 class="text-anime-style-3" data-cursor="-opaque">Detail Proyek</h1>
+                            <p class="wow fadeInUp" data-wow-delay="0.25s">Informasi lengkap proyek</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Hero Section End -->
 
+    <!-- Container -->
+    <div class="container py-5">
 
-    <div class="contact-form wow fadeInUp" data-wow-delay="0.25s">
+        <!-- Card: Informasi Proyek -->
+        <div class="contact-form wow fadeInUp mb-5" data-wow-delay="0.2s">
+            <div class="section-title">
+                <h3 class="wow fadeInUp">{{ $proyek->nama_proyek }}</h3>
+                <h2 class="text-anime-style-3" data-cursor="-opaque">Informasi Umum</h2>
+            </div>
 
-        <!-- ========================= -->
-        <!-- === DATA PROYEK ========= -->
-        <!-- ========================= -->
-        <div class="section-title">
-            <h3 class="wow fadeInUp">Desa Balam Sempurna</h3>
-            <h2 class="text-anime-style-3" data-cursor="-opaque">Detail Proyek</h2>
-        </div>
+            <div class="row">
 
-        <div class="card p-4 mb-5 shadow-sm">
-            <h4 class="mb-3 text-primary">Informasi Proyek</h4>
-            <div class="row g-3">
-                <div class="col-md-6"><strong>Kode Proyek:</strong> {{ $proyek->kode_proyek }}</div>
-                <div class="col-md-6"><strong>Nama Proyek:</strong> {{ $proyek->nama_proyek }}</div>
-
-                <div class="col-md-6"><strong>Tahun:</strong> {{ $proyek->tahun }}</div>
-                <div class="col-md-6"><strong>Lokasi:</strong> {{ $proyek->lokasi }}</div>
-
-                <div class="col-md-6"><strong>Anggaran:</strong> Rp {{ number_format($proyek->anggaran) }}</div>
-                <div class="col-md-6"><strong>Sumber Dana:</strong> {{ $proyek->sumber_dana }}</div>
-
-                <div class="col-md-12"><strong>Deskripsi:</strong>
-                    <p class="mt-2">{{ $proyek->deskripsi }}</p>
+                <div class="col-md-6 mb-4">
+                    <div class="form-group">
+                        <label class="fw-bold">Kode Proyek</label>
+                        <input type="text" class="form-control" value="{{ $proyek->kode_proyek }}" disabled>
+                    </div>
                 </div>
+
+                <div class="col-md-6 mb-4">
+                    <label class="fw-bold">Nama Proyek</label>
+                    <input type="text" class="form-control" value="{{ $proyek->nama_proyek }}" disabled>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label class="fw-bold">Tahun</label>
+                    <input type="text" class="form-control" value="{{ $proyek->tahun }}" disabled>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label class="fw-bold">Lokasi</label>
+                    <input type="text" class="form-control" value="{{ $proyek->lokasi }}" disabled>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label class="fw-bold">Anggaran</label>
+                    <input type="text" class="form-control"
+                        value="Rp {{ number_format($proyek->anggaran, 0, ',', '.') }}" disabled>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label class="fw-bold">Sumber Dana</label>
+                    <input type="text" class="form-control" value="{{ $proyek->sumber_dana }}" disabled>
+                </div>
+
+                <div class="col-md-12 mb-4">
+                    <label class="fw-bold">Deskripsi</label>
+                    <textarea class="form-control" rows="4" disabled>{{ $proyek->deskripsi }}</textarea>
+                </div>
+
+                <div class="col-md-12 text-center mt-4">
+                    <a href="{{ route('proyek-guest.edit', $proyek->proyek_id) }}" class="btn-default d-inline-flex gap-2">
+                        <i data-feather="edit"></i> Edit Proyek
+                    </a>
+
+                    <form action="{{ route('proyek-guest.destroy', $proyek->proyek_id) }}" method="POST"
+                        class="d-inline-block" onsubmit="return confirm('Yakin ingin menghapus proyek ini?')">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn-default bg-danger text-white border-0 d-inline-flex gap-2">
+                            <i data-feather="trash-2"></i> Hapus Proyek
+                        </button>
+                    </form>
+                </div>
+
             </div>
         </div>
 
-
-
-        <!-- ========================= -->
-        <!-- === TAHAPAN PROYEK ====== -->
-        <!-- ========================= -->
-        <div class="section-title mb-4">
-            <h2 class="text-anime-style-3" data-cursor="-opaque">Tahapan Proyek</h2>
-        </div>
-
-        @if($proyek->tahapan->count() == 0)
-            <div class="alert alert-warning">Belum ada tahapan untuk proyek ini.</div>
-        @else
-            <table class="table table-bordered table-striped mb-5">
-                <thead class="table-dark">
-                    <tr>
-                        <th>#</th>
-                        <th>Nama Tahap</th>
-                        <th>Target (%)</th>
-                        <th>Tgl Mulai</th>
-                        <th>Tgl Selesai</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($proyek->tahapan as $i => $tahap)
-                        <tr>
-                            <td>{{ $i + 1 }}</td>
-                            <td>{{ $tahap->nama_tahap }}</td>
-                            <td>{{ $tahap->target_persen }}%</td>
-                            <td>{{ $tahap->tgl_mulai }}</td>
-                            <td>{{ $tahap->tgl_selesai }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @endif
-
-
-
-        <!-- =============================== -->
-        <!-- === DETAIL PROGRESS PER TAHAP == -->
-        <!-- =============================== -->
-        <div class="section-title mt-5 mb-4">
-            <h2 class="text-anime-style-3" data-cursor="-opaque">Progress Pekerjaan</h2>
-        </div>
-
-        @foreach($proyek->tahapan as $tahap)
-            <div class="card mb-4 shadow-sm">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0">Progress Tahap: {{ $tahap->nama_tahap }}</h5>
+        <!-- Card: Tahapan -->
+        <div class="contact-form wow fadeInUp mb-5" data-wow-delay="0.3s">
+            <div class="section-title d-flex justify-content-between align-items-center">
+                <div>
+                    <h3 class="wow fadeInUp">Tahapan Proyek</h3>
+                    <h2 class="text-anime-style-3" data-cursor="-opaque">Daftar Tahapan</h2>
                 </div>
 
-                <div class="card-body">
-                    @if($tahap->progress->count() == 0)
-                        <div class="alert alert-info">Belum ada progress pada tahap ini.</div>
-                    @else
-                        <table class="table table-bordered table-striped">
-                            <thead class="table-secondary">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Persen Real</th>
-                                    <th>Tanggal</th>
-                                    <th>Catatan</th>
-                                    <th>Foto</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($tahap->progress as $index => $pg)
-                                    <tr>
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>{{ $pg->persen_real }}%</td>
-                                        <td>{{ $pg->tanggal }}</td>
-                                        <td>{{ $pg->catatan }}</td>
-                                        <td>
-                                            @if($pg->foto)
-                                                <img src="{{ asset('storage/progres_proyek/' . $pg->foto) }}"
-                                                    style="width: 100px; height: 80px; object-fit: cover;">
-                                            @else
-                                                <small class="text-muted">Tidak ada foto</small>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    @endif
-                </div>
+                <a href="{{ route('createTahapan', $proyek->proyek_id) }}"
+                    class="btn-default d-flex align-items-center gap-2">
+                    <i data-feather="plus-circle"></i> Tambah Tahapan
+                </a>
             </div>
-        @endforeach
+
+            @forelse ($proyek->tahapan as $t)
+                <div class="border rounded p-4 mb-4">
+                    <div class="d-flex justify-content-between">
+                        <h5>{{ $t->nama_tahap }} (Target: {{ $t->target_persen }}%)</h5>
+
+                        <a href="{{ route('tahapan-guest.edit', $t->tahap_id) }}"
+                            class="btn btn-warning btn-sm text-white">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                    </div>
+
+                    <!-- Informasi tambahan tahapan -->
+                    <div class="mt-2 mb-3">
+                        <p class="mb-1">
+                            <strong>Tanggal Mulai:</strong>
+                            {{ $t->tgl_mulai ? date('d M Y', strtotime($t->tgl_mulai)) : '-' }}
+                        </p>
+                        <p class="mb-1">
+                            <strong>Tanggal Selesai:</strong>
+                            {{ $t->tgl_selesai ? date('d M Y', strtotime($t->tgl_selesai)) : '-' }}
+                        </p>
+                    </div>
+
+                    <hr>
+
+                    <!-- Progress -->
+                    <h6 class="fw-bold mt-3">Progress Tahapan</h6>
+
+                    @forelse ($t->progress as $p)
+                        <div class="position-relative ps-4 mb-4">
+
+                            <!-- Titik Lingkaran Timeline -->
+                            <span class="position-absolute top-0 start-0 translate-middle bg-primary rounded-circle"
+                                style="width:14px; height:14px;"></span>
+
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body">
+
+                                    <div class="d-flex justify-content-between">
+                                        <!-- Persentase -->
+                                        <h5 class="mb-1 text-primary fw-bold">{{ $p->persen_real }}%</h5>
+
+                                        <!-- Tanggal -->
+                                        <small class="text-muted">
+                                            {{ \Carbon\Carbon::parse($p->tanggal)->format('d M Y') }}
+                                        </small>
+                                    </div>
+
+                                    <!-- Catatan -->
+                                    <p class="mb-2">{{ $p->catatan }}</p>
+
+                                    <a href=""
+                                        class="btn btn-outline-primary btn-sm">
+                                        Edit Progress
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+
+                        <p class="text-muted">Belum ada progress.</p>
+
+                        <a href="{{ route('createProgress', $t->tahap_id) }}"
+                            class="btn btn-success btn-sm text-white">
+                            + Tambah Progress
+                        </a>
+                    @endforelse
 
 
-        <a href="{{ route('proyek-guest.index') }}" class="btn-default mt-4">
-            <i class="fa-solid fa-arrow-left me-2"></i> Kembali ke Daftar Proyek
-        </a>
+
+                </div>
+            @empty
+                <p class="text-center text-muted">Belum ada tahapan.</p>
+            @endforelse
+        </div>
+
 
     </div>
-
 @endsection

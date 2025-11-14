@@ -10,23 +10,23 @@ class Progress extends Model
     use HasFactory;
 
     protected $table = 'progres_proyek';
-
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'progress_id'; // SESUAIKAN DENGAN DATABASE
 
     protected $fillable = [
+        'proyek_id',
         'tahap_id',
-        'deskripsi',
-        'persentase',
-        'tanggal_update',
+        'persen_real',
+        'tanggal',
+        'catatan',
     ];
 
-    /**
-     * Relasi ke tabel Tahapan
-     * Satu progress dimiliki oleh satu tahapan
-     */
     public function tahap()
     {
         return $this->belongsTo(Tahapan::class, 'tahap_id', 'tahap_id');
     }
 
+    public function proyek()
+    {
+        return $this->belongsTo(Proyek::class, 'proyek_id', 'proyek_id');
+    }
 }

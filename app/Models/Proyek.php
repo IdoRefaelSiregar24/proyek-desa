@@ -27,5 +27,10 @@ class Proyek extends Model
     {
         return $this->hasMany(Tahapan::class, 'proyek_id', 'proyek_id');
     }
+    
+    public function proyek()
+    {
+        return $this->belongsTo(Proyek::class, 'proyek_id', 'proyek_id');
+    }
 
 }

@@ -58,8 +58,7 @@ class TahapanController extends Controller
             'tgl_selesai' => $request->tgl_selesai,
         ]);
 
-        // redirect kembali ke halaman show proyek
-        return redirect()->route('listTahapan', $request->proyek_id)
+        return redirect()->route('detail-proyek', $request->proyek_id)
             ->with('success', 'Tahapan proyek berhasil ditambahkan!');
     }
 
@@ -103,7 +102,7 @@ class TahapanController extends Controller
             'tgl_selesai' => $request->tgl_selesai,
         ]);
 
-        return redirect()->route('listTahapan', $tahapan->proyek_id)
+        return redirect()->route('detail-proyek', $tahapan->proyek_id)
             ->with('success', 'Data tahapan proyek berhasil diperbarui!');
     }
 

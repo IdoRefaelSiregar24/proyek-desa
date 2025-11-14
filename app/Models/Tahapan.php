@@ -39,4 +39,5 @@ class Tahapan extends Model
         return $this->hasMany(Progress::class, 'tahap_id', 'tahap_id');
     }
 
+
 }

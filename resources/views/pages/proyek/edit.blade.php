@@ -100,13 +100,6 @@
                         </button>
                     </form>
 
-                    <a href="{{ route('listTahapan', $proyek->proyek_id) }}"
-                        class="btn-default bg-danger text-white border-0 d-flex align-items-center gap-2">
-                        <i data-feather="plus-circle"></i>
-                        Lihat Tahapan Proyek
-                    </a>
-
-
                     <form action="{{ route('proyek-guest.destroy', $proyek->proyek_id) }}" method="POST"
                         onsubmit="return confirm('Apakah Anda yakin ingin menghapus proyek ini? Data proyek akan hilang permanen.')">
                         @csrf
