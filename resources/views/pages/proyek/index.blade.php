@@ -56,7 +56,7 @@
                                         <div class="project-content">
                                             <p>{{ Str::limit($proyek->deskripsi, 100) }}</p>
                                             <div class="project-content-footer">
-                                                <a href="{{ route('proyek-guest.edit', $proyek->proyek_id) }}"
+                                                <a href="{{ route('detail-proyek', $proyek->proyek_id) }}"
                                                     class="readmore-btn">Lihat Selengkapnya</a>
                                             </div>
                                         </div>

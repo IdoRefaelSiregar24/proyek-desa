@@ -18,7 +18,7 @@ class ProyekController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     */ 
+     */
     public function store(Request $request)
     {
         // dd($request->all());
@@ -47,10 +47,16 @@ class ProyekController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function detail(string $id)
     {
-        //
+
+        $proyek = Proyek::with([
+            'tahapan.progress'
+        ])->findOrFail($id);
+
+        return view('pages.proyek.detail', compact('proyek'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -70,15 +76,15 @@ class ProyekController extends Controller
         // dd($request->all());
 
         $proyek_id = $id;
-        $proyek    = Proyek::findOrFail($proyek_id);
+        $proyek = Proyek::findOrFail($proyek_id);
 
         $proyek->kode_proyek = $request->kode_proyek;
         $proyek->nama_proyek = $request->nama_proyek;
-        $proyek->tahun       = $request->tahun;
-        $proyek->lokasi      = $request->lokasi;
-        $proyek->anggaran    = $request->anggaran;
+        $proyek->tahun = $request->tahun;
+        $proyek->lokasi = $request->lokasi;
+        $proyek->anggaran = $request->anggaran;
         $proyek->sumber_dana = $request->sumber_dana;
-        $proyek->deskripsi   = $request->deskripsi;
+        $proyek->deskripsi = $request->deskripsi;
 
         $proyek->save();
         return redirect()->route('proyek-guest.index')->with('success', 'Perubahan Data Berhasil!');

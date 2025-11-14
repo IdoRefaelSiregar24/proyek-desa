@@ -34,8 +34,9 @@ class Tahapan extends Model
      * Relasi ke model ProgresProyek (One to Many)
      * Satu tahapan bisa punya banyak progres
      */
-    public function progres()
+    public function progress()
     {
         return $this->hasMany(Progress::class, 'tahap_id', 'tahap_id');
     }
+
 }

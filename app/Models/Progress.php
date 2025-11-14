@@ -24,8 +24,9 @@ class Progress extends Model
      * Relasi ke tabel Tahapan
      * Satu progress dimiliki oleh satu tahapan
      */
-    public function tahapan()
+    public function tahap()
     {
-        return $this->belongsTo(Tahapan::class, 'tahapan_id');
+        return $this->belongsTo(Tahapan::class, 'tahap_id', 'tahap_id');
     }
+
 }
