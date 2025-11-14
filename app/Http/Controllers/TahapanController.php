@@ -59,7 +59,7 @@ class TahapanController extends Controller
         ]);
 
         // redirect kembali ke halaman show proyek
-        return redirect()->route('proyek-guest.show', $request->proyek_id)
+        return redirect()->route('listTahapan', $request->proyek_id)
             ->with('success', 'Tahapan proyek berhasil ditambahkan!');
     }
 

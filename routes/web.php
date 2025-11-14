@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\AuthAdminController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardAdminController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProyekAdminController;
+use App\Http\Controllers\WargaController;
 use App\Http\Controllers\ProyekController;
 use App\Http\Controllers\TahapanController;
+use App\Http\Controllers\ProgressController;
+use App\Http\Controllers\AuthAdminController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UsersAdminController;
 use App\Http\Controllers\WargaAdminController;
-use App\Http\Controllers\WargaController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProyekAdminController;
+use App\Http\Controllers\DashboardAdminController;
 
 Route::get('/', function () {
     return view('pages.index');
@@ -46,6 +47,11 @@ Route::resource('proyek-guest', ProyekController::class);
 Route::resource('tahapan-guest', TahapanController::class);
 Route::get('/listTahapan/{proyek_id}', [TahapanController::class, 'listTahapan'])->name('listTahapan');
 Route::get('/createTahapan/{proyek_id}', [TahapanController::class, 'createTahapan'])->name('createTahapan');
+
+// Progress Guest Routes
+Route::resource('progress-guest', ProgressController::class);
+Route::get('/listProgress/{proyek_id}', [ProgressController::class, 'listProgress'])->name('listProgress');
+Route::get('/listProgress/{proyek_id}', [TahapanController::class, 'createTahapan'])->name('createTahapan');
 
 
 //Dashboard Admin Routes

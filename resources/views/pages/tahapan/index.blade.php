@@ -30,6 +30,11 @@
                     <i data-feather="plus-circle"></i> Tambah Tahapan
                 </a>
 
+                <a href="{{ route('progress-guest.create', $proyek->proyek_id) }}"
+                    class="btn-default bg-danger text-white border-0 d-flex align-items-center gap-1 px-3 py-3">
+                    <i data-feather="plus-circle"></i> Tambah Progress Per Proyek
+                </a>
+
                 <!-- Tombol Export (contoh tombol kedua) -->
                 <a href="{{ route('proyek-guest.index', $proyek->proyek_id) }}"
                     class="btn-default bg-primary text-white border-0 d-flex align-items-center gap-1 px-3 py-3">
@@ -42,7 +47,7 @@
         @if ($tahapan->count() > 0)
             <div class="row">
                 @foreach ($tahapan as $item)
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-6 mb-6">
                         <div class="card shadow-sm border-0 rounded-3 h-100">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="fw-semibold">{{ $item->nama_tahap }}</h5>
@@ -59,6 +64,11 @@
                                     <a href="{{ route('tahapan-guest.edit', $item->tahap_id) }}"
                                         class="btn-default d-flex align-items-center gap-1 px-3 py-1">
                                         <i data-feather="edit"></i> EDIT
+                                    </a>
+
+                                    <a href="{{ route('progress-guest.index', $item->tahap_id) }}"
+                                        class="btn-default d-flex align-items-center gap-1 px-3 py-1">
+                                        <i data-feather="edit"></i> Lihat Progress Proyek
                                     </a>
 
                                     <form action="{{ route('tahapan-guest.destroy', $item->tahap_id) }}" method="POST"

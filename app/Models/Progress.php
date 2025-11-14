@@ -9,12 +9,12 @@ class Progress extends Model
 {
     use HasFactory;
 
-    protected $table = 'progress';
+    protected $table = 'progres_proyek';
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'tahapan_id',
+        'tahap_id',
         'deskripsi',
         'persentase',
         'tanggal_update',
