@@ -150,8 +150,7 @@
                                     <!-- Catatan -->
                                     <p class="mb-2">{{ $p->catatan }}</p>
 
-                                    <a href=""
-                                        class="btn btn-outline-primary btn-sm">
+                                    <a href="{{ route('progress-guest.edit', $p->progres_id) }}" class="btn btn-outline-primary btn-sm">
                                         Edit Progress
                                     </a>
 
@@ -162,7 +161,7 @@
 
                         <p class="text-muted">Belum ada progress.</p>
 
-                        <a href="{{ route('createProgress', $t->tahap_id) }}"
+                        <a href="{{ route('createProgress', $proyek->proyek_id) }}"
                             class="btn btn-success btn-sm text-white">
                             + Tambah Progress
                         </a>

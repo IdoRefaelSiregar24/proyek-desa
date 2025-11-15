@@ -75,24 +75,53 @@ class ProgressController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $progress = Progress::findOrFail($id);
+        $proyek = $progress->proyek;
+        $tahapan = Tahapan::where('proyek_id', $proyek->proyek_id)->get();
+
+        return view('pages.progress.edit', compact('progress', 'proyek', 'tahapan'));
     }
+
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        // Validasi form
+        $request->validate([
+            'tahap_id' => 'required|exists:tahapan_proyek,tahap_id',
+            'persen_real' => 'required|numeric|min:0|max:100',
+            'tanggal' => 'required|date',
+            'catatan' => 'nullable|string'
+        ]);
+
+        // Cari progress berdasarkan primary key progress_id
+        $progress = Progress::findOrFail($id);
+
+        // Update data progress
+        $progress->update([
+            'tahap_id' => $request->tahap_id,
+            'persen_real' => $request->persen_real,
+            'tanggal' => $request->tanggal,
+            'catatan' => $request->catatan,
+        ]);
+
+        return redirect()
+            ->route('detail-proyek', $progress->proyek_id)
+            ->with('success', 'Progress berhasil diperbarui!');
     }
+
+
 
     /**
      * Remove the specified resource from storage.

@@ -10,7 +10,7 @@ class Progress extends Model
     use HasFactory;
 
     protected $table = 'progres_proyek';
-    protected $primaryKey = 'progress_id'; // SESUAIKAN DENGAN DATABASE
+    protected $primaryKey = 'progres_id';
 
     protected $fillable = [
         'proyek_id',
