@@ -1,7 +1,6 @@
 @extends('layouts.guest.app')
 
 @section('content')
-
     <!-- =================== HERO =================== -->
     <div class="hero bg-section parallaxie">
         <div class="container">
@@ -180,23 +179,22 @@
                         </div>
 
                     @empty
-
                         <p class="text-muted">Belum ada progress.</p>
-                        <a href="{{ route('createProgress', $proyek->proyek_id) }}"
-                            class="btn btn-success btn-sm text-white">
-                            + Tambah Progress
-                        </a>
-                    @endforelse
+                    @endempty
+
+                    <a href="{{ route('createProgress', $proyek->proyek_id) }}"
+                        class="btn btn-success btn-sm text-white mt-2">
+                        + Tambah Progress
+                    </a>
 
 
-                </div>
+            </div>
 
-            @empty
-                <p class="text-center text-muted">Belum ada tahapan.</p>
-            @endforelse
-
-        </div>
+        @empty
+            <p class="text-center text-muted">Belum ada tahapan.</p>
+        @endforelse
 
     </div>
 
+</div>
 @endsection
