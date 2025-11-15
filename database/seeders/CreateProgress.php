@@ -15,15 +15,17 @@ class CreateProgress extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create('id_ID');
+        $faker = \Faker\Factory::create('id_ID');
 
         foreach (range(1, 50) as $index) {
-            DB::table('progress')->insert([
-                'tahap_id'   => rand(1, 20),
-                'user_id'    => rand(1, 50),
-                'persentase' => rand(1, 100),
-                'keterangan' => $faker->sentence,
-                'created_at' => now(),
+
+            DB::table('progres_proyek')->insert([
+                'proyek_id' => rand(1, 20),
+                'tahap_id' => rand(1, 20),
+                'persen_real' => $faker->randomFloat(2, 0, 100),
+                'tanggal' => $faker->date(),
+                'catatan' => $faker->sentence(),
+                'created_at' => now(), 
                 'updated_at' => now(),
             ]);
         }
