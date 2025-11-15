@@ -21,19 +21,11 @@ class Tahapan extends Model
         'tgl_selesai',
     ];
 
-    /**
-     * Relasi ke model Proyek (Many to One)
-     * Setiap tahapan dimiliki oleh satu proyek
-     */
     public function proyek()
     {
         return $this->belongsTo(Proyek::class, 'proyek_id', 'proyek_id');
     }
 
-    /**
-     * Relasi ke model ProgresProyek (One to Many)
-     * Satu tahapan bisa punya banyak progres
-     */
     public function progress()
     {
         return $this->hasMany(Progress::class, 'tahap_id', 'tahap_id');
