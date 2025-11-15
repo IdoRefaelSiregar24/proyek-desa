@@ -115,7 +115,7 @@ class TahapanController extends Controller
         $proyek_id = $tahapan->proyek_id;
         $tahapan->delete();
 
-        return redirect()->route('listTahapan', $proyek_id)
+        return redirect()->route('detail-proyek', $proyek_id)
             ->with('success', 'Data tahapan proyek berhasil dihapus!');
     }
 }

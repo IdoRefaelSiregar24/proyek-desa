@@ -128,6 +128,15 @@ class ProgressController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $progress = Progress::where('progres_id', $id)->firstOrFail();
+
+        $proyek_id = $progress->proyek_id;
+
+        $progress->delete();
+
+        return redirect()
+            ->route('detail-proyek', $proyek_id)
+            ->with('success', 'Progress berhasil dihapus!');
     }
+
 }
