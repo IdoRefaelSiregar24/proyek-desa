@@ -10,8 +10,8 @@ class Tahapan extends Model
 {
     use HasFactory;
 
-    protected $table = 'tahapan_proyek'; // Nama tabel di database
-    protected $primaryKey = 'tahap_id';  // Primary key kustom
+    protected $table = 'tahapan_proyek';
+    protected $primaryKey = 'tahap_id';
 
     protected $fillable = [
         'proyek_id',
