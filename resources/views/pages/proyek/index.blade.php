@@ -19,15 +19,36 @@
     </div>
     <!-- Hero Section End -->
 
-    <div class="container py-4 text-end">
-        <a href="{{ route('proyek-guest.create') }}">
-            <div class="col-md-12">
+    {{-- button create,filter, dan search --}}
+
+    <div class="container py-4">
+
+        <div class="d-flex justify-content-end align-items-center gap-3">
+
+            <!-- Filter -->
+            <form method="GET" action="" >
+                <select name="sumber_dana" class="select-default" onchange="this.form.submit()">
+                    <option value="">Sumber Dana</option>
+                    <option value="APBN" {{ request('sumber_dana') == 'APBN' ? 'selected' : '' }}>APBN</option>
+                    <option value="APBD" {{ request('sumber_dana') == 'APBD' ? 'selected' : '' }}>APBD</option>
+                    <option value="Swasta" {{ request('sumber_dana') == 'Swasta' ? 'selected' : '' }}>Swasta</option>
+                    <option value="Hibah" {{ request('sumber_dana') == 'Hibah' ? 'selected' : '' }}>Hibah</option>
+                </select>
+            </form>
+            <!-- Tombol Create Proyek -->
+            <a href="{{ route('proyek-guest.create') }}">
                 <button type="submit" class="btn-default">
                     <i class="fa-solid fa-plus me-2"></i> Tambah Proyek
                 </button>
-            </div>
-        </a>
+            </a>
+        </div>
+
     </div>
+
+
+
+    {{-- End button create,filter, dan search --}}
+
 
     <!-- Start Project Cards Section -->
     <section>

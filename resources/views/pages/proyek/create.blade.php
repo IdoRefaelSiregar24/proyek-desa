@@ -76,12 +76,19 @@
                 </div>
 
                 <div class="form-group col-md-6 mb-4">
-                    <input type="text" name="sumber_dana" class="form-control" id="sumber_dana" placeholder="Sumber Dana"
-                        value="{{ old('sumber_dana') }}" required>
+                    <select name="sumber_dana" id="sumber_dana" class="form-control" required>
+                        <option value="">-- Pilih Sumber Dana --</option>
+                        <option value="APBN" {{ old('sumber_dana') == 'APBN' ? 'selected' : '' }}>APBN</option>
+                        <option value="APBD" {{ old('sumber_dana') == 'APBD' ? 'selected' : '' }}>APBD</option>
+                        <option value="Swasta" {{ old('sumber_dana') == 'Swasta' ? 'selected' : '' }}>Swasta</option>
+                        <option value="Hibah" {{ old('sumber_dana') == 'Hibah' ? 'selected' : '' }}>Hibah</option>
+                    </select>
+
                     @error('sumber_dana')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
+
 
                 <div class="form-group col-md-12 mb-5">
                     <textarea name="deskripsi" class="form-control" id="deskripsi" rows="3" placeholder="Deskripsi" required>{{ old('deskripsi') }}</textarea>

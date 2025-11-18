@@ -10,9 +10,13 @@ class ProyekController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['dataProyek'] = Proyek::Paginate(10)->onEachSide(2);
+        $filterableColumn = ['sumber_dana'];
+
+        $data['dataProyek'] = Proyek::filter($request, $filterableColumn)
+            ->paginate(10)->onEachSide(2)
+            ->withQueryString();
         return view('pages.proyek.index', $data);
     }
 
@@ -48,13 +52,13 @@ class ProyekController extends Controller
      * Display the specified resource.
      */
     public function detail(string $id)
-{
-    // ambil satu proyek beserta relasi tahapan + progress
-    $proyek = Proyek::with(['tahapan.progress'])->findOrFail($id);
+    {
+        // ambil satu proyek beserta relasi tahapan + progress
+        $proyek = Proyek::with(['tahapan.progress'])->findOrFail($id);
 
-    // kirim variabel $proyek ke view
-    return view('pages.proyek.detail', compact('proyek'));
-}
+        // kirim variabel $proyek ke view
+        return view('pages.proyek.detail', compact('proyek'));
+    }
 
     /**
      * Show the form for editing the specified resource.

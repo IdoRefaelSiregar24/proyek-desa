@@ -63,7 +63,7 @@
                         @csrf
                         @method('DELETE')
 
-                        <button class="btn-default bg-danger text-white border-0 d-inline-flex gap-2">
+                        <button class="btn-default d-inline-flex gap-2">
                             <i data-feather="trash-2"></i> Hapus Proyek
                         </button>
                     </form>

@@ -3,6 +3,7 @@ namespace App\Models;
 
 use App\Models\Tahapan;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Proyek extends Model
 {
@@ -27,10 +28,20 @@ class Proyek extends Model
     {
         return $this->hasMany(Tahapan::class, 'proyek_id', 'proyek_id');
     }
-    
+
     public function proyek()
     {
         return $this->belongsTo(Proyek::class, 'proyek_id', 'proyek_id');
     }
+
+    public function scopeFilter(Builder $query, $request, array $filterableColumns): Builder
+{
+    foreach ($filterableColumns as $column) {
+        if ($request->filled($column)) {
+            $query->where($column, $request->input($column));
+        }
+    }
+    return $query;
+}
 
 }
