@@ -12,7 +12,7 @@ class ProyekController extends Controller
      */
     public function index()
     {
-        $data['dataProyek'] = Proyek::all();
+        $data['dataProyek'] = Proyek::Paginate(10)->onEachSide(2);
         return view('pages.proyek.index', $data);
     }
 

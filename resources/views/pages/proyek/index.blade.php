@@ -70,10 +70,14 @@
                             </div>
                         @endforelse
                     </div>
-
+                    <div class="d-flex justify-content-center">
+                        {{ $dataProyek->links('pagination::bootstrap-5') }}
+                    </div>
                 </div>
             </div>
+
         </div>
+
     </section>
     <!-- End Project Cards Section -->
 @endsection

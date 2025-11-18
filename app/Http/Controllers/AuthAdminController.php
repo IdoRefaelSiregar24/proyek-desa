@@ -47,7 +47,7 @@ class AuthAdminController extends Controller
     {
         $validated = $request->validate([
             'name'     => 'required|string|max:100',
-            'email'    => 'required|email|unique:users,email',
+            'email'    => 'email|unique:users,email',
             'password' => 'required|min:8|confirmed',
         ], [
             'name.required'      => 'Nama wajib diisi.',
