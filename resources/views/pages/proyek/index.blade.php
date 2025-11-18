@@ -22,10 +22,42 @@
     {{-- button create,filter, dan search --}}
 
     <div class="container py-4">
-        <div class="d-flex justify-content-end align-items-center gap-3">
+        <div class="d-flex justify-content-between align-items-center">
 
-            <!-- GABUNGKAN FILTER DALAM 1 FORM -->
+            <!-- ==================== SEARCH (KIRI) ==================== -->
+            <form method="GET" action="" class="d-flex align-items-center">
+
+                <div class="search-box-group">
+                    <input type="text" name="search" placeholder="Cari proyek..." value="{{ request('search') }}"
+                        class="search-box-input">
+
+                    <button type="submit" class="search-box-button">
+                        <i class="fa fa-search"></i>
+                    </button>
+
+                    @if (request('search'))
+                        <a href="{{ url()->current() }}?{{ http_build_query(request()->except('search')) }}"
+                            class="search-box-clear">
+                            Clear
+                        </a>
+                    @endif
+                </div>
+
+                <!-- Hidden filters -->
+                @if (request('sumber_dana'))
+                    <input type="hidden" name="sumber_dana" value="{{ request('sumber_dana') }}">
+                @endif
+                @if (request('tahun'))
+                    <input type="hidden" name="tahun" value="{{ request('tahun') }}">
+                @endif
+
+            </form>
+
+
+            <!-- ================= FILTER (KANAN) ===================== -->
             <form method="GET" action="" class="d-flex gap-3">
+
+                <input type="hidden" name="search" value="{{ request('search') }}">
 
                 <!-- Filter Sumber Dana -->
                 <select name="sumber_dana" class="select-default" onchange="this.form.submit()">
@@ -38,7 +70,7 @@
 
                 <!-- Filter Tahun -->
                 <select name="tahun" class="select-default" onchange="this.form.submit()">
-                    <option value="">Filter Tahun</option>
+                    <option value="">Tahun</option>
                     @foreach ($listTahun as $tahun)
                         <option value="{{ $tahun }}" {{ request('tahun') == $tahun ? 'selected' : '' }}>
                             {{ $tahun }}
@@ -47,7 +79,7 @@
                 </select>
             </form>
 
-            <!-- Tombol Create Proyek -->
+            <!-- ==================== CREATE BUTTON ==================== -->
             <a href="{{ route('proyek-guest.create') }}">
                 <button type="button" class="btn-default">
                     <i class="fa-solid fa-plus me-2"></i> Tambah Proyek
@@ -55,6 +87,7 @@
             </a>
         </div>
     </div>
+
 
 
     {{-- End button create,filter, dan search --}}

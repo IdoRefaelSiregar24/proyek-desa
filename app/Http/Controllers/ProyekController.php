@@ -14,18 +14,40 @@ class ProyekController extends Controller
     {
         $filterableColumn = ['sumber_dana', 'tahun'];
 
-        // Ambil daftar tahun unik dari database untuk dropdown filter
+        // Ambil daftar tahun dari DB
         $data['listTahun'] = Proyek::select('tahun')
             ->distinct()
             ->orderBy('tahun', 'desc')
             ->pluck('tahun');
 
-        $data['dataProyek'] = Proyek::filter($request, $filterableColumn)
-            ->paginate(10)->onEachSide(2)
+        // Query awal
+        $query = Proyek::query();
+
+        // Filter sumber_dana & tahun
+        $query = $query->filter($request, $filterableColumn);
+
+        // SEARCH
+        if ($request->filled('search')) {
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+                $q->where('nama_proyek', 'LIKE', "%{$search}%")
+                    ->orWhere('kode_proyek', 'LIKE', "%{$search}%")
+                    ->orWhere('lokasi', 'LIKE', "%{$search}%")
+                    ->orWhere('sumber_dana', 'LIKE', "%{$search}%");
+            });
+        }
+
+        // Pagination
+        $data['dataProyek'] = $query
+            ->paginate(10)
+            ->onEachSide(2)
             ->withQueryString();
 
         return view('pages.proyek.index', $data);
     }
+
+
 
 
     /**
