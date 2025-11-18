@@ -12,13 +12,21 @@ class ProyekController extends Controller
      */
     public function index(Request $request)
     {
-        $filterableColumn = ['sumber_dana'];
+        $filterableColumn = ['sumber_dana', 'tahun'];
+
+        // Ambil daftar tahun unik dari database untuk dropdown filter
+        $data['listTahun'] = Proyek::select('tahun')
+            ->distinct()
+            ->orderBy('tahun', 'desc')
+            ->pluck('tahun');
 
         $data['dataProyek'] = Proyek::filter($request, $filterableColumn)
             ->paginate(10)->onEachSide(2)
             ->withQueryString();
+
         return view('pages.proyek.index', $data);
     }
+
 
     /**
      * Show the form for creating a new resource.

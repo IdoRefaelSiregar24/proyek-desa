@@ -22,11 +22,12 @@
     {{-- button create,filter, dan search --}}
 
     <div class="container py-4">
-
         <div class="d-flex justify-content-end align-items-center gap-3">
 
-            <!-- Filter -->
-            <form method="GET" action="" >
+            <!-- GABUNGKAN FILTER DALAM 1 FORM -->
+            <form method="GET" action="" class="d-flex gap-3">
+
+                <!-- Filter Sumber Dana -->
                 <select name="sumber_dana" class="select-default" onchange="this.form.submit()">
                     <option value="">Sumber Dana</option>
                     <option value="APBN" {{ request('sumber_dana') == 'APBN' ? 'selected' : '' }}>APBN</option>
@@ -34,17 +35,26 @@
                     <option value="Swasta" {{ request('sumber_dana') == 'Swasta' ? 'selected' : '' }}>Swasta</option>
                     <option value="Hibah" {{ request('sumber_dana') == 'Hibah' ? 'selected' : '' }}>Hibah</option>
                 </select>
+
+                <!-- Filter Tahun -->
+                <select name="tahun" class="select-default" onchange="this.form.submit()">
+                    <option value="">Filter Tahun</option>
+                    @foreach ($listTahun as $tahun)
+                        <option value="{{ $tahun }}" {{ request('tahun') == $tahun ? 'selected' : '' }}>
+                            {{ $tahun }}
+                        </option>
+                    @endforeach
+                </select>
             </form>
+
             <!-- Tombol Create Proyek -->
             <a href="{{ route('proyek-guest.create') }}">
-                <button type="submit" class="btn-default">
+                <button type="button" class="btn-default">
                     <i class="fa-solid fa-plus me-2"></i> Tambah Proyek
                 </button>
             </a>
         </div>
-
     </div>
-
 
 
     {{-- End button create,filter, dan search --}}
