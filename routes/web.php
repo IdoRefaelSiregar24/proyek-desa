@@ -65,9 +65,3 @@ Route::resource('dashboard-admin', DashboardAdminController::class);
 
 //users admin routes
 Route::resource('user-admin', UsersAdminController::class);
-
-// Auth Admin Routes
-Route::get('/admin/login', [AuthAdminController::class, 'index'])->name('login');
-Route::post('/admin/login', [AuthAdminController::class, 'login'])->name('admin.login');
-Route::get('/admin/register', [AuthAdminController::class, 'regis'])->name('register');
-Route::post('/admin/register', [AuthAdminController::class, 'register'])->name('admin.register');
