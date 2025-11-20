@@ -83,11 +83,11 @@ class ProyekController extends Controller
      */
     public function detail(string $id)
     {
-        // ambil satu proyek beserta relasi tahapan + progress
-        $proyek = Proyek::with(['tahapan.progress'])->findOrFail($id);
+        $proyek = Proyek::findOrFail($id);
 
+        $tahapan = $proyek->tahapan()->with('progress')->paginate(3);
         // kirim variabel $proyek ke view
-        return view('pages.proyek.detail', compact('proyek'));
+        return view('pages.proyek.detail', compact('proyek','tahapan'));
     }
 
     /**

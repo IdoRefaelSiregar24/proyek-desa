@@ -75,18 +75,70 @@
 
         <!-- ------------- Tahapan Proyek ------------- -->
         <div class="contact-form wow fadeInUp mb-5" data-wow-delay="0.3s">
-
             <div class="section-title d-flex justify-content-between align-items-center">
+                <!-- ====== TITLE ====== -->
                 <div>
                     <h3>Tahapan Proyek</h3>
                     <h2 class="text-anime-style-3">Daftar Tahapan</h2>
                 </div>
-
+            </div>
+            <div class="section-title d-flex flex-wrap justify-content-between align-items-center gap-3">
+                <!-- Tombol Tambah (Responsif: pindah ke bawah judul saat mobile) -->
                 <a href="{{ route('createTahapan', $proyek->proyek_id) }}"
-                    class="btn-default d-flex align-items-center gap-2">
+                    class="btn-default d-flex align-items-center gap-2 order-3 order-md-2">
                     <i data-feather="plus-circle"></i> Tambah Tahapan
                 </a>
+
+                <!-- ==================== SEARCH FORM ==================== -->
+                <form method="GET" action="" class="d-flex flex-wrap align-items-center gap-2 order-2 order-md-3">
+
+                    <div class="search-box-group d-flex align-items-center">
+                        <input type="text" name="search" placeholder="Cari proyek..." value="{{ request('search') }}"
+                            class="search-box-input">
+
+                        <button type="submit" class="search-box-button">
+                            <i class="fa fa-search"></i>
+                        </button>
+
+                        @if (request('search'))
+                            <a href="{{ url()->current() }}?{{ http_build_query(request()->except('search')) }}"
+                                class="search-box-clear">
+                                Clear
+                            </a>
+                        @endif
+                    </div>
+
+                    <!-- Hidden filters -->
+                    @if (request('sumber_dana'))
+                        <input type="hidden" name="sumber_dana" value="{{ request('sumber_dana') }}">
+                    @endif
+                    @if (request('tahun'))
+                        <input type="hidden" name="tahun" value="{{ request('tahun') }}">
+                    @endif
+                </form>
+
+                <!-- ==================== FILTER FORM ==================== -->
+                <form method="GET" action="" class="d-flex flex-wrap gap-2 order-4 w-100 w-md-auto">
+
+                    <input type="hidden" name="search" value="{{ request('search') }}">
+
+                    <!-- Filter Sumber Dana -->
+                    <select name="sumber_dana" class="select-default w-auto" onchange="this.form.submit()">
+                        <option value="">Sumber Dana</option>
+                        <option value="APBN" {{ request('sumber_dana') == 'APBN' ? 'selected' : '' }}>APBN</option>
+                        <option value="APBD" {{ request('sumber_dana') == 'APBD' ? 'selected' : '' }}>APBD</option>
+                        <option value="Swasta" {{ request('sumber_dana') == 'Swasta' ? 'selected' : '' }}>Swasta</option>
+                        <option value="Hibah" {{ request('sumber_dana') == 'Hibah' ? 'selected' : '' }}>Hibah</option>
+                    </select>
+
+                    <!-- Filter Tahun -->
+                    <select name="tahun" class="select-default w-auto" onchange="this.form.submit()">
+                        <option value="">Tahun</option>
+                        {{-- Loop tahun --}}
+                    </select>
+                </form>
             </div>
+
 
             @forelse ($proyek->tahapan as $t)
                 <div class="border rounded p-4 mb-4 shadow-sm">
@@ -162,7 +214,8 @@
                                         </a>
 
                                         <!-- Hapus -->
-                                        <form action="{{ route('progress-guest.destroy', $p->progres_id) }}" method="POST"
+                                        <form action="{{ route('progress-guest.destroy', $p->progres_id) }}"
+                                            method="POST"
                                             onsubmit="return confirm('Yakin ingin menghapus progress ini?')">
                                             @csrf
                                             @method('DELETE')
@@ -190,9 +243,14 @@
 
             </div>
 
+
         @empty
             <p class="text-center text-muted">Belum ada tahapan.</p>
         @endforelse
+        <div class="d-flex justify-content-center">
+            {{ $tahapan->links('pagination::bootstrap-5') }}
+        </div>
+
 
     </div>
 
