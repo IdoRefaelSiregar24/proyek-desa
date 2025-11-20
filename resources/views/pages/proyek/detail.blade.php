@@ -76,53 +76,55 @@
                     <h3>Tahapan Proyek</h3>
                     <h2 class="text-anime-style-3">Daftar Tahapan</h2>
                 </div>
-            </div>
-
-            <div class="section-title d-flex flex-wrap justify-content-between align-items-center gap-3">
                 <a href="{{ route('createTahapan', $proyek->proyek_id) }}"
                     class="btn-default d-flex align-items-center gap-2 order-3 order-md-2">
                     <i data-feather="plus-circle"></i> Tambah Tahapan
                 </a>
+            </div>
+
+            <div class="section-title d-flex flex-wrap justify-content-between align-items-center gap-3">
 
                 <!-- SEARCH -->
                 <form method="GET" action="" class="d-flex flex-wrap align-items-center gap-2 order-2 order-md-3">
                     <div class="search-box-group d-flex align-items-center">
-                        <input type="text" name="search" placeholder="Cari proyek..." value="{{ request('search') }}"
-                            class="search-box-input">
+                        <input type="text" name="search_tahapan" placeholder="Cari Tahapan..."
+                            value="{{ request('search_tahapan') }}" class="search-box-input">
+
                         <button type="submit" class="search-box-button">
                             <i class="fa fa-search"></i>
                         </button>
 
-                        @if (request('search'))
-                            <a href="{{ url()->current() }}?{{ http_build_query(request()->except('search')) }}"
-                                class="search-box-clear">Clear</a>
+                        @if (request('search_tahapan'))
+                            <a href="{{ url()->current() }}?{{ http_build_query(request()->except('search_tahapan')) }}"
+                                class="search-box-clear">
+                                Clear
+                            </a>
                         @endif
                     </div>
 
+                    {{-- Hidden filters lain agar tidak hilang --}}
                     @if (request('sumber_dana'))
                         <input type="hidden" name="sumber_dana" value="{{ request('sumber_dana') }}">
                     @endif
+
                     @if (request('tahun'))
                         <input type="hidden" name="tahun" value="{{ request('tahun') }}">
                     @endif
                 </form>
 
                 <!-- FILTER -->
-                <form method="GET" action="" class="d-flex flex-wrap gap-2 order-4 w-100 w-md-auto">
-                    <input type="hidden" name="search" value="{{ request('search') }}">
+                <form method="GET" action="" class="d-flex flex-wrap gap-2">
+                    <!-- FILTER TANGGAL MULAI -->
+                    <input type="date" name="tgl_mulai" value="{{ request('tgl_mulai') }}" class="form-control">
 
-                    <select name="sumber_dana" class="select-default w-auto" onchange="this.form.submit()">
-                        <option value="">Sumber Dana</option>
-                        <option value="APBN" {{ request('sumber_dana') == 'APBN' ? 'selected' : '' }}>APBN</option>
-                        <option value="APBD" {{ request('sumber_dana') == 'APBD' ? 'selected' : '' }}>APBD</option>
-                        <option value="Swasta" {{ request('sumber_dana') == 'Swasta' ? 'selected' : '' }}>Swasta</option>
-                        <option value="Hibah" {{ request('sumber_dana') == 'Hibah' ? 'selected' : '' }}>Hibah</option>
-                    </select>
+                    <!-- FILTER TANGGAL SELESAI -->
+                    <input type="date" name="tgl_selesai" value="{{ request('tgl_selesai') }}" class="form-control">
 
-                    <select name="tahun" class="select-default w-auto" onchange="this.form.submit()">
-                        <option value="">Tahun</option>
-                        {{-- Loop tahun --}}
-                    </select>
+                    <button type="submit" class="btn btn-danger">Filter</button>
+
+                    @if (request()->except('page'))
+                        <a href="{{ url()->current() }}" class="btn btn-secondary">Clear</a>
+                    @endif
                 </form>
             </div>
 
@@ -146,21 +148,21 @@
     <script>
         function loadProgress(tahapId, page = 1) {
             fetch(`/tahapan/${tahapId}/progress?page=` + page, {
-                headers: {
-                    "X-Requested-With": "XMLHttpRequest"
-                }
-            })
-            .then(response => {
-                if (!response.ok) throw new Error('Network response was not ok');
-                return response.text();
-            })
-            .then(html => {
-                const container = document.getElementById('progress-container-' + tahapId);
-                if (container) container.innerHTML = html;
-            })
-            .catch(err => {
-                console.error('Failed to load progress:', err);
-            });
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest"
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.text();
+                })
+                .then(html => {
+                    const container = document.getElementById('progress-container-' + tahapId);
+                    if (container) container.innerHTML = html;
+                })
+                .catch(err => {
+                    console.error('Failed to load progress:', err);
+                });
         }
     </script>
 @endsection

@@ -49,8 +49,6 @@ class ProyekController extends Controller
     }
 
 
-
-
     /**
      * Show the form for creating a new resource.
      */
@@ -82,17 +80,21 @@ class ProyekController extends Controller
     /**
      * Display the specified resource.
      */
-    public function detail(string $id)
+    public function detail(Request $request, string $id)
     {
         $proyek = Proyek::findOrFail($id);
 
-        // paginate tahapan
         $tahapan = $proyek->tahapan()
             ->with('progress')
-            ->paginate(3);
+            ->filter($request)
+            ->paginate(2)
+            ->withQueryString();
 
         return view('pages.proyek.detail', compact('proyek', 'tahapan'));
     }
+
+
+
 
     public function getProgress($id, Request $request)
     {
