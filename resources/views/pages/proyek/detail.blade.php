@@ -140,7 +140,7 @@
             </div>
 
 
-            @forelse ($proyek->tahapan as $t)
+            @forelse ($tahapan as $t)
                 <div class="border rounded p-4 mb-4 shadow-sm">
 
                     <div class="d-flex justify-content-between align-items-center">

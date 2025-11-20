@@ -85,10 +85,14 @@ class ProyekController extends Controller
     {
         $proyek = Proyek::findOrFail($id);
 
-        $tahapan = $proyek->tahapan()->with('progress')->paginate(3);
-        // kirim variabel $proyek ke view
-        return view('pages.proyek.detail', compact('proyek','tahapan'));
+        // paginate tahapan
+        $tahapan = $proyek->tahapan()
+            ->with('progress')
+            ->paginate(3);
+
+        return view('pages.proyek.detail', compact('proyek', 'tahapan'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
