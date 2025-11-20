@@ -43,6 +43,9 @@ Route::resource('warga-guest', WargaController::class);
 // Proyek Guest Routes
 Route::resource('proyek-guest', ProyekController::class);
 Route::get('/detail/{proyek_id}', [ProyekController::class, 'detail'])->name('detail-proyek');
+Route::get('/tahapan/{id}/progress', [ProyekController::class, 'getProgress'])
+    ->name('tahapan.progress');
+
 
 
 // Tahapan Guest Routes

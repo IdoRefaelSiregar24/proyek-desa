@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Proyek;
+use App\Models\Tahapan;
 use Illuminate\Http\Request;
 
 class ProyekController extends Controller
@@ -92,6 +93,22 @@ class ProyekController extends Controller
 
         return view('pages.proyek.detail', compact('proyek', 'tahapan'));
     }
+
+    public function getProgress($id, Request $request)
+    {
+        $t = Tahapan::findOrFail($id);
+
+        // paginasi progress per tahapan
+        $progressPaginated = $t->progress()
+            ->orderBy('tanggal', 'desc')
+            ->paginate(3, ['*'], 'page', $request->page ?? 1);
+
+        return view('pages.proyek.progress-item', [
+            't' => $t,
+            'progressPaginated' => $progressPaginated
+        ])->render();
+    }
+
 
 
     /**
