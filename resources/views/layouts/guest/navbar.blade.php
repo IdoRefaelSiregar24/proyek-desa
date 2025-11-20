@@ -1,6 +1,7 @@
     <!-- Header Start -->
     <header class="main-header">
         <div class="header-sticky">
+
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <!-- Logo -->
@@ -40,7 +41,8 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link"  href="">Kontak</a>
+                                    <a class="nav-link" href="">Kontak</a>
+                                </li>
                             </ul>
                         </div>
 
@@ -83,8 +85,10 @@
                             @endauth
                         </div>
                     </div>
+                    <div class="navbar-toggle"></div>
                 </div>
             </nav>
+            <div class="responsive-menu"></div>
 
             <!-- Script Toggle Dropdown -->
             <script>
@@ -110,10 +114,6 @@
             </script>
         </div>
         <!-- Main Menu End -->
-        <div class="navbar-toggle"></div>
-        </div>
-        </nav>
-        <div class="responsive-menu"></div>
-        </div>
+
     </header>
     <!-- Header End -->
