@@ -85,13 +85,18 @@ class ProyekController extends Controller
         $proyek = Proyek::findOrFail($id);
 
         $tahapan = $proyek->tahapan()
-            ->with('progress')
-            ->filter($request)
+            ->with([
+                'progress' => function ($q) use ($request) {
+                    $q->filter($request)
+                        ->orderBy('tanggal', 'desc');
+                }
+            ])
             ->paginate(2)
             ->withQueryString();
 
-        return view('pages.proyek.detail', compact('proyek', 'tahapan'));
+        return view('pages.proyek.detail', compact('proyek', 'tahapan', 'request'));
     }
+
 
 
 

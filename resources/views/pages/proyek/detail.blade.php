@@ -128,7 +128,7 @@
                 </form>
             </div>
 
-            {{-- LIST TAHAPAN --}}
+            {{-- LIST PROGRESS --}}
             @forelse ($tahapan as $t)
                 <div id="progress-container-{{ $t->tahap_id }}">
                     @include('pages.proyek.progress-item', ['t' => $t])

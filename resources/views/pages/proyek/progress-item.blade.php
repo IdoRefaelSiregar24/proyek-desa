@@ -40,14 +40,61 @@
     <hr>
 
     <!-- ----- Progress Per Tahapan ----- -->
-    <h6 class="fw-bold mt-3 mb-2">Progress Tahapan</h6>
+    <div class="section-title d-flex justify-content-between align-items-center">
+        <div>
+            <h2 class="text-anime-style-4">Progress Tahapan</h2>
+            <br>
+            <h3>Progress Per Tahapan</h3>
+        </div>
+
+    </div>
+
+    <div class="section-title d-flex flex-wrap justify-content-between align-items-center gap-3">
+        <form method="GET" action="" class="d-flex flex-wrap align-items-center gap-2">
+
+            <!-- Search Progress -->
+            <div class="search-box-group d-flex align-items-center">
+                <input type="text" name="search_progress" placeholder="Cari Progress..."
+                    value="{{ request('search_progress') }}" class="search-box-input">
+                <button type="submit" class="search-box-button">
+                    <i class="fa fa-search"></i>
+                </button>
+                @if (request('search_progress'))
+                    <a href="{{ url()->current() }}?{{ http_build_query(request()->except('search_progress')) }}"
+                        class="search-box-clear">Clear</a>
+                @endif
+            </div>
+
+            <!-- Filter Tanggal -->
+            <input type="date" name="tgl_mulai" value="{{ request('tgl_mulai') }}" class="form-control"
+                placeholder="Tanggal Mulai">
+            <input type="date" name="tgl_selesai" value="{{ request('tgl_selesai') }}" class="form-control"
+                placeholder="Tanggal Selesai">
+
+            <!-- Filter Persen Real -->
+            <input type="number" name="persen_min" value="{{ request('persen_min') }}" class="form-control"
+                placeholder="Persen Min" min="0" max="100">
+            <input type="number" name="persen_max" value="{{ request('persen_max') }}" class="form-control"
+                placeholder="Persen Max" min="0" max="100">
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-danger">Filter</button>
+
+            <!-- Clear -->
+            @if (request()->except('page'))
+                <a href="{{ url()->current() }}" class="btn btn-secondary">Clear</a>
+            @endif
+
+        </form>
+    </div>
     <br>
     @php
-        // Pagination per tahapan
         $progressPaginated = $t
             ->progress()
+            ->filter(request())
             ->orderBy('tanggal', 'desc')
-            ->paginate(3, ['*'], 'page');
+            ->paginate(3, ['*'], 'page')
+            ->withQueryString();
     @endphp
 
     @forelse ($progressPaginated as $p)
