@@ -88,9 +88,7 @@
                     <div class="navbar-toggle"></div>
                 </div>
             </nav>
-
             <div class="responsive-menu"></div>
-
             <!-- Script Toggle Dropdown -->
             <script>
                 document.addEventListener("DOMContentLoaded", () => {

@@ -60,8 +60,3 @@ Route::get('/listProgress/{proyek_id}', [ProgressController::class, 'listProgres
 //     ->name('progress-guest-createProgress');
 Route::get('/createProgress/{proyek_id}', [ProgressController::class, 'createProgress'])->name('createProgress');
 
-//Dashboard Admin Routes
-Route::resource('dashboard-admin', DashboardAdminController::class);
-
-//users admin routes
-Route::resource('user-admin', UsersAdminController::class);
