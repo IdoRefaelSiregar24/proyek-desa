@@ -10,8 +10,9 @@
     <meta name="keywords" content="">
     <meta name="author" content="Awaiken">
     <!-- Page Title -->
-    <title>Desa Balam Sempurna</title>
+    @include('layouts.guest.header')
     @include('layouts.guest.css')
+
 </head>
 
 <body>
