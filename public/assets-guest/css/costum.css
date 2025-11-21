@@ -338,7 +338,7 @@ body{
 .loading{
 	border: 1px solid transparent;
 	border-color: transparent var(--white-color) transparent var(--white-color);
-	animation: rotate-loading 1.5s linear 0s infinite normal;
+	animation: rotate-loading 0.5s linear 0s infinite normal;
 	transform-origin: 50% 50%;
 }
 
