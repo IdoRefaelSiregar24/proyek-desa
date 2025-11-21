@@ -46,8 +46,6 @@ Route::get('/detail/{proyek_id}', [ProyekController::class, 'detail'])->name('de
 Route::get('/tahapan/{id}/progress', [ProyekController::class, 'getProgress'])
     ->name('tahapan.progress');
 
-
-
 // Tahapan Guest Routes
 Route::resource('tahapan-guest', TahapanController::class);
 Route::get('/listTahapan/{proyek_id}', [TahapanController::class, 'listTahapan'])->name('listTahapan');

@@ -162,8 +162,9 @@
 
     <!-- Tambah Progress -->
     <button class="btn btn-success btn-sm text-white mt-2"
-        onclick="window.location.href='{{ route('createProgress', $t->tahap_id) }}'">
+        onclick="window.location.href='{{ route('createProgress', $proyek->proyek_id) }}'">
         + Tambah Progress
     </button>
+
 
 </div>
