@@ -105,16 +105,20 @@ class ProyekController extends Controller
     {
         $t = Tahapan::findOrFail($id);
 
-        // paginasi progress per tahapan
+        // Ambil proyek dari tahapan
+        $proyek = $t->proyek;
+
         $progressPaginated = $t->progress()
             ->orderBy('tanggal', 'desc')
             ->paginate(3, ['*'], 'page', $request->page ?? 1);
 
         return view('pages.proyek.progress-item', [
             't' => $t,
+            'proyek' => $proyek, // ← WAJIB ADA !!
             'progressPaginated' => $progressPaginated
-        ])->render();
+        ]);
     }
+
 
 
 

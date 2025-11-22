@@ -147,22 +147,20 @@
     <!-- AJAX script untuk load progress per tahapan -->
     <script>
         function loadProgress(tahapId, page = 1) {
-            fetch(`/tahapan/${tahapId}/progress?page=` + page, {
+
+            const params = new URLSearchParams(window.location.search);
+            params.set("page", page);
+
+            fetch(`/tahapan/${tahapId}/progress?` + params.toString(), {
                     headers: {
                         "X-Requested-With": "XMLHttpRequest"
                     }
                 })
-                .then(response => {
-                    if (!response.ok) throw new Error('Network response was not ok');
-                    return response.text();
-                })
+                .then(response => response.text())
                 .then(html => {
-                    const container = document.getElementById('progress-container-' + tahapId);
-                    if (container) container.innerHTML = html;
+                    document.getElementById('progress-container-' + tahapId).innerHTML = html;
                 })
-                .catch(err => {
-                    console.error('Failed to load progress:', err);
-                });
+                .catch(err => console.error('Error:', err));
         }
     </script>
 @endsection
