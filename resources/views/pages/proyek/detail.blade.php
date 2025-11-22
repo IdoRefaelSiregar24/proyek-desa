@@ -144,7 +144,6 @@
         </div>
     </div>
 
-    <!-- AJAX script untuk load progress per tahapan -->
     <script>
         function loadProgress(tahapId, page = 1) {
 
