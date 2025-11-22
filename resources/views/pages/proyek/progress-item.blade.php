@@ -66,10 +66,8 @@
             </div>
 
             <!-- Filter Tanggal -->
-            <input type="date" name="tgl_mulai" value="{{ request('tgl_mulai') }}" class="form-control"
-                placeholder="Tanggal Mulai">
-            <input type="date" name="tgl_selesai" value="{{ request('tgl_selesai') }}" class="form-control"
-                placeholder="Tanggal Selesai">
+            <input type="date" name="progress_mulai" value="{{ request('progress_mulai') }}" class="form-control">
+            <input type="date" name="progress_selesai" value="{{ request('progress_selesai') }}" class="form-control">
 
             <!-- Filter Persen Real -->
             <input type="number" name="persen_min" value="{{ request('persen_min') }}" class="form-control"

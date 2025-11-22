@@ -52,20 +52,18 @@ class Tahapan extends Model
             });
         }
 
-        if ($request->filled('tgl_mulai')) {
-            $query->whereDate('tgl_mulai', $request->tgl_mulai);
+        if ($request->tahapan_mulai) {
+            $query->where('tgl_mulai', '>=', $request->tahapan_mulai);
         }
 
-        if ($request->filled('tgl_selesai')) {
-            $query->whereDate('tgl_selesai', $request->tgl_selesai);
+        if ($request->tahapan_selesai) {
+            $query->where('tgl_selesai', '<=', $request->tahapan_selesai);
         }
 
-        if ($request->filled('range_mulai') && $request->filled('range_selesai')) {
-            $query->whereBetween('tgl_mulai', [
-                $request->range_mulai,
-                $request->range_selesai
-            ]);
+        if ($request->search_tahapan) {
+            $query->where('nama_tahap', 'like', '%' . $request->search_tahapan . '%');
         }
+
 
         return $query;
     }

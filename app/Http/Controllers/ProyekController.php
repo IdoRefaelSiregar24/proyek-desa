@@ -84,19 +84,16 @@ class ProyekController extends Controller
     {
         $proyek = Proyek::findOrFail($id);
 
-        // Filter untuk Tahapan
         $tahapan = $proyek->tahapan()
-            ->filter($request)      // ✔ filter Tahapan, bukan Progress
-            ->with([
-                'progress' => function ($q) {
-                    $q->orderBy('tanggal', 'desc');   // Progress hanya diurutkan
-                }
-            ])
+            ->filter($request)
+            ->with('progress')
             ->paginate(2)
             ->withQueryString();
 
-        return view('pages.proyek.detail', compact('proyek', 'tahapan', 'request'));
+        return view('pages.proyek.detail', compact('proyek', 'tahapan'));
     }
+
+
 
 
 

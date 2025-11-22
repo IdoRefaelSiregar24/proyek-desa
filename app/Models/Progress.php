@@ -32,21 +32,26 @@ class Progress extends Model
 
     public function scopeFilter($query, $request)
     {
+        if ($request->progress_mulai) {
+            $query->where('tanggal', '>=', $request->progress_mulai);
+        }
+
+        if ($request->progress_selesai) {
+            $query->where('tanggal', '<=', $request->progress_selesai);
+        }
+
         if ($request->search_progress) {
-            $query->where('catatan', 'like', "%{$request->search_progress}%");
+            $query->where('catatan', 'like', '%' . $request->search_progress . '%');
         }
-        if ($request->tgl_mulai) {
-            $query->whereDate('tanggal', '>=', $request->tgl_mulai);
-        }
-        if ($request->tgl_selesai) {
-            $query->whereDate('tanggal', '<=', $request->tgl_selesai);
-        }
+
         if ($request->persen_min) {
             $query->where('persen_real', '>=', $request->persen_min);
         }
+
         if ($request->persen_max) {
             $query->where('persen_real', '<=', $request->persen_max);
         }
+
         return $query;
     }
 
