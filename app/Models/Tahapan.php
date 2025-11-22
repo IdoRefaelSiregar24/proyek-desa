@@ -36,7 +36,7 @@ class Tahapan extends Model
     ];
 
     /**
-     * Scope Filter Search
+     * Scope Filter dan Search
      */
     public function scopeFilter($query, $request = null)
     {
