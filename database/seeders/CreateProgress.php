@@ -17,7 +17,7 @@ class CreateProgress extends Seeder
     {
         $faker = \Faker\Factory::create('id_ID');
 
-        foreach (range(1, 50) as $index) {
+        foreach (range(1, 200) as $index) {
 
             DB::table('progres_proyek')->insert([
                 'proyek_id' => rand(1, 20),
@@ -25,7 +25,7 @@ class CreateProgress extends Seeder
                 'persen_real' => $faker->randomFloat(2, 0, 100),
                 'tanggal' => $faker->date(),
                 'catatan' => $faker->sentence(),
-                'created_at' => now(), 
+                'created_at' => now(),
                 'updated_at' => now(),
             ]);
         }

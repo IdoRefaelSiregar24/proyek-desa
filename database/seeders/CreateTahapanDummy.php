@@ -29,7 +29,7 @@ class CreateTahapanDummy extends Seeder
             'Pemeliharaan Awal'
         ];
 
-        foreach (range(1, 20) as $index) {
+        foreach (range(1, 200) as $index) {
             DB::table('tahapan_proyek')->insert([
                 'proyek_id' => rand(1, 10), // contoh proyek dummy 1-10
                 'nama_tahap' => $faker->randomElement($namaTahapList),

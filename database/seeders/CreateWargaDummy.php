@@ -19,7 +19,7 @@ class CreateWargaDummy extends Seeder
         $agamaList = ['Islam', 'Kristen', 'Katolik', 'Hindu', 'Buddha', 'Konghucu'];
         $pekerjaanList = ['Petani', 'Guru', 'Karyawan Swasta', 'Wiraswasta', 'PNS', 'Nelayan', 'Mahasiswa', 'Pengusaha'];
 
-        foreach (range(1, 20) as $index) {
+        foreach (range(1, 200) as $index) {
             DB::table('warga')->insert([
                 'no_ktp'       => $faker->unique()->numerify('##############'),
                 'nama'         => $faker->name,
