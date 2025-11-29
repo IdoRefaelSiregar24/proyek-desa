@@ -31,6 +31,14 @@ class Tahapan extends Model
         return $this->hasMany(Progress::class, 'tahap_id', 'tahap_id');
     }
 
+    public function medias()
+    {
+        return $this->hasMany(Media::class, 'ref_id')
+            ->where('ref_table', 'tahapan')
+            ->orderBy('sort_order', 'asc');
+    }
+
+
     public static $filterableColumns = [
         'nama_tahap',
     ];

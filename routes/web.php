@@ -51,6 +51,9 @@ Route::get('/tahapan/{id}/progress', [ProyekController::class, 'getProgress'])
 Route::resource('tahapan-guest', TahapanController::class);
 Route::get('/listTahapan/{proyek_id}', [TahapanController::class, 'listTahapan'])->name('listTahapan');
 Route::get('/createTahapan/{proyek_id}', [TahapanController::class, 'createTahapan'])->name('createTahapan');
+Route::put('/tahapan-guest/{proyek}/{tahapan}', [TahapanController::class, 'update2'])
+    ->name('tahapan-guest.update2');
+
 
 // Progress Guest Routes
 Route::resource('progress-guest', ProgressController::class);

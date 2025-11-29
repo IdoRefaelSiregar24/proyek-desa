@@ -36,7 +36,7 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <form action="{{ route('tahapan-guest.store', $proyek->proyek_id) }}" method="POST">
+        <form action="{{ route('tahapan-guest.store', $proyek->proyek_id) }}" enctype="multipart/form-data" method="POST">
             @csrf
             <input type="hidden" name="proyek_id" value="{{ $proyek->proyek_id }}">
 

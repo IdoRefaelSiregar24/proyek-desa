@@ -38,6 +38,78 @@
     </div>
 
     <hr>
+    <h2 class="text-anime-style-4 mb-3">Media Tahapan</h2>
+    <p class="text-muted mb-4">Lihat semua media terkait tahapan <strong>{{ $t->nama_tahap }}</strong> di bawah ini.</p>
+
+    <div class="tahapan-media">
+
+        @php
+            $medias = $t->medias ?? collect();
+            $thumbnail = $medias->firstWhere('sort_order', 0);
+            $otherMedia = $medias->where('sort_order', '>', 0);
+        @endphp
+
+        <!-- Thumbnail Utama -->
+        @if ($thumbnail)
+            <div class="mb-4 text-center">
+                <div class="card shadow-sm rounded overflow-hidden">
+                    <a href="{{ asset('storage/' . $thumbnail->file_name) }}" class="glightbox"
+                        data-gallery="tahapan-{{ $t->tahap_id }}">
+                        <img src="{{ asset('storage/' . $thumbnail->file_name) }}" alt="Thumbnail {{ $t->nama_tahap }}"
+                            class="img-fluid" style="max-height:300px; width:100%; object-fit:cover;">
+                    </a>
+                </div>
+            </div>
+        @endif
+
+        <!-- Media Lainnya (Grid) -->
+        @if ($otherMedia->count() > 0)
+            <div class="row g-3">
+                @foreach ($otherMedia as $media)
+                    @php $ext = strtolower(pathinfo($media->file_name, PATHINFO_EXTENSION)); @endphp
+                    <div class="col-6 col-md-3">
+                        @if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif']))
+                            <div class="card shadow-sm rounded overflow-hidden hover-scale">
+                                <a href="{{ asset('storage/' . $media->file_name) }}" class="glightbox"
+                                    data-gallery="tahapan-{{ $t->tahap_id }}">
+                                    <img src="{{ asset('storage/' . $media->file_name) }}" class="img-fluid"
+                                        style="height:150px; width:100%; object-fit:cover;">
+                                </a>
+                            </div>
+                        @elseif($ext === 'pdf')
+                            <div class="card border rounded shadow-sm text-center p-3 bg-light">
+                                <i class="fa-solid fa-file-pdf fa-2x text-danger mb-2"></i>
+                                <div class="text-truncate" style="max-width: 100%;" title="{{ $media->file_name }}">
+                                    <a href="{{ asset('storage/' . $media->file_name) }}" target="_blank">
+                                        {{ $media->file_name }}
+                                    </a>
+                                </div>
+                            </div>
+                        @else
+                            <div class="card border rounded shadow-sm text-center p-3 bg-light">
+                                <i class="fa-solid fa-file fa-2x mb-2"></i>
+                                <div>{{ $media->file_name }}</div>
+                            </div>
+                        @endif
+                    </div>
+                @endforeach
+            </div>
+        @endif
+
+        @if ($medias->count() === 0)
+            <p class="text-center text-muted mt-3">Belum ada media untuk tahapan ini.</p>
+        @endif
+    </div>
+
+    <!-- CSS tambahan untuk efek hover -->
+    <style>
+        .hover-scale:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+    </style>
+
+    <hr>
 
     <!-- ----- Progress Per Tahapan ----- -->
     <div class="section-title d-flex justify-content-between align-items-center">
@@ -67,7 +139,8 @@
 
             <!-- Filter Tanggal -->
             <input type="date" name="progress_mulai" value="{{ request('progress_mulai') }}" class="form-control">
-            <input type="date" name="progress_selesai" value="{{ request('progress_selesai') }}" class="form-control">
+            <input type="date" name="progress_selesai" value="{{ request('progress_selesai') }}"
+                class="form-control">
 
             <!-- Filter Persen Real -->
             <input type="number" name="persen_min" value="{{ request('persen_min') }}" class="form-control"

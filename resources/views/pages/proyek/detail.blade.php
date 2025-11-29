@@ -183,7 +183,8 @@
                 <!-- FILTER -->
                 <form method="GET" action="" class="d-flex flex-wrap gap-2">
                     <!-- FILTER TANGGAL MULAI -->
-                    <input type="date" name="tahapan_mulai" value="{{ request('tahapan_mulai') }}" class="form-control">
+                    <input type="date" name="tahapan_mulai" value="{{ request('tahapan_mulai') }}"
+                        class="form-control">
 
                     <!-- FILTER TANGGAL SELESAI -->
                     <input type="date" name="tahapan_selesai" value="{{ request('tahapan_selesai') }}"
