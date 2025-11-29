@@ -20,7 +20,75 @@
     <!-- =================== CONTAINER =================== -->
     <div class="container py-5">
 
+        <div class="section-title">
+            <h3>{{ $proyek->nama_proyek }}</h3>
+            <h2 class="text-anime-style-3">Gallery Media Proyek</h2>
+        </div>
+        <!-- ------------- Gallery Media Proyek ------------- -->
+        <div class="project-media mb-5">
+            @if ($medias->count() > 0)
+                @php
+                    $thumbnail = $medias->firstWhere('sort_order', 0);
+                    $otherMedia = $medias->where('sort_order', '>', 0);
+                @endphp
+
+                <!-- Thumbnail Utama -->
+                @if ($thumbnail)
+                    <div class="mb-3 text-center">
+                        <a href="{{ asset('storage/' . $thumbnail->file_name) }}" class="glightbox"
+                            data-gallery="project-{{ $proyek->proyek_id }}">
+                            <img src="{{ asset('storage/' . $thumbnail->file_name) }}"
+                                alt="Thumbnail {{ $proyek->nama_proyek }}" class="img-fluid rounded"
+                                style="max-height:450px; width:100%; object-fit:cover;">
+                        </a>
+                    </div>
+                @endif
+
+                <!-- Media Lain (Grid ala Facebook) -->
+                @if ($otherMedia->count() > 0)
+                    <div class="row g-2">
+                        @foreach ($otherMedia as $media)
+                            @php $ext = strtolower(pathinfo($media->file_name, PATHINFO_EXTENSION)); @endphp
+                            <div class="col-6 col-md-3 col-lg-3">
+                                @if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif']))
+                                    <a href="{{ asset('storage/' . $media->file_name) }}" class="glightbox"
+                                        data-gallery="project-{{ $proyek->proyek_id }}">
+                                        <img src="{{ asset('storage/' . $media->file_name) }}"
+                                            alt="Media {{ $loop->iteration }}" class="img-fluid rounded mb-2"
+                                            style="height:200px; width:100%; object-fit:cover;">
+                                    </a>
+                                @elseif($ext === 'pdf')
+                                    <div class="border rounded p-2 text-center bg-light mb-2"
+                                        style="height:200px; display:flex; align-items:center; justify-content:center;">
+                                        <a href="{{ asset('storage/' . $media->file_name) }}"
+                                            target="_blank">{{ $media->file_name }}</a>
+                                    </div>
+                                @else
+                                    <div class="border rounded p-2 text-center bg-light mb-2"
+                                        style="height:200px; display:flex; align-items:center; justify-content:center;">
+                                        {{ $media->file_name }}
+                                    </div>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
+                @endif
+            @else
+                <p class="text-center text-muted">Belum ada media yang diupload untuk proyek ini.</p>
+            @endif
+        </div>
+
+        <!-- Tambahkan CSS opsional -->
+        <style>
+            .project-media img:hover {
+                transform: scale(1.05);
+                transition: all 0.3s ease-in-out;
+            }
+        </style>
+
+
         <!-- ------------- Informasi Umum Proyek ------------- -->
+
         <div class="contact-form wow fadeInUp mb-5" data-wow-delay="0.2s">
             <div class="section-title">
                 <h3>{{ $proyek->nama_proyek }}</h3>
@@ -118,7 +186,8 @@
                     <input type="date" name="tahapan_mulai" value="{{ request('tahapan_mulai') }}" class="form-control">
 
                     <!-- FILTER TANGGAL SELESAI -->
-                    <input type="date" name="tahapan_selesai" value="{{ request('tahapan_selesai') }}" class="form-control">
+                    <input type="date" name="tahapan_selesai" value="{{ request('tahapan_selesai') }}"
+                        class="form-control">
                     <button type="submit" class="btn btn-danger">Filter</button>
 
                     @if (request()->except('page'))

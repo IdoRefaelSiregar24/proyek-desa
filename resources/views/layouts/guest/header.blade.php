@@ -32,6 +32,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papapapapapap..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<!-- Main Custom Css -->
 	<link href="{{ asset('assets-guest/css/custom.css') }}" rel="stylesheet" media="screen">
+    <!-- GLightbox CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
+    <!-- GLightbox JS -->
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
     <style>
         .btn-default, .preloader, .testimonial-slider .swiper-pagination .swiper-pagination-bullet, .btn-default.btn-highlighted::after, .main-menu ul ul
 

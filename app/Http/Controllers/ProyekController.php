@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Media;
 use App\Models\Proyek;
 use App\Models\Tahapan;
 use Illuminate\Http\Request;
@@ -40,10 +41,18 @@ class ProyekController extends Controller
         }
 
         // Pagination
-        $data['dataProyek'] = $query
-            ->paginate(10)
-            ->onEachSide(2)
-            ->withQueryString();
+        $dataProyek = $query->paginate(10)->onEachSide(2)->withQueryString();
+        $data['dataProyek'] = $dataProyek;
+
+        // Ambil semua thumbnail untuk proyek yang ada di halaman ini
+        $thumbnails = Media::where('ref_table', 'proyek')
+            ->whereIn('ref_id', $dataProyek->pluck('proyek_id'))
+            ->where('sort_order', 0)
+            ->get()
+            ->keyBy('ref_id');
+
+        $data['thumbnails'] = $thumbnails;
+
 
         return view('pages.proyek.index', $data);
     }
@@ -54,17 +63,42 @@ class ProyekController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        $proyek = Proyek::create([
+            'kode_proyek' => $request->kode_proyek,
+            'nama_proyek' => $request->nama_proyek,
+            'tahun' => $request->tahun,
+            'lokasi' => $request->lokasi,
+            'anggaran' => $request->anggaran,
+            'sumber_dana' => $request->sumber_dana,
+            'deskripsi' => $request->deskripsi,
+        ]);
 
-        $data['kode_proyek'] = $request->kode_proyek;
-        $data['nama_proyek'] = $request->nama_proyek;
-        $data['tahun'] = $request->tahun;
-        $data['lokasi'] = $request->lokasi;
-        $data['anggaran'] = $request->anggaran;
-        $data['sumber_dana'] = $request->sumber_dana;
-        $data['deskripsi'] = $request->deskripsi;
+        if ($request->hasFile('thumbnail')) {
+            $thumb = $request->file('thumbnail');
+            $thumbPath = $thumb->store('media', 'public');
 
-        Proyek::create($data);
+            Media::create([
+                'ref_table' => 'proyek',
+                'ref_id' => $proyek->proyek_id,
+                'file_name' => $thumbPath,
+                'mime_type' => $thumb->getClientMimeType(),
+                'sort_order' => 0,
+            ]);
+        }
+
+        if ($request->hasFile('media_files')) {
+            foreach ($request->file('media_files') as $index => $file) {
+                $path = $file->store('media', 'public');
+
+                Media::create([
+                    'ref_table' => 'proyek',
+                    'ref_id' => $proyek->proyek_id,
+                    'file_name' => $path,
+                    'mime_type' => $file->getClientMimeType(),
+                    'sort_order' => $index + 1,
+                ]);
+            }
+        }
 
         return redirect()->route('proyek-guest.index')->with('success', 'Penambahan Data Berhasil!');
     }
@@ -90,7 +124,12 @@ class ProyekController extends Controller
             ->paginate(2)
             ->withQueryString();
 
-        return view('pages.proyek.detail', compact('proyek', 'tahapan'));
+        $medias = Media::where('ref_table', 'proyek')
+            ->where('ref_id', $proyek->proyek_id)
+            ->orderBy('sort_order', 'asc')
+            ->get();
+
+        return view('pages.proyek.detail', compact('proyek', 'tahapan', 'medias'));
     }
 
 
@@ -127,6 +166,13 @@ class ProyekController extends Controller
     public function edit(string $tahap_id)
     {
         $data['proyek'] = Proyek::findOrFail($tahap_id);
+
+        $data['medias'] = Media::where('ref_table', 'proyek')
+            ->where('ref_id', $data['proyek']->proyek_id)
+            ->orderBy('sort_order', 'asc')
+            ->get();
+
+        // Kirim ke view
         return view('pages.proyek.edit', $data);
     }
 
@@ -136,21 +182,80 @@ class ProyekController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // dd($request->all());
+        // Validasi input
+        $request->validate([
+            'kode_proyek' => 'required|string|max:50',
+            'nama_proyek' => 'required|string|max:255',
+            'tahun' => 'required|integer',
+            'lokasi' => 'required|string|max:255',
+            'anggaran' => 'required|numeric',
+            'sumber_dana' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
+            'thumbnail' => 'nullable|image|max:10000',
+            'media_files.*' => 'nullable|file|mimes:jpg,jpeg,png,gif,pdf|max:50000',
+        ]);
 
-        $proyek_id = $id;
-        $proyek = Proyek::findOrFail($proyek_id);
+        // Ambil proyek
+        $proyek = Proyek::findOrFail($id);
 
-        $proyek->kode_proyek = $request->kode_proyek;
-        $proyek->nama_proyek = $request->nama_proyek;
-        $proyek->tahun = $request->tahun;
-        $proyek->lokasi = $request->lokasi;
-        $proyek->anggaran = $request->anggaran;
-        $proyek->sumber_dana = $request->sumber_dana;
-        $proyek->deskripsi = $request->deskripsi;
+        // Update data proyek
+        $proyek->update($request->only([
+            'kode_proyek',
+            'nama_proyek',
+            'tahun',
+            'lokasi',
+            'anggaran',
+            'sumber_dana',
+            'deskripsi',
+        ]));
 
-        $proyek->save();
-        return redirect()->route('proyek-guest.index')->with('success', 'Perubahan Data Berhasil!');
+        // Upload thumbnail baru jika ada
+        if ($request->hasFile('thumbnail')) {
+            $thumb = $request->file('thumbnail');
+            $thumbPath = $thumb->store('media', 'public');
+
+            // Hapus thumbnail lama (sort_order = 0) jika ada
+            $oldThumb = Media::where('ref_table', 'proyek')
+                ->where('ref_id', $proyek->proyek_id)
+                ->where('sort_order', 0)
+                ->first();
+
+            if ($oldThumb) {
+                if (\Storage::disk('public')->exists($oldThumb->file_name)) {
+                    \Storage::disk('public')->delete($oldThumb->file_name);
+                }
+                $oldThumb->delete();
+            }
+
+            // Simpan thumbnail baru
+            Media::create([
+                'ref_table' => 'proyek',
+                'ref_id' => $proyek->proyek_id,
+                'file_name' => $thumbPath,
+                'mime_type' => $thumb->getClientMimeType(),
+                'sort_order' => 0,
+            ]);
+        }
+
+        // Upload media tambahan
+        if ($request->hasFile('media_files')) {
+            foreach ($request->file('media_files') as $index => $file) {
+                $path = $file->store('media', 'public');
+
+                Media::create([
+                    'ref_table' => 'proyek',
+                    'ref_id' => $proyek->proyek_id,
+                    'file_name' => $path,
+                    'mime_type' => $file->getClientMimeType(),
+                    'sort_order' => Media::where('ref_table', 'proyek')
+                        ->where('ref_id', $proyek->proyek_id)
+                        ->max('sort_order') + 1,
+                ]);
+            }
+        }
+
+        return redirect()->route('detail-proyek', $proyek->proyek_id)
+            ->with('success', 'Perubahan proyek berhasil disimpan!');
     }
 
     /**

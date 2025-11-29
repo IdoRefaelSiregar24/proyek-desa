@@ -105,9 +105,12 @@
                                 <!-- Project Item Start -->
                                 <div class="project-item wow fadeInUp" data-wow-delay="0.25s">
                                     <div class="project-image" data-cursor-text="View">
-                                        <a href="#">
+                                        <a href="{{ route('detail-proyek', $proyek->proyek_id) }}">
                                             <figure>
-                                                <img src="images/our-project-1.jpg" alt="">
+                                                @php
+                                                    $thumbnail = $thumbnails[$proyek->proyek_id] ?? null;
+                                                @endphp
+                                                <img src="{{ asset('storage/' . ($thumbnail->file_name ?? 'default-thumbnail.jpg')) }}" alt="thumbnail">
                                             </figure>
                                         </a>
                                     </div>

@@ -32,7 +32,7 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <form action="{{ route('proyek-guest.store') }}" method="POST" validate>
+        <form action="{{ route('proyek-guest.store') }}" method="POST" enctype="multipart/form-data" validate>
             @csrf
             <div class="row">
                 <div class="form-group col-md-6 mb-4">
@@ -97,6 +97,26 @@
                     @enderror
                 </div>
 
+                <!-- Upload Thumbnail -->
+                <div class="form-group col-md-6 mb-4">
+                    <label for="thumbnail" class="form-label fw-bold">Thumbnail Proyek</label>
+                    <input type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/*" required>
+                    <small class="text-muted">Pilih gambar untuk thumbnail (jpg, jpeg, png, max 10MB)</small>
+                    <div class="mt-2">
+                        <img id="previewThumbnail" src="{{ asset('storage/default-thumbnail.jpg') }}"
+                            alt="Preview Thumbnail" class="img-fluid rounded" style="max-height:150px;">
+                    </div>
+                </div>
+
+                <!-- Upload Multiple Media -->
+                <div class="form-group col-md-6 mb-4">
+                    <label for="media_files" class="form-label fw-bold">Gallery / Media Lainnya</label>
+                    <input type="file" class="form-control" id="media_files" name="media_files[]"
+                        accept="image/*,application/pdf" multiple>
+                    <small class="text-muted">Pilih beberapa file media (jpg, png, gif, pdf, max 50MB per file)</small>
+                    <div id="previewMedia" class="mt-2 d-flex flex-wrap gap-2"></div>
+                </div>
+
                 <div class="col-md-12">
                     <button type="submit" class="btn-default">
                         <i class="fa-solid fa-plus me-2"></i> Tambah Proyek
@@ -106,4 +126,36 @@
         </form>
     </div>
     <!-- End Form Section -->
+
+    <!-- Script untuk preview thumbnail & media -->
+    <script>
+        // Preview single thumbnail
+        document.getElementById('thumbnail').addEventListener('change', function(e) {
+            const [file] = this.files;
+            if (file) {
+                document.getElementById('previewThumbnail').src = URL.createObjectURL(file);
+            }
+        });
+
+        // Preview multiple media
+        document.getElementById('media_files').addEventListener('change', function(e) {
+            const preview = document.getElementById('previewMedia');
+            preview.innerHTML = '';
+            Array.from(this.files).forEach(file => {
+                const ext = file.name.split('.').pop().toLowerCase();
+                let elem;
+                if (['jpg', 'jpeg', 'png', 'gif'].includes(ext)) {
+                    elem = document.createElement('img');
+                    elem.src = URL.createObjectURL(file);
+                    elem.style.maxHeight = '100px';
+                    elem.classList.add('rounded');
+                } else {
+                    elem = document.createElement('div');
+                    elem.textContent = file.name;
+                    elem.classList.add('border', 'p-1', 'rounded', 'bg-light');
+                }
+                preview.appendChild(elem);
+            });
+        });
+    </script>
 @endsection

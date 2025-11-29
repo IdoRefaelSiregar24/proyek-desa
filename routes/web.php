@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\ProyekController;
 use App\Http\Controllers\TahapanController;
@@ -58,3 +59,7 @@ Route::get('/listProgress/{proyek_id}', [ProgressController::class, 'listProgres
 //     ->name('progress-guest-createProgress');
 Route::get('/createProgress/{proyek_id}', [ProgressController::class, 'createProgress'])->name('createProgress');
 
+
+// Media
+Route::post('/media/upload', [MediaController::class, 'upload'])->name('media.upload');
+Route::delete('media/{id}', [MediaController::class, 'destroy'])->name('media.destroy');

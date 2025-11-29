@@ -12,14 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('media', function (Blueprint $table) {
-            $table->bigIncrements('media_id');
-            $table->string('ref_table', 50);
-            $table->unsignedBigInteger('ref_id');
-            $table->text('file_url');
+            $table->id('media_id');
+            $table->string('ref_table', 100)->nullable();
+            $table->unsignedBigInteger('ref_id')->nullable();
+            $table->string('file_name', 255);
             $table->text('caption')->nullable();
-            $table->string('mime_type', 50)->nullable();
+            $table->string('mime_type', 120)->nullable();
             $table->integer('sort_order')->default(0);
             $table->timestamps();
+
+            // opsional: index untuk performa retrival data
+            $table->index(['ref_table', 'ref_id']);
         });
     }
 
