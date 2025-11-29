@@ -73,6 +73,26 @@
                     @enderror
                 </div>
 
+                <!-- Upload Thumbnail -->
+                <div class="form-group col-md-6 mb-4">
+                    <label for="thumbnail" class="form-label fw-bold">Thumbnail Proyek</label>
+                    <input type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/*" required>
+                    <small class="text-muted">Pilih gambar untuk thumbnail (jpg, jpeg, png, max 10MB)</small>
+                    <div class="mt-2">
+                        <img id="previewThumbnail" src="{{ asset('storage/default-thumbnail.jpg') }}"
+                            alt="Preview Thumbnail" class="img-fluid rounded" style="max-height:150px;">
+                    </div>
+                </div>
+
+                <!-- Upload Multiple Media -->
+                <div class="form-group col-md-6 mb-4">
+                    <label for="media_files" class="form-label fw-bold">Gallery / Media Lainnya</label>
+                    <input type="file" class="form-control" id="media_files" name="media_files[]"
+                        accept="image/*,application/pdf" multiple>
+                    <small class="text-muted">Pilih beberapa file media (jpg, png, gif, pdf, max 50MB per file)</small>
+                    <div id="previewMedia" class="mt-2 d-flex flex-wrap gap-2"></div>
+                </div>
+
                 <div class="col-md-12">
                     <button type="submit" class="btn-default">
                         <i class="fa-solid fa-plus me-2"></i> Tambah Tahapan
@@ -82,4 +102,6 @@
         </form>
     </div>
     <!-- End Form Section -->
+
+    @include('layouts.guest.media-script')
 @endsection
