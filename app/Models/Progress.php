@@ -30,6 +30,14 @@ class Progress extends Model
         return $this->belongsTo(Proyek::class, 'proyek_id', 'proyek_id');
     }
 
+    public function medias()
+    {
+        return $this->hasMany(Media::class, 'ref_id', 'progres_id')
+            ->where('ref_table', 'progres_proyek')
+            ->orderBy('sort_order', 'asc');
+    }
+
+
     public function scopeFilter($query, $request)
     {
         if ($request->progress_mulai) {

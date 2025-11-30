@@ -175,44 +175,102 @@
             <span class="position-absolute top-0 start-0 translate-middle bg-primary rounded-circle"
                 style="width:14px; height:14px;"></span>
 
-            <div class="card border-0 shadow-sm">
-                <div class="card-body">
-
-                    <!-- Header Progress -->
-                    <div class="d-flex justify-content-between">
-                        <h5 class="text-primary fw-bold">{{ $p->persen_real }}%</h5>
-                        <small class="text-muted">
-                            {{ \Carbon\Carbon::parse($p->tanggal)->format('d M Y') }}
-                        </small>
+            <div class="card shadow-sm border-0 mb-4 rounded-4 overflow-hidden">
+                {{-- ====================== HEADER ====================== --}}
+                <div class="d-flex justify-content-between align-items-center px-3 py-3 bg-light border-bottom">
+                    <div>
+                        <h6 class="fw-semibold mb-0">
+                            {{ \Carbon\Carbon::parse($p->tanggal)->translatedFormat('d F Y') }}</h6>
+                        <small class="text-muted">Update Progress Pekerjaan</small>
                     </div>
+                    <span class="badge bg-primary rounded-pill fs-5 px-3 py-2 shadow">
+                        {{ $p->persen_real }}%
+                    </span>
+                </div>
 
-                    <p class="mb-2">{{ $p->catatan }}</p>
+                <div class="card-body pb-3">
 
-                    <!-- Tombol Aksi Progress -->
-                    <div class="d-flex gap-2">
+                    <p class="mb-3 text-secondary" style="font-size: 15px; line-height:1.5;">
+                        {{ $p->catatan }}
+                    </p>
 
-                        <!-- Edit -->
-                        <a href="{{ route('progress-guest.edit', $p->progres_id) }}"
-                            class="btn btn-outline-primary btn-sm">
-                            <i class="fa-solid fa-pen"></i> Edit
-                        </a>
+                    @php
+                        $medias = $p->medias;
+                        $thumbnail = $medias->first();
+                        $otherMedia = $medias->skip(1);
+                    @endphp
 
-                        <!-- Hapus -->
-                        <form action="{{ route('progress-guest.destroy', $p->progres_id) }}" method="POST"
-                            onsubmit="return confirm('Yakin ingin menghapus progress ini?')">
+                    {{-- ============ THUMBNAIL UTAMA ============ --}}
+                    @if ($thumbnail)
+                        <div class="text-center mb-4">
+                            <a href="{{ asset('storage/' . $thumbnail->file_name) }}" class="glightbox"
+                                data-gallery="progress-{{ $p->progres_id }}">
+                                <img src="{{ asset('storage/' . $thumbnail->file_name) }}"
+                                    class="rounded-4 shadow-sm border"
+                                    style="max-height:330px;width:100%;object-fit:cover;">
+                            </a>
+                        </div>
+                    @endif
 
-                            @csrf
-                            @method('DELETE')
 
-                            <button type="submit" class="btn btn-outline-danger btn-sm">
-                                <i class="fa-solid fa-trash"></i> Hapus
-                            </button>
-                        </form>
+                    {{-- ============ MEDIA LAIN - GRID ============ --}}
+                    @if ($otherMedia->count() > 0)
+                        <h6 class="fw-semibold mb-2 text-dark">Dokumentasi Lainnya</h6>
+                        <div class="row g-3 mb-3">
 
-                    </div>
+                            @foreach ($otherMedia as $media)
+                                @php $ext = strtolower(pathinfo($media->file_name, PATHINFO_EXTENSION)); @endphp
+
+                                <div class="col-4 col-md-2">
+                                    @if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp']))
+                                        <a href="{{ asset('storage/' . $media->file_name) }}" class="glightbox"
+                                            data-gallery="progress-{{ $p->progres_id }}">
+                                            <img src="{{ asset('storage/' . $media->file_name) }}"
+                                                class="rounded shadow-sm border"
+                                                style="height:95px;width:100%;object-fit:cover;">
+                                        </a>
+                                    @elseif($ext == 'pdf')
+                                        <div class="bg-light border rounded text-center py-3 shadow-sm">
+                                            <i class="fa-regular fa-file-pdf text-danger fs-3"></i>
+                                            <a class="d-block mt-1 fw-semibold small"
+                                                href="{{ asset('storage/' . $media->file_name) }}"
+                                                target="_blank">Lihat PDF</a>
+                                        </div>
+                                    @else
+                                        <div class="p-2 small bg-light rounded border shadow-sm text-center">
+                                            <i class="fa-regular fa-file fs-4"></i>
+                                            <p class="small text-truncate mt-1">{{ $media->file_name }}</p>
+                                        </div>
+                                    @endif
+                                </div>
+                            @endforeach
+
+                        </div>
+                    @endif
+
+                    @if ($medias->count() == 0)
+                        <p class="text-center text-muted">Belum ada dokumentasi media untuk progres ini.</p>
+                    @endif
 
                 </div>
+
+                {{-- ===================== FOOTER ACTION ===================== --}}
+                <div class="border-top bg-white px-3 py-2 d-flex justify-content-end gap-2">
+                    <a href="{{ route('progress-guest.edit', $p->progres_id) }}"
+                        class="btn btn-outline-primary btn-sm">
+                        <i class="fa-solid fa-pen"></i> Edit
+                    </a>
+
+                    <form action="{{ route('progress-guest.destroy', $p->progres_id) }}" method="POST"
+                        onsubmit="return confirm('Yakin ingin menghapus progress ini?')">
+                        @csrf @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger btn-sm">
+                            <i class="fa-solid fa-trash"></i> Hapus
+                        </button>
+                    </form>
+                </div>
             </div>
+
         </div>
 
     @empty
