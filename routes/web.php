@@ -32,14 +32,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::delete('delete', [AuthController::class, 'destroy'])->name('auth.destroy');
 
-
-
-
-// Media
-Route::post('/media/upload', [MediaController::class, 'upload'])->name('media.upload');
-Route::delete('media/{id}', [MediaController::class, 'destroy'])->name('media.destroy');
-
-
+//Penerapan Middelware CheckIsLogin
 Route::group(['middleware' => ['checkislogin']], function () {
     // Warga Guest Routes
     Route::resource('warga-guest', WargaController::class);
@@ -64,4 +57,8 @@ Route::group(['middleware' => ['checkislogin']], function () {
     // Route::get('/progress/create/{proyek_id}', [ProgressController::class, 'createProgress'])
 //     ->name('progress-guest-createProgress');
     Route::get('/createProgress/{proyek_id}', [ProgressController::class, 'createProgress'])->name('createProgress');
+
+    // Media
+    Route::post('/media/upload', [MediaController::class, 'upload'])->name('media.upload');
+    Route::delete('media/{id}', [MediaController::class, 'destroy'])->name('media.destroy');
 });
