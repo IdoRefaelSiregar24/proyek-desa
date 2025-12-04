@@ -47,7 +47,7 @@
                         </div>
 
                         <div class="position-relative ms-auto">
-                            @auth
+                            @if(Auth::check())
                                 <button id="dropdownButton"
                                     class="d-flex align-items-center gap-2 px-3 py-2 bg-danger text-white rounded-pill border-0 shadow-sm">
                                     <span class="fw-semibold">
@@ -82,7 +82,7 @@
                                 <a href="{{ route('login') }}" class="btn btn-outline-danger px-3 py-2">
                                     Login
                                 </a>
-                            @endauth
+                            @endif
                         </div>
                     </div>
                     <div class="navbar-toggle"></div>

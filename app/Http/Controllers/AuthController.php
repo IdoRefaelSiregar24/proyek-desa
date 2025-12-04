@@ -21,6 +21,9 @@ class AuthController extends Controller
 
     public function showLoginForm()
     {
+        if (Auth::check()) {
+            return redirect()->route('dashboard');
+        }
         return view('pages/auth/login');
     }
 
@@ -56,7 +59,7 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
-        ],[
+        ], [
             'email.required' => 'Email wajib diisi.',
             'email.email' => 'Format email tidak valid.',
             'password.required' => 'Password wajib diisi.',
