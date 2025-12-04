@@ -15,6 +15,12 @@
                                 @endauth
                                 @guest
                                 @endguest
+                                @if ($errors->any())
+                                    <div class="alert alert-danger mt-3">
+                                        {{ $errors->first() }}
+                                    </div>
+                                @endif
+
                             </h3>
                             <h1 class="text-anime-style-3" data-cursor="-opaque">Pembangunan & Monitoring Proyek</h1>
                             <p class="wow fadeInUp" data-wow-delay="0.25s">Deskripsi Pembangunan & Monitoring Proyek</p>

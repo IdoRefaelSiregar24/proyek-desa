@@ -32,37 +32,36 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::delete('delete', [AuthController::class, 'destroy'])->name('auth.destroy');
 
-// Warga Admin Routes
-Route::resource('warga-admin', WargaAdminController::class);
 
-// Proyek Admin Routes
-Route::resource('proyek-admin', ProyekAdminController::class);
-
-// Warga Guest Routes
-Route::resource('warga-guest', WargaController::class);
-
-// Proyek Guest Routes
-Route::resource('proyek-guest', ProyekController::class);
-Route::get('/detail/{proyek_id}', [ProyekController::class, 'detail'])->name('detail-proyek');
-Route::get('/tahapan/{id}/progress', [ProyekController::class, 'getProgress'])
-    ->name('tahapan.progress');
-
-// Tahapan Guest Routes
-Route::resource('tahapan-guest', TahapanController::class);
-Route::get('/listTahapan/{proyek_id}', [TahapanController::class, 'listTahapan'])->name('listTahapan');
-Route::get('/createTahapan/{proyek_id}', [TahapanController::class, 'createTahapan'])->name('createTahapan');
-Route::put('/tahapan-guest/{proyek}/{tahapan}', [TahapanController::class, 'update2'])
-    ->name('tahapan-guest.update2');
-
-
-// Progress Guest Routes
-Route::resource('progress-guest', ProgressController::class);
-Route::get('/listProgress/{proyek_id}', [ProgressController::class, 'listProgress'])->name('listProgress');
-// Route::get('/progress/create/{proyek_id}', [ProgressController::class, 'createProgress'])
-//     ->name('progress-guest-createProgress');
-Route::get('/createProgress/{proyek_id}', [ProgressController::class, 'createProgress'])->name('createProgress');
 
 
 // Media
 Route::post('/media/upload', [MediaController::class, 'upload'])->name('media.upload');
 Route::delete('media/{id}', [MediaController::class, 'destroy'])->name('media.destroy');
+
+
+Route::group(['middleware' => ['checkislogin']], function () {
+    // Warga Guest Routes
+    Route::resource('warga-guest', WargaController::class);
+
+    // Proyek Guest Routes
+    Route::resource('proyek-guest', ProyekController::class);
+    Route::get('/detail/{proyek_id}', [ProyekController::class, 'detail'])->name('detail-proyek');
+    Route::get('/tahapan/{id}/progress', [ProyekController::class, 'getProgress'])
+        ->name('tahapan.progress');
+
+    // Tahapan Guest Routes
+    Route::resource('tahapan-guest', TahapanController::class);
+    Route::get('/listTahapan/{proyek_id}', [TahapanController::class, 'listTahapan'])->name('listTahapan');
+    Route::get('/createTahapan/{proyek_id}', [TahapanController::class, 'createTahapan'])->name('createTahapan');
+    Route::put('/tahapan-guest/{proyek}/{tahapan}', [TahapanController::class, 'update2'])
+        ->name('tahapan-guest.update2');
+
+
+    // Progress Guest Routes
+    Route::resource('progress-guest', ProgressController::class);
+    Route::get('/listProgress/{proyek_id}', [ProgressController::class, 'listProgress'])->name('listProgress');
+    // Route::get('/progress/create/{proyek_id}', [ProgressController::class, 'createProgress'])
+//     ->name('progress-guest-createProgress');
+    Route::get('/createProgress/{proyek_id}', [ProgressController::class, 'createProgress'])->name('createProgress');
+});
