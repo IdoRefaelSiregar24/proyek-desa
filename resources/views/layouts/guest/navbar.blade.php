@@ -30,6 +30,16 @@
                                         href="{{ route('proyek-guest.index') }}">Proyek</a>
                                 </li>
 
+                                @auth
+                                    @if (auth()->user()->role === 'super_admin')
+                                        <li class="nav-item">
+                                            <a class="nav-link {{ request()->routeIs('user.index') ? 'active' : '' }}"
+                                                href="">Manajemen Data User</a>
+                                        </li>
+                                    @endif
+                                @endauth
+
+
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
                                         href="{{ route('about') }}">Tentang</a>
@@ -47,7 +57,7 @@
                         </div>
 
                         <div class="position-relative ms-auto">
-                            @if(Auth::check())
+                            @if (Auth::check())
                                 <button id="dropdownButton"
                                     class="d-flex align-items-center gap-2 px-3 py-2 bg-danger text-white rounded-pill border-0 shadow-sm">
                                     <span class="fw-semibold">
@@ -73,7 +83,8 @@
 
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-                                        <button type="submit" class="dropdown-item d-flex align-items-center text-danger">
+                                        <button type="submit"
+                                            class="dropdown-item d-flex align-items-center text-danger">
                                             <i class="fa-solid fa-right-from-bracket me-2"></i> Keluar
                                         </button>
                                     </form>

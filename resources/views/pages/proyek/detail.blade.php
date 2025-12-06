@@ -118,22 +118,24 @@
                     <label class="fw-bold">Deskripsi</label>
                     <textarea class="form-control" rows="4" disabled>{{ $proyek->deskripsi }}</textarea>
                 </div>
+                @if (auth()->user()->role !== 'user')
+                    <div class="col-md-12 text-center mt-4">
+                        <a href="{{ route('proyek-guest.edit', $proyek->proyek_id) }}"
+                            class="btn-default d-inline-flex gap-2">
+                            <i data-feather="edit"></i> Edit Proyek
+                        </a>
 
-                <div class="col-md-12 text-center mt-4">
-                    <a href="{{ route('proyek-guest.edit', $proyek->proyek_id) }}" class="btn-default d-inline-flex gap-2">
-                        <i data-feather="edit"></i> Edit Proyek
-                    </a>
+                        <form action="{{ route('proyek-guest.destroy', $proyek->proyek_id) }}" method="POST"
+                            class="d-inline-block" onsubmit="return confirm('Yakin ingin menghapus proyek ini?')">
+                            @csrf
+                            @method('DELETE')
 
-                    <form action="{{ route('proyek-guest.destroy', $proyek->proyek_id) }}" method="POST"
-                        class="d-inline-block" onsubmit="return confirm('Yakin ingin menghapus proyek ini?')">
-                        @csrf
-                        @method('DELETE')
-
-                        <button class="btn-default d-inline-flex gap-2">
-                            <i data-feather="trash-2"></i> Hapus Proyek
-                        </button>
-                    </form>
-                </div>
+                            <button class="btn-default d-inline-flex gap-2">
+                                <i data-feather="trash-2"></i> Hapus Proyek
+                            </button>
+                        </form>
+                    </div>
+                @endif
             </div>
         </div>
 
@@ -144,10 +146,12 @@
                     <h3>Tahapan Proyek</h3>
                     <h2 class="text-anime-style-3">Daftar Tahapan</h2>
                 </div>
-                <a href="{{ route('createTahapan', $proyek->proyek_id) }}"
+                @if (auth()->user()->role !== 'user')
+                <a href="{{ route('tahapan-guest.show', $proyek->proyek_id) }}"
                     class="btn-default d-flex align-items-center gap-2 order-3 order-md-2">
                     <i data-feather="plus-circle"></i> Tambah Tahapan
                 </a>
+                @endif
             </div>
 
             <div class="section-title d-flex flex-wrap justify-content-between align-items-center gap-3">
@@ -183,8 +187,7 @@
                 <!-- FILTER -->
                 <form method="GET" action="" class="d-flex flex-wrap gap-2">
                     <!-- FILTER TANGGAL MULAI -->
-                    <input type="date" name="tahapan_mulai" value="{{ request('tahapan_mulai') }}"
-                        class="form-control">
+                    <input type="date" name="tahapan_mulai" value="{{ request('tahapan_mulai') }}" class="form-control">
 
                     <!-- FILTER TANGGAL SELESAI -->
                     <input type="date" name="tahapan_selesai" value="{{ request('tahapan_selesai') }}"

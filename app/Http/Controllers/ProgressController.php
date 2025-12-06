@@ -25,7 +25,7 @@ class ProgressController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function createProgress($proyek_id)
+    public function show($proyek_id)
     {
         $proyek = Proyek::with('tahapan')->findOrFail($proyek_id);
 
@@ -102,10 +102,10 @@ class ProgressController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
+    // public function show(string $id)
+    // {
 
-    }
+    // }
 
     /**
      * Show the form for editing the specified resource.

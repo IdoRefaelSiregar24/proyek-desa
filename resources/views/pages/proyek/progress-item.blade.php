@@ -6,6 +6,7 @@
 
         <div class="d-flex gap-2">
 
+            @if (auth()->user()->role !== 'user')
             <!-- Tombol Edit -->
             <a href="{{ route('tahapan-guest.edit', $t->tahap_id) }}" class="btn btn-warning btn-sm text-white">
                 <i class="fa-solid fa-pen"></i>
@@ -22,6 +23,7 @@
                     <i class="fa-solid fa-trash"></i>
                 </button>
             </form>
+        @endif
 
         </div>
     </div>
@@ -255,6 +257,7 @@
                 </div>
 
                 {{-- ===================== FOOTER ACTION ===================== --}}
+                @if (auth()->user()->role !== 'user')
                 <div class="border-top bg-white px-3 py-2 d-flex justify-content-end gap-2">
                     <a href="{{ route('progress-guest.edit', $p->progres_id) }}"
                         class="btn btn-outline-primary btn-sm">
@@ -269,6 +272,7 @@
                         </button>
                     </form>
                 </div>
+                @endif
             </div>
 
         </div>
@@ -290,10 +294,12 @@
     </div>
 
     <!-- Tambah Progress -->
+    @if (auth()->user()->role !== 'user')
     <button class="btn btn-success btn-sm text-white mt-2"
-        onclick="window.location.href='{{ route('createProgress', $proyek->proyek_id) }}'">
+        onclick="window.location.href='{{ route('progress-guest.show', $proyek->proyek_id) }}'">
         + Tambah Progress
     </button>
+    @endif
 
 
 </div>

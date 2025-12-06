@@ -18,35 +18,35 @@ class CreateFirstUser extends Seeder
             'name' => 'Surveyor Binda Desa',
             'email' => 'Surveyor@gmail.com',
             'password' => Hash::make('Asdfg123'),
-            'role' => 'Surveyor',
+            'role' => 'surveyor',
         ]);
 
         User::create([
-            'name' => 'Manajer Lapangan',
+            'name' => 'manajer_lapangan',
             'email' => 'manajerlapangan@gmail.com',
             'password' => Hash::make('Asdfg123'),
-            'role' => 'Manajer Lapangan',
+            'role' => 'manajer_lapangan',
         ]);
 
         User::create([
             'name' => 'User Binda Desa',
             'email' => 'userbinadesa@gmail.com',
             'password' => Hash::make('Asdfg123'),
-            'role' => 'User',
+            'role' => 'user',
         ]);
 
         User::create([
-            'name' => 'Admin Proyek',
+            'name' => 'admin_royek',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('Asdfg123'),
-            'role' => 'Admin Proyek',
+            'role' => 'admin_proyek',
         ]);
 
         User::create([
             'name' => 'Ido Refael Siregar',
             'email' => 'ido24si@mahasiswa.pcr.ac.id',
             'password' => Hash::make('Asdfg123'),
-            'role' => 'Super Admin',
+            'role' => 'super_admin',
         ]);
     }
 }

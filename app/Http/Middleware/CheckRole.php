@@ -15,24 +15,28 @@ class CheckRole
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle($request, Closure $next, $role)
-{
-    if (!Auth::check()) {
-        return redirect('/login');
+    {
+        if (!Auth::check()) {
+            return redirect('/login');
+        }
+
+        $userRole = Auth::user()->role;
+
+        // Super Admin boleh akses semua halaman
+        if ($userRole === 'super_admin') {
+            return $next($request);
+        }
+
+        if ($userRole === 'admin_proyek') {
+            return $next($request);
+        }
+
+        // Role biasa dicek ketat
+        if ($userRole === $role) {
+            return $next($request);
+        }
+
+        return abort(403, 'Anda tidak memiliki akses ke halaman ini.');
     }
-
-    $userRole = Auth::user()->role;
-
-    // Super Admin boleh akses semua halaman
-    if ($userRole === 'Super Admin') {
-        return $next($request);
-    }
-
-    // Role biasa dicek ketat
-    if ($userRole === $role) {
-        return $next($request);
-    }
-
-    return abort(403);
-}
 
 }

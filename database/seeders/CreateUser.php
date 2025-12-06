@@ -16,7 +16,7 @@ class CreateUser extends Seeder
         $faker = Factory::create('id_ID');
 
         // Role yang tersedia
-        $roles = ['User', 'Surveyor', 'Manajer Lapangan', 'Admin Proyek', 'Super Admin'];
+        $roles = ['user', 'surveyor', 'manajer_lapangan', 'admin_proyek', 'super_admin'];
 
         // Generate 10 user baru
         for ($i = 0; $i < 200; $i++) {
