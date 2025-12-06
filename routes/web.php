@@ -68,31 +68,6 @@ Route::group(['middleware' => ['checkislogin', 'checkrole:manajer_lapangan']], f
 });
 
 
-Route::group(['middleware' => ['checkislogin', 'checkrole:super_admin']], function () {
-
-    Route::resource('users', UserController::class);
-    // Update Tahapan
-    Route::put('/tahapan-guest/{proyek}/{tahapan}', [TahapanController::class, 'update2'])
-        ->name('tahapan-guest.update2');
-    // Route::resource('role-management', RoleController::class);
-});
-
-
-// ==================================================================
-// SURVEYOR
-// ==================================================================
-Route::group(['middleware' => ['checkislogin', 'checkrole:surveyor']], function () {
-
-    // Input Progress
-    Route::get('/createProgress/{proyek_id}', [ProgressController::class, 'createProgress'])
-        ->name('createProgress');
-    Route::post('/progress-guest', [ProgressController::class, 'store'])
-        ->name('progress-guest.store');
-
-    // Upload media progress
-    Route::post('/media/upload', [MediaController::class, 'upload'])->name('media.upload');
-});
-
 Route::group(['middleware' => ['checkislogin', 'checkrole:user']], function () {
 
     // ============================
