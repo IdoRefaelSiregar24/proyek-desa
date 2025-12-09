@@ -75,7 +75,7 @@
                                 </a>
 
                                 <!-- Instagram -->
-                                <a href="https://github.com/IdoRefaelSiregar24" target="_blank" class="social-icon">
+                                <a href="https://www.instagram.com/ido_refsiregar?igsh=dWQwYWhvZzlyMThy" target="_blank" class="social-icon">
                                     <i class="fa-brands fa-instagram fa-2x"></i>
                                 </a>
 
