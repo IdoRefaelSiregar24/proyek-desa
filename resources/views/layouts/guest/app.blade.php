@@ -16,11 +16,12 @@
 </head>
 
 <body>
-    @include('layouts.guest.preloader')
+
     <nav>
         {{-- Navbar --}}
         @include('layouts.guest.navbar')
     </nav>
+    @include('layouts.guest.preloader')
 
     {{-- Content --}}
     @yield('content')

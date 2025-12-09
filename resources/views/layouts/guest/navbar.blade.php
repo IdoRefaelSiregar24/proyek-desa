@@ -100,30 +100,6 @@
                 </div>
             </nav>
             <div class="responsive-menu"></div>
-            <!-- Script Toggle Dropdown -->
-            <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                    const button = document.getElementById("dropdownButton");
-                    const menu = document.getElementById("dropdownMenu");
-
-                    if (button) {
-                        button.addEventListener("click", (e) => {
-                            e.stopPropagation();
-                            const isVisible = menu.style.display === "block";
-                            menu.style.display = isVisible ? "none" : "block";
-                        });
-                    }
-
-                    // Tutup dropdown saat klik di luar
-                    window.addEventListener("click", (e) => {
-                        if (menu && !menu.contains(e.target) && !button.contains(e.target)) {
-                            menu.style.display = "none";
-                        }
-                    });
-                });
-            </script>
         </div>
-        <!-- Main Menu End -->
-
     </header>
     <!-- Header End -->
