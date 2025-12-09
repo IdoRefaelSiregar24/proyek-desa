@@ -86,15 +86,15 @@
                         <!-- About Content Footer Start -->
                         <div class="about-content-footer wow fadeInUp" data-wow-delay="0.75s">
                             <div class="about-footer-btn">
-                                <a href="#" class="btn-default">get free quote</a>
+                                <a href="#" class="btn-default">Pengaduan</a>
                             </div>
                             <div class="about-contact-support">
                                 <div class="icon-box">
                                     <img src="{{ asset('assets-guest/images/icon-phone.svg') }}" alt="">
                                 </div>
                                 <div class="about-support-content">
-                                    <p>call support center 24X7</p>
-                                    <h3>+0123456789</h3>
+                                    <p>Hubungi Kami 24X7</p>
+                                    <h3>+082211411365</h3>
                                 </div>
                             </div>
                         </div>
