@@ -28,8 +28,8 @@
                     <div class="about-image text-center">
                         <div class="about-img">
                             <figure class="reveal">
-                                <img src="{{ asset('assets-guest/images/developer/ido.jpg') }}" alt="Foto Pengembang"
-                                    class="rounded-4 shadow-lg" style="border-radius: 20px;">
+                                <img src="{{ asset('images/developer/developer.svg') }}" alt="Foto Pengembang"
+                                    class="rounded-4 shadow-lg" style="border-radius: 60px;">
                             </figure>
                         </div>
                     </div>
@@ -60,22 +60,22 @@
 
                         <!-- Sosial Media Icons -->
                         <div class="about-content-footer wow fadeInUp" data-wow-delay="0.5s">
-                            <h5 class="mb-3">Terhubung dengan saya:</h5>
+                            <h5 class="mb-3">Terhubung dengan saya :  </h5>
 
                             <div class="d-flex align-items-center gap-3">
 
                                 <!-- LinkedIn -->
-                                <a href="https://www.linkedin.com/in/ido-siregar" target="_blank" class="social-icon">
+                                <a href="https://www.linkedin.com/in/ido-refael-siregar-b27920367" target="_blank" class="social-icon">
                                     <i class="fa-brands fa-linkedin fa-2x"></i>
                                 </a>
 
                                 <!-- GitHub -->
-                                <a href="https://github.com/idorefael" target="_blank" class="social-icon">
+                                <a href="https://github.com/IdoRefaelSiregar24" target="_blank" class="social-icon">
                                     <i class="fa-brands fa-github fa-2x"></i>
                                 </a>
 
                                 <!-- Instagram -->
-                                <a href="https://instagram.com/ido_siregar" target="_blank" class="social-icon">
+                                <a href="https://github.com/IdoRefaelSiregar24" target="_blank" class="social-icon">
                                     <i class="fa-brands fa-instagram fa-2x"></i>
                                 </a>
 

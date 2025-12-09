@@ -23,3 +23,5 @@
 	<link href="{{ asset('assets-guest/css/costum.css') }}" rel="stylesheet" media="screen">
     <!-- Main Custom Css 2 -->
 	<link href="{{ asset('assets-guest/css/costum2.css') }}" rel="stylesheet" media="screen">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>

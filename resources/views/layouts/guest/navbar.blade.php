@@ -46,15 +46,17 @@
                                 </li>
 
                                 <li class="nav-item">
+                                    <a class="nav-link {{ request()->routeIs('detail-pengembang') ? 'active' : '' }}"
+                                        href="{{ route('detail-pengembang') }}">Profil Pengembang</a>
+                                </li>
+
+                                <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('service') ? 'active' : '' }}"
                                         href="">Layanan</a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a class="nav-link" href="">Kontak</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{route('detail-pengembang')}}">Profil Pengembang</a>
                                 </li>
                             </ul>
                         </div>
@@ -106,20 +108,20 @@
         </div>
     </header>
     <script>
-    const btn = document.getElementById("dropdownButton");
-    const menu = document.getElementById("dropdownMenu");
+        const btn = document.getElementById("dropdownButton");
+        const menu = document.getElementById("dropdownMenu");
 
-    if (btn) {
-        btn.addEventListener("click", function (event) {
-            event.stopPropagation();
-            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+        if (btn) {
+            btn.addEventListener("click", function(event) {
+                event.stopPropagation();
+                menu.style.display = (menu.style.display === "block") ? "none" : "block";
+            });
+        }
+
+        // Tutup dropdown jika klik di luar
+        document.addEventListener("click", function() {
+            if (menu) menu.style.display = "none";
         });
-    }
-
-    // Tutup dropdown jika klik di luar
-    document.addEventListener("click", function () {
-        if (menu) menu.style.display = "none";
-    });
-</script>
+    </script>
 
     <!-- Header End -->

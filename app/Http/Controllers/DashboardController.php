@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Media;
+use App\Models\Proyek;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -8,10 +10,25 @@ class DashboardController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+
     public function index()
     {
-        return view("pages/index");
+        // Ambil semua proyek terbaru (limit 12)
+        $dataProyek = Proyek::latest()->take(12)->get();
+
+        // Ambil thumbnail utama untuk setiap proyek
+        $thumbnails = Media::where('ref_table', 'proyek')
+            ->whereIn('ref_id', $dataProyek->pluck('proyek_id'))
+            ->where('sort_order', 0)
+            ->get()
+            ->keyBy(fn($item) => (int) $item->ref_id);
+
+        return view("pages.index", compact('dataProyek', 'thumbnails'));
     }
+
+
+
 
     public function about()
     {

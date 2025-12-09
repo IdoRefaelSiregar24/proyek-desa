@@ -713,7 +713,7 @@ header.main-header .header-sticky.active{
 	margin: 0 40px;
 	overflow: hidden;
 	border-radius: 40px;
-	background: url("../images/hero-bg.jpg") no-repeat center center;
+	background: url("/images/background/bg1.jpg") no-repeat center center;
 	background-size: cover;
 	padding: 300px 0 200px;
 	position: relative;

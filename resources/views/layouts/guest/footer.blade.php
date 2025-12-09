@@ -8,7 +8,7 @@
                     <!-- Footer Logo Start -->
                     <div class="footer-logo">
                         <figure>
-                            <img src="images/footer-logo.svg" alt="Logo Sistem">
+                            <img src="{{ asset('/images/logoHorizontal.svg') }}" style="width: 500px" alt="Logo">
                         </figure>
                     </div>
                     <!-- Footer Logo End -->

@@ -27,7 +27,7 @@
                         </div>
                         <div class="hero-content-body wow fadeInUp" data-wow-delay="0.5s">
                             <a href="#" class="btn-default">
-                                <i class="fa-solid fa-rocket me-2"></i> Get Started
+                                <i class="fa-solid fa-rocket me-2"></i> Tentang
                             </a>
                             <a href="{{ route('proyek-guest.index') }}" class="btn-default">
                                 <i class="fa-solid fa-folder-open me-2"></i> Lihat Proyek
@@ -109,6 +109,7 @@
     <!-- Cta Box Section Start -->
     <div class="cta-box">
         <div class="container">
+
             <div class="row align-items-center">
                 <div class="col-lg-7 col-md-8">
                     <!-- Section Title Start -->
@@ -140,6 +141,121 @@
     </div>
     <!-- Cta Box Section End -->
 
+    <!-- Start Project Slideshow Section -->
+    <section class="project-slideshow py-5 bg-light">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-lg-12 text-center">
+                    <h2 class="text-anime-style-3">Mari Bangun Kemajuan Bersama</h2>
+                    <p>Beberapa proyek desa yang sedang berjalan dan progresnya</p>
+                </div>
+            </div>
+
+            <div class="swiper projectSwiper">
+                <div class="swiper-wrapper">
+                    @forelse ($dataProyek as $proyek)
+                        @php
+                            $thumbnail = $thumbnails[$proyek->proyek_id] ?? null;
+                            $imagePath =
+                                $thumbnail && $thumbnail->file_name
+                                    ? asset('storage/' . $thumbnail->file_name)
+                                    : asset('images/placeholder.jpg');
+                        @endphp
+
+                        <div class="swiper-slide">
+                            <div class="card project-card h-100 shadow-sm border-0 text-center">
+                                <a href="{{ route('detail-proyek', $proyek->proyek_id) }}">
+                                    <img src="{{ $imagePath }}" alt="{{ $proyek->nama_proyek }}"
+                                        style="width: 100%; height: 200px; object-fit: cover;">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $proyek->nama_proyek }}</h5>
+                                    <p class="card-text text-muted">{{ Str::limit($proyek->deskripsi, 80) }}</p>
+                                    <a href="{{ route('detail-proyek', $proyek->proyek_id) }}" class="btn btn-red">Lihat
+                                        Detail</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    @empty
+                        <div class="swiper-slide text-center">
+                            <p>Belum ada proyek yang tersedia</p>
+                        </div>
+                    @endforelse
+                </div>
+
+                <!-- Pagination & Navigation -->
+                <div class="swiper-pagination mt-3"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Swiper JS & CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+    <script>
+        var swiper = new Swiper(".projectSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev"
+            },
+            breakpoints: {
+                576: {
+                    slidesPerView: 2,
+                    spaceBetween: 20
+                },
+                992: {
+                    slidesPerView: 3,
+                    spaceBetween: 30
+                },
+            }
+        });
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        .project-card img {
+            transition: transform 0.3s;
+        }
+
+        .project-card img:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-red {
+            background-color: #d80000;
+            color: #fff;
+            border: none;
+            padding: 0.45rem 0.9rem;
+            border-radius: 0.35rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-red:hover {
+            background-color: #FFB703;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+    <!-- End Project Slideshow Section -->
+
+
     <!-- Our Testiminial Start -->
     <div class="our-testimonial">
         <div class="container">
@@ -147,10 +263,13 @@
                 <div class="col-lg-12">
                     <!-- Section Title Start -->
                     <div class="section-title">
-                        <h3 class="wow fadeInUp">testimonials</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">What people are saying about us</h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.25s">We specialize in a wide range of construction
-                            services, including residential, commercial, and industrial projects.</p>
+                        <h3 class="wow fadeInUp">Testimoni</h3>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Apa Kata Mereka Tentang Proyek Desa</h2>
+                        <p class="wow fadeInUp" data-wow-delay="0.25s">
+                            Kami memantau berbagai proyek desa mulai dari pembangunan infrastruktur, fasilitas umum, hingga
+                            program pemberdayaan warga.
+                            Berikut pengalaman dan masukan dari warga serta pihak terkait.
+                        </p>
                     </div>
                     <!-- Section Title End -->
                 </div>
@@ -162,41 +281,8 @@
                     <div class="testimonial-slider">
                         <div class="swiper">
                             <div class="swiper-wrapper" data-cursor-text="Drag">
-                                <!-- Testimonial Slide Start -->
-                                <div class="swiper-slide">
-                                    <div class="testimonial-item">
-                                        <div class="testimonial-header">
-                                            <div class="testimonial-rating">
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                                <i class="fa-solid fa-star"></i>
-                                            </div>
-                                            <div class="testimonial-content">
-                                                <p>The project was successfully completed within the agreed timeframe,
-                                                    meeting all our expectations. A team of skilled and experienced
-                                                    technical staff, along with the required equipment and facilities, was
-                                                    employed for the task. The project period spanned from 2021-22 to
-                                                    2022-23 for Kanwal Duroparts Pvt. Ltd.</p>
-                                            </div>
-                                        </div>
-                                        <div class="testimonial-body">
-                                            <div class="author-image">
-                                                <figure class="image-anime">
-                                                    <img src="images/author-1.jpg" alt="">
-                                                </figure>
-                                            </div>
-                                            <div class="author-content">
-                                                <h3>HUHA</h3>
-                                                <p>Industrial</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Testimonial Slide End -->
 
-                                <!-- Testimonial Slide Start -->
+                                <!-- Testimonial Slide 1 -->
                                 <div class="swiper-slide">
                                     <div class="testimonial-item">
                                         <div class="testimonial-header">
@@ -208,28 +294,29 @@
                                                 <i class="fa-solid fa-star"></i>
                                             </div>
                                             <div class="testimonial-content">
-                                                <p>JassaConstructions surpassed our expectations by completing the project
-                                                    on schedule. Their construction quality is excellent, technical
-                                                    expertise is top-notch, and their team's professionalism is commendable.
-                                                    We wish them continued success in their future endeavors.</p>
+                                                <p>
+                                                    Proyek pembangunan jalan desa selesai tepat waktu dan memudahkan
+                                                    mobilitas warga.
+                                                    Tim pelaksana selalu melaporkan progres secara transparan sehingga kami
+                                                    bisa memantau setiap tahapannya.
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="testimonial-body">
                                             <div class="author-image">
                                                 <figure class="image-anime">
-                                                    <img src="images/author-2.jpg" alt="">
+                                                    <img src="images/author-1.jpg" alt="Warga Desa">
                                                 </figure>
                                             </div>
                                             <div class="author-content">
-                                                <h3>HUHA Enterprises</h3>
-                                                <p>Industrial</p>
+                                                <h3>Bapak Ahmad</h3>
+                                                <p>Warga Desa</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Testimonial Slide End -->
 
-                                <!-- Testimonial Slide Start -->
+                                <!-- Testimonial Slide 2 -->
                                 <div class="swiper-slide">
                                     <div class="testimonial-item">
                                         <div class="testimonial-header">
@@ -241,28 +328,28 @@
                                                 <i class="fa-solid fa-star"></i>
                                             </div>
                                             <div class="testimonial-content">
-                                                <p>JassaConstructions exceeded our expectations by completing their work on
-                                                    time. The quality of constructions is good, technical proficiency is
-                                                    best and experienced general behavior was good. We wish them every
-                                                    success in their future projects.</p>
+                                                <p>
+                                                    Dengan sistem pemantauan ini, kami dapat mengecek progres proyek
+                                                    pembangunan sarana air bersih.
+                                                    Laporan rutin membuat perencanaan kegiatan desa lebih terarah.
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="testimonial-body">
                                             <div class="author-image">
                                                 <figure class="image-anime">
-                                                    <img src="images/author-3.jpg" alt="">
+                                                    <img src="images/author-2.jpg" alt="Kepala Desa">
                                                 </figure>
                                             </div>
                                             <div class="author-content">
-                                                <h3>HUHA healthcare</h3>
-                                                <p>Industrial</p>
+                                                <h3>Ibu Siti</h3>
+                                                <p>Kepala Desa</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Testimonial Slide End -->
 
-                                <!-- Testimonial Slide Start -->
+                                <!-- Testimonial Slide 3 -->
                                 <div class="swiper-slide">
                                     <div class="testimonial-item">
                                         <div class="testimonial-header">
@@ -274,26 +361,60 @@
                                                 <i class="fa-solid fa-star"></i>
                                             </div>
                                             <div class="testimonial-content">
-                                                <p>JassaConstructions surpassed our expectations by completing the project
-                                                    on schedule. Their construction quality is excellent, technical
-                                                    expertise is top-notch, and their team's professionalism is commendable.
-                                                    We wish them continued success in their future endeavors.</p>
+                                                <p>
+                                                    Aplikasi pemantauan proyek desa ini sangat membantu tim teknis kami
+                                                    untuk memastikan semua pekerjaan sesuai target.
+                                                    Transparansi progres juga meningkatkan kepercayaan warga.
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="testimonial-body">
                                             <div class="author-image">
                                                 <figure class="image-anime">
-                                                    <img src="images/author-4.jpg" alt="">
+                                                    <img src="images/author-3.jpg" alt="Tim Teknis">
                                                 </figure>
                                             </div>
                                             <div class="author-content">
-                                                <h3>HUHA</h3>
-                                                <p>Industrial</p>
+                                                <h3>Pak Budi</h3>
+                                                <p>Tim Teknis Proyek</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Testimonial Slide End -->
+
+                                <!-- Testimonial Slide 4 -->
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
+                                        <div class="testimonial-header">
+                                            <div class="testimonial-rating">
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                            </div>
+                                            <div class="testimonial-content">
+                                                <p>
+                                                    Laporan progres proyek melalui aplikasi ini membuat kami sebagai warga
+                                                    lebih aktif memberi masukan.
+                                                    Setiap pekerjaan dapat dipantau secara real-time dan tepat sasaran.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-body">
+                                            <div class="author-image">
+                                                <figure class="image-anime">
+                                                    <img src="images/author-4.jpg" alt="Warga Desa">
+                                                </figure>
+                                            </div>
+                                            <div class="author-content">
+                                                <h3>Bu Ani</h3>
+                                                <p>Warga Desa</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="swiper-pagination"></div>
                         </div>
@@ -304,218 +425,4 @@
         </div>
     </div>
     <!-- Our Testiminial End -->
-
-    <!-- Our Blog Section End -->
-    <div class="our-blog">
-        <div class="container">
-            <div class="row section-row">
-                <div class="col-lg-12">
-                    <!-- Section Title Start -->
-                    <div class="section-title">
-                        <h3 class="wow fadeInUp">news & blog</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Articles & blog posts</h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.25s">We specialize in a wide range of construction
-                            services, including residential, commercial, and industrial projects.</p>
-                    </div>
-                    <!-- Section Title End -->
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <!-- Blog Item Start -->
-                    <div class="blog-item wow fadeInUp" data-wow-delay="0.25s">
-                        <!-- Post Featured Image Start-->
-                        <div class="post-featured-image" data-cursor-text="View">
-                            <figure>
-                                <a href="#" class="image-anime">
-                                    <img src="images/post-1.jpg" alt="">
-                                </a>
-                            </figure>
-                        </div>
-                        <!-- Post Featured Image End -->
-
-                        <!-- post Item Content Start -->
-                        <div class="post-item-content">
-                            <!-- post Item Body Start -->
-                            <div class="post-item-body">
-                                <h2><a href="#">10 Essential Tips for Choosing the Right Builder</a></h2>
-                            </div>
-                            <!-- Post Item Body End-->
-
-                            <!-- Post Item Footer Start-->
-                            <div class="post-item-footer">
-                                <a href="#" class="readmore-btn">read more</a>
-                            </div>
-                            <!-- Post Item Footer End-->
-                        </div>
-                        <!-- post Item Content End -->
-                    </div>
-                    <!-- Blog Item End -->
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <!-- Blog Item Start -->
-                    <div class="blog-item wow fadeInUp" data-wow-delay="0.5s">
-                        <!-- Post Featured Image Start-->
-                        <div class="post-featured-image" data-cursor-text="View">
-                            <figure>
-                                <a href="#" class="image-anime">
-                                    <img src="images/post-2.jpg" alt="">
-                                </a>
-                            </figure>
-                        </div>
-                        <!-- Post Featured Image End -->
-
-                        <!-- post Item Content Start -->
-                        <div class="post-item-content">
-                            <!-- post Item Body Start -->
-                            <div class="post-item-body">
-                                <h2><a href="#">The Future of Sustainable Construction Innovations</a></h2>
-                            </div>
-                            <!-- Post Item Body End-->
-
-                            <!-- Post Item Footer Start-->
-                            <div class="post-item-footer">
-                                <a href="#" class="readmore-btn">read more</a>
-                            </div>
-                            <!-- Post Item Footer End-->
-                        </div>
-                        <!-- post Item Content End -->
-                    </div>
-                    <!-- Blog Item End -->
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <!-- Blog Item Start -->
-                    <div class="blog-item wow fadeInUp" data-wow-delay="0.75s">
-                        <!-- Post Featured Image Start-->
-                        <div class="post-featured-image" data-cursor-text="View">
-                            <figure>
-                                <a href="#" class="image-anime">
-                                    <img src="images/post-3.jpg" alt="">
-                                </a>
-                            </figure>
-                        </div>
-                        <!-- Post Featured Image End -->
-
-                        <!-- post Item Content Start -->
-                        <div class="post-item-content">
-                            <!-- post Item Body Start -->
-                            <div class="post-item-body">
-                                <h2><a href="#">How to Design Your Dream Home: A Step-by-Step Guide</a></h2>
-                            </div>
-                            <!-- Post Item Body End-->
-
-                            <!-- Post Item Footer Start-->
-                            <div class="post-item-footer">
-                                <a href="#" class="readmore-btn">read more</a>
-                            </div>
-                            <!-- Post Item Footer End-->
-                        </div>
-                        <!-- post Item Content End -->
-                    </div>
-                    <!-- Blog Item End -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Our Blog End -->
-
-    <!-- Contact Us Section Start -->
-    <div class="contact-us">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-4 col-md-5">
-                    <!-- Contact Sidebar Start -->
-                    <div class="contact-sidebar wow fadeInUp" data-wow-delay="0.25s">
-                        <!-- Contact Info Start -->
-                        <div class="contact-info">
-                            <div class="icon-box">
-                                <img src="images/icon-phone.svg" alt="">
-                            </div>
-                            <div class="contact-info-content">
-                                <p>call support center 24/7</p>
-                                <h3>+0123456789</h3>
-                            </div>
-                        </div>
-                        <!-- Contact Info End -->
-
-                        <!-- Contact Info Start -->
-                        <div class="contact-info">
-                            <div class="icon-box">
-                                <img src="images/icon-mail.svg" alt="">
-                            </div>
-                            <div class="contact-info-content">
-                                <p>write to us</p>
-                                <h3>demo<br>@yahoo.co.in</h3>
-                            </div>
-                        </div>
-                        <!-- Contact Info End -->
-
-                        <!-- Contact Info Image Start -->
-                        <div class="contact-info-image">
-                            <figure>
-                                <img src="images/contact-info-img.png" alt="">
-                            </figure>
-                        </div>
-                        <!-- Contact Info Image End -->
-                    </div>
-                    <!-- Contact Sidebar End -->
-                </div>
-
-                <div class="col-lg-8 col-md-7">
-                    <!-- Contact Form start -->
-                    <div class="contact-form wow fadeInUp" data-wow-delay="0.25s">
-                        <!-- Section Title Start -->
-                        <div class="section-title">
-                            <h3 class="wow fadeInUp">contact us</h3>
-                            <h2 class="text-anime-style-3" data-cursor="-opaque">Get in touch with us</h2>
-                        </div>
-                        <!-- Section Title End -->
-
-                        <form id="contactForm" action="#" method="POST" data-toggle="validator">
-                            <div class="row">
-                                <div class="form-group col-md-6 mb-4">
-                                    <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Enter Your name" required="">
-                                    <div class="help-block with-errors"></div>
-                                </div>
-
-                                <div class="form-group col-md-6 mb-4">
-                                    <input type="email" name="email" class="form-control" id="email"
-                                        placeholder="Enter Your email" required="">
-                                    <div class="help-block with-errors"></div>
-                                </div>
-
-                                <div class="form-group col-md-6 mb-4">
-                                    <input type="text" name="phone" class="form-control" id="phone"
-                                        placeholder="Phone number" required="">
-                                    <div class="help-block with-errors"></div>
-                                </div>
-
-                                <div class="form-group col-md-6 mb-4">
-                                    <input type="text" name="website" class="form-control" id="website"
-                                        placeholder="Subject" required="">
-                                    <div class="help-block with-errors"></div>
-                                </div>
-
-                                <div class="form-group col-md-12 mb-5">
-                                    <textarea name="msg" class="form-control" id="msg" rows="3" placeholder="Message" required=""></textarea>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn-default">submit</button>
-                                    <div id="msgSubmit" class="h3 hidden"></div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Contact Form end -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Contact Us Section End -->
 @endsection

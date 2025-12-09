@@ -26,6 +26,7 @@
     @include('layouts.guest.wa')
 
     <br>
+    
     {{-- Footer --}}
     @include('layouts.guest.footer')
     @include('layouts.guest.js')

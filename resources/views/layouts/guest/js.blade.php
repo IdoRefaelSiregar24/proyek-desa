@@ -27,3 +27,5 @@
 <script src="{{ asset('assets-guest/js/wow.js') }}"></script>
 <!-- Main Custom js file -->
 <script src="{{ asset('assets-guest/js/function.js') }}"></script>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>

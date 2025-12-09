@@ -115,7 +115,7 @@
                                                     <img src="{{ asset('storage/' . $thumbnail->file_name) }}"
                                                         alt="thumbnail">
                                                 @else
-                                                    <img src="{{ asset('images/placehorder.jpg') }}"
+                                                    <img src="{{ asset('images/placeholder.jpg') }}"
                                                         alt="thumbnail">
                                                 @endif
                                             </figure>
