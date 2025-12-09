@@ -10,9 +10,9 @@
         <div class="container position-relative">
             <div class="row justify-content-center">
                 <div class="col-lg-5 col-md-8 col-12">
-                    <div class="login-card text-center wow fadeInUp" data-wow-delay="0.3s">
-                        <img src="{{ asset('assets-guest/images/165x47 logo.svg') }}" alt="Logo" class="mb-3"
-                            height="45">
+                    <div class="login-card text-center wow fadeInUp p-4 rounded-4 shadow-lg bg-dark" data-wow-delay="0.3s"
+                        style="max-width: 950px; margin: auto;">
+                        <img src="{{ asset('/images/logoVertikal.svg') }}" alt="Logo" class="mb-3" height="200">
 
                         <h3 class="fw-bold text-white">Daftar Akun Anda</h3>
                         <p class="text-light mb-4">Daftar untuk memantau dan mengelola proyek desa</p>

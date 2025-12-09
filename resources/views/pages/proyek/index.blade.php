@@ -110,10 +110,18 @@
                                                 @php
                                                     $thumbnail = $thumbnails[$proyek->proyek_id] ?? null;
                                                 @endphp
-                                                <img src="{{ asset('storage/' . ($thumbnail->file_name ?? 'default-thumbnail.jpg')) }}" alt="thumbnail">
+
+                                                @if ($thumbnail && $thumbnail->file_name)
+                                                    <img src="{{ asset('storage/' . $thumbnail->file_name) }}"
+                                                        alt="thumbnail">
+                                                @else
+                                                    <img src="{{ asset('images/placehorder.jpg') }}"
+                                                        alt="thumbnail">
+                                                @endif
                                             </figure>
                                         </a>
                                     </div>
+
 
                                     <div class="project-body">
                                         <div class="project-body-title">

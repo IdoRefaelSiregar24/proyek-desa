@@ -30,7 +30,7 @@ class CreateProyekDummy extends Seeder
             'Proyek Pembangunan Bendungan Baru'
         ];
 
-        foreach (range(1, 500) as $index) {
+        foreach (range(1, 50) as $index) {
             DB::table('proyek')->insert([
                 'kode_proyek' => strtoupper($faker->bothify('PRJ-###??')),
                 'nama_proyek' => $faker->randomElement($namaProyekList),

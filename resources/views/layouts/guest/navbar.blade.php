@@ -5,8 +5,8 @@
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <!-- Logo -->
-                    <a class="navbar-brand" href="{{ route('dashboard') }}">
-                        <img src="{{ asset('assets-guest/images/165x47 logo.svg') }}" alt="Logo">
+                    <a class="navbar-brand" href="{{ route(name: 'dashboard') }}">
+                        <img src="{{ asset('/images/logoHorizontal.svg') }}" alt="Logo">
                     </a>
 
                     <!-- Menu -->

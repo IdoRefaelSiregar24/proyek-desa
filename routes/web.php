@@ -31,7 +31,7 @@ Route::get('pengembang', [DashboardController::class, 'detailPengembang'])->name
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login.show');
 Route::get('register', [AuthController::class, 'showRegisterFrom'])->name('register.show');
 Route::post('login', [AuthController::class, 'login'])->name('login');
-Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::delete('delete', [AuthController::class, 'destroy'])->name('auth.destroy');
 
@@ -72,8 +72,6 @@ Route::group(['middleware' => ['checkislogin', 'checkrole:manajer_lapangan']], f
 
 // if(auth()->user()->role == 'super_admin'){
 
-<<<<<<< HEAD
-=======
 // }
 Route::group(['middleware' => ['checkislogin', 'checkrole:super_admin']], function () {
 
@@ -100,7 +98,7 @@ Route::group(['middleware' => ['checkislogin', 'checkrole:surveyor']], function 
     Route::post('/media/upload', [MediaController::class, 'upload'])->name('media.upload');
 });
 
->>>>>>> f7e85b46b15b39df990a6027eac3bbeab3076024
+
 Route::group(['middleware' => ['checkislogin', 'checkrole:user']], function () {
 
     // ============================
