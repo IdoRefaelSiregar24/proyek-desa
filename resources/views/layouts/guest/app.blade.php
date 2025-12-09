@@ -17,10 +17,9 @@
 
 <body>
     @include('layouts.guest.preloader')
-    <nav>
-        {{-- Navbar --}}
-        @include('layouts.guest.navbar')
-    </nav>
+
+    {{-- Navbar --}}
+    @include('layouts.guest.navbar')
 
     {{-- Content --}}
     @yield('content')

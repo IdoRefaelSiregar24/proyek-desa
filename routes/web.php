@@ -24,11 +24,14 @@ Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard'
 // Route Halaman About
 Route::get('about', [DashboardController::class, 'about'])->name('about');
 
+// Route Halaman Detail Pengembang
+Route::get('pengembang', [DashboardController::class, 'detailPengembang'])->name('detail-pengembang');
+
 // Auth Routhes
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login.show');
 Route::get('register', [AuthController::class, 'showRegisterFrom'])->name('register.show');
 Route::post('login', [AuthController::class, 'login'])->name('login');
-Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::delete('delete', [AuthController::class, 'destroy'])->name('auth.destroy');
 
@@ -67,7 +70,37 @@ Route::group(['middleware' => ['checkislogin', 'checkrole:manajer_lapangan']], f
     Route::delete('media/{id}', [MediaController::class, 'destroy'])->name('media.destroy');
 });
 
+// if(auth()->user()->role == 'super_admin'){
 
+<<<<<<< HEAD
+=======
+// }
+Route::group(['middleware' => ['checkislogin', 'checkrole:super_admin']], function () {
+
+    Route::resource('users', UserController::class);
+    // Update Tahapan
+    Route::put('/tahapan-guest/{proyek}/{tahapan}', [TahapanController::class, 'update2'])
+        ->name('tahapan-guest.update2');
+    // Route::resource('role-management', RoleController::class);
+});
+
+
+// ==================================================================
+// SURVEYOR
+// ==================================================================
+Route::group(['middleware' => ['checkislogin', 'checkrole:surveyor']], function () {
+
+    // Input Progress
+    Route::get('/createProgress/{proyek_id}', [ProgressController::class, 'createProgress'])
+        ->name('createProgress');
+    Route::post('/progress-guest', [ProgressController::class, 'store'])
+        ->name('progress-guest.store');
+
+    // Upload media progress
+    Route::post('/media/upload', [MediaController::class, 'upload'])->name('media.upload');
+});
+
+>>>>>>> f7e85b46b15b39df990a6027eac3bbeab3076024
 Route::group(['middleware' => ['checkislogin', 'checkrole:user']], function () {
 
     // ============================

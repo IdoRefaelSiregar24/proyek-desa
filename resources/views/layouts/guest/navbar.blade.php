@@ -53,6 +53,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="">Kontak</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('detail-pengembang')}}">Profil Pengembang</a>
+                                </li>
                             </ul>
                         </div>
 
@@ -100,30 +103,23 @@
                 </div>
             </nav>
             <div class="responsive-menu"></div>
-            <!-- Script Toggle Dropdown -->
-            <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                    const button = document.getElementById("dropdownButton");
-                    const menu = document.getElementById("dropdownMenu");
-
-                    if (button) {
-                        button.addEventListener("click", (e) => {
-                            e.stopPropagation();
-                            const isVisible = menu.style.display === "block";
-                            menu.style.display = isVisible ? "none" : "block";
-                        });
-                    }
-
-                    // Tutup dropdown saat klik di luar
-                    window.addEventListener("click", (e) => {
-                        if (menu && !menu.contains(e.target) && !button.contains(e.target)) {
-                            menu.style.display = "none";
-                        }
-                    });
-                });
-            </script>
         </div>
-        <!-- Main Menu End -->
-
     </header>
+    <script>
+    const btn = document.getElementById("dropdownButton");
+    const menu = document.getElementById("dropdownMenu");
+
+    if (btn) {
+        btn.addEventListener("click", function (event) {
+            event.stopPropagation();
+            menu.style.display = (menu.style.display === "block") ? "none" : "block";
+        });
+    }
+
+    // Tutup dropdown jika klik di luar
+    document.addEventListener("click", function () {
+        if (menu) menu.style.display = "none";
+    });
+</script>
+
     <!-- Header End -->

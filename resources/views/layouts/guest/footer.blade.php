@@ -8,32 +8,29 @@
                     <!-- Footer Logo Start -->
                     <div class="footer-logo">
                         <figure>
-                            <img src="images/footer-logo.svg" alt="">
+                            <img src="images/footer-logo.svg" alt="Logo Sistem">
                         </figure>
                     </div>
                     <!-- Footer Logo End -->
 
                     <!-- Footer Content Start -->
                     <div class="footer-content">
-                        <p>Our post-construction services gives you peace of mind knowing that we are still here for you
-                            even after.</p>
+                        <p>Sistem Pembangunan & Monitoring Proyek yang dirancang untuk mempermudah pengelolaan,
+                            pencatatan, dan pemantauan aktivitas proyek secara lebih efisien dan terstruktur.
+                        </p>
                     </div>
                     <!-- Footer Content End -->
                 </div>
-
                 <!-- About Footer End -->
             </div>
 
             <div class="col-lg-3 col-md-4 col-12">
                 <!-- Footer Quick Links Start -->
                 <div class="footer-links">
-                    <h3>our services</h3>
+                    <h3>Layanan</h3>
                     <ul>
-                        <li><a href="#">building construction</a></li>
-                        <li><a href="#">architecture design</a></li>
-                        <li><a href="#">building renovation</a></li>
-                        <li><a href="#">flooring & roofing</a></li>
-                        <li><a href="#">building maintenance</a></li>
+                        <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                        <li><a href="{{ route('proyek-guest.index') }}">Manajemen Proyek</a></li>
                     </ul>
                 </div>
                 <!-- Footer Quick Links End -->
@@ -44,11 +41,12 @@
                 <div class="footer-links">
                     <h3>Perusahaan</h3>
                     <ul>
-                        <li><a href="#">about us</a></li>
-                        <li><a href="#">services</a></li>
-                        <li><a href="#">blog</a></li>
-                        <li><a href="#">faqs</a></li>
-                        <li><a href="#">contact us</a></li>
+                        <li><a href="{{ route('about') }}">Tentang Kami</a></li>
+                        <li><a href="{{route('detail-pengembang')}}">Profil Pengembang</a></li>
+                        <li><a href="#">Layanan</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Kontak</a></li>
                     </ul>
                 </div>
                 <!-- Footer Links End -->
@@ -57,39 +55,29 @@
             <div class="col-lg-3 col-md-4 col-12">
                 <!-- Footer Contact Info Box Start -->
                 <div class="footer-links footer-contact-box">
-                    <h3>contact us</h3>
-                    <!-- Info Box Start -->
+                    <h3>Hubungi Kami</h3>
+
                     <div class="footer-info-box">
-                        <!-- Icon Box Start -->
                         <div class="icon-box">
                             <img src="images/icon-phone.svg" alt="">
                         </div>
-                        <!-- Icon Box End -->
-                        <p>+0123456789</p>
+                        <p>+62 822 1141 1365</p>
                     </div>
-                    <!-- Info Box End -->
 
-                    <!-- Info Box Start -->
                     <div class="footer-info-box">
-                        <!-- Icon Box Start -->
                         <div class="icon-box">
                             <img src="images/icon-mail.svg" alt="">
                         </div>
-                        <!-- Icon Box End -->
-                        <p>demo@yahoo.co.in</p>
+                        <p>ido24si@mahasiswa.pcr.ac.id</p>
                     </div>
-                    <!-- Info Box End -->
 
-                    <!-- Info Box Start -->
                     <div class="footer-info-box">
-                        <!-- Icon Box Start -->
                         <div class="icon-box">
                             <img src="images/icon-location.svg" alt="">
                         </div>
-                        <!-- Icon Box End -->
-                        <p>babua</p>
+                        <p>Pekanbaru, Indonesia</p>
                     </div>
-                    <!-- Info Box End -->
+
                 </div>
                 <!-- Footer Contact Info Box End -->
             </div>
@@ -99,15 +87,15 @@
         <div class="footer-copyright">
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-7">
-                    <!-- Footer Copyright Start -->
                     <div class="footer-copyright-text">
-                        <p>Copyright © 2024 jassa. All Rights Reserved.</p>
+                        <p>
+                            <img src="images/icon-copyright.svg" alt="" style="width:16px; margin-right:6px;">
+                            2024 Sistem Informasi Desa — All Rights Reserved.
+                        </p>
                     </div>
-                    <!-- Footer Copyright End -->
                 </div>
 
                 <div class="col-lg-6 col-md-5">
-                    <!-- Footer Social Link Start -->
                     <div class="footer-social-links">
                         <ul>
                             <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
@@ -117,12 +105,11 @@
                             <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
                         </ul>
                     </div>
-                    <!-- Footer Social Link End -->
                 </div>
+
             </div>
         </div>
         <!-- Footer Copyright Section End -->
     </div>
 </footer>
-
 <!-- Footer End -->

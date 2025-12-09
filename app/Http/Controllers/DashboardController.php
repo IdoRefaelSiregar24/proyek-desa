@@ -17,6 +17,11 @@ class DashboardController extends Controller
     {
         return view("pages/about");
     }
+
+    public function detailPengembang()
+    {
+        return view("pages/detail-pengembang");
+    }
     /**
      * Show the form for creating a new resource.
      */

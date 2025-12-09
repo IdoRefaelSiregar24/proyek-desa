@@ -1,4 +1,4 @@
-<!-- Jquery Library File -->
+    <!-- Jquery Library File -->
 <script src="{{ asset('assets-guest/js/jquery-3.7.1.min.js') }}"></script>
 <!-- Bootstrap js file -->
 <script src="{{ asset('assets-guest/js/bootstrap.min.js') }}"></script>
@@ -26,14 +26,4 @@
 <!-- Wow js file -->
 <script src="{{ asset('assets-guest/js/wow.js') }}"></script>
 <!-- Main Custom js file -->
-<script src="{{ asset('assets-guest/js/function.js') }}"></script>\
-
-{{-- Feather Icons --}}
-<script src="https://unpkg.com/feather-icons"></script>
-<script>
-    feather.replace();
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-
+<script src="{{ asset('assets-guest/js/function.js') }}"></script>
