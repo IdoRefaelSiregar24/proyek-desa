@@ -21,13 +21,15 @@
 	<!-- Swiper Css -->
 	<link rel="stylesheet" href="{{ asset('assets-guest/css/swiper-bundle.min.css') }}">
 	<!-- Font Awesome Icon Css-->
-	<link href="{{ asset('assets-guest/css/all.css') }}" rel="stylesheet" media="screen">
+	<link href="{{ asset('assets-guest./css/all.css') }}" rel="stylesheet" media="screen">
 	<!-- Animated Css -->
 	<link href="{{ asset('assets-guest/css/animate.css') }}" rel="stylesheet">
 	<!-- Magnific Popup Core Css File -->
 	<link rel="stylesheet" href="{{ asset('assets-guest/css/magnific-popup.css') }}">
 	<!-- Mouse Cursor Css File -->
 	<link rel="stylesheet" href="{{ asset('assets-guest/css/mousecursor.css') }}">
+    <!-- CDN Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papapapapapap..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<!-- Main Custom Css -->
 	<link href="{{ asset('assets-guest/css/custom.css') }}" rel="stylesheet" media="screen">
     <!-- GLightbox CSS -->
