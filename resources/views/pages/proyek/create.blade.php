@@ -101,7 +101,7 @@
                 <div class="form-group col-md-6 mb-4">
                     <label for="thumbnail" class="form-label fw-bold">Thumbnail Proyek</label>
                     <input type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/*" required>
-                    <small class="text-muted">Pilih gambar untuk thumbnail (jpg, jpeg, png, max 10MB)</small>
+                    <small class="text-muted">Pilih gambar untuk thumbnail (jpg, jpeg, png, max 50MB)</small>
                     <div class="mt-2">
                         <img id="previewThumbnail" src="{{ asset('storage/default-thumbnail.jpg') }}"
                             alt="Preview Thumbnail" class="img-fluid rounded" style="max-height:150px;">

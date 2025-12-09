@@ -191,7 +191,7 @@ class ProyekController extends Controller
             'anggaran' => 'required|numeric',
             'sumber_dana' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'thumbnail' => 'nullable|image|max:10000',
+            'thumbnail' => 'nullable|image|max:50000',
             'media_files.*' => 'nullable|file|mimes:jpg,jpeg,png,gif,pdf|max:50000',
         ]);
 
