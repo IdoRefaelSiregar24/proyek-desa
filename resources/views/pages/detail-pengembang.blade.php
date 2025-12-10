@@ -28,7 +28,7 @@
                     <div class="about-image text-center">
                         <div class="about-img">
                             <figure class="reveal">
-                                <img src="{{ asset('images/developer/developer.svg') }}" alt="Foto Pengembang"
+                                <img src="{{ asset('images/developer/foto-developer.svg') }}" alt="Foto Pengembang"
                                     class="rounded-4 shadow-lg" style="border-radius: 60px;">
                             </figure>
                         </div>
