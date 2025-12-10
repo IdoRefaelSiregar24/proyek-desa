@@ -14,9 +14,10 @@ use App\Http\Controllers\WargaAdminController;
 use App\Http\Controllers\ProyekAdminController;
 use App\Http\Controllers\DashboardAdminController;
 
-Route::get('/', function () {
-    return view('pages.index');
-});
+
+// Route Dashboard
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
 
 // Route Dashboard
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
