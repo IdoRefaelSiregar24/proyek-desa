@@ -25,7 +25,7 @@ Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard'
 // Route Halaman About
 Route::get('about', [DashboardController::class, 'about'])->name('about');
 
-// Route Halaman About
+// Route Halaman Contact
 Route::get('contact', [DashboardController::class, 'contact'])->name('contact');
 
 // Route Halaman Detail Pengembang
