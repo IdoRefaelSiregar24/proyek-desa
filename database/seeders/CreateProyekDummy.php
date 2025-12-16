@@ -18,16 +18,16 @@ class CreateProyekDummy extends Seeder
 
         // Contoh nama proyek realistis Indonesia
         $namaProyekList = [
-            'Pembangunan Jalan Raya Nasional',
-            'Rehabilitasi Jembatan Citarum',
-            'Peningkatan Infrastruktur Pelabuhan',
-            'Proyek Sanitasi Kota Surabaya',
-            'Pengembangan Kawasan Industri Medan',
-            'Renovasi Gedung Sekolah Dasar',
-            'Program Penyediaan Air Bersih',
-            'Pembangunan Rumah Sakit Umum Daerah',
-            'Revitalisasi Pasar Tradisional',
-            'Proyek Pembangunan Bendungan Baru'
+            'Pembangunan Jalan Desa Balam Sempurna',
+            'Rehabilitasi Jembatan Desa Balam Sempurna',
+            'Peningkatan Infrastruktur Pelabuhan Rokan Hilir',
+            'Proyek Sanitasi Desa Balam Sempurna',
+            'Pengembangan Kawasan Industri Rokan Hilir',
+            'Renovasi Gedung Sekolah Dasar Desa Balam Sempurna',
+            'Program Penyediaan Air Bersih Desa Balam Sempurna',
+            'Pembangunan Rumah Sakit Umum Daerah Rokan Hilir',
+            'Revitalisasi Pasar Tradisional Desa Balam Sempurna',
+            'Proyek Pembangunan Bendungan Baru Rokan Hilir'
         ];
 
         $deskripsiList = [
@@ -44,7 +44,7 @@ class CreateProyekDummy extends Seeder
         ];
 
         foreach (range(1, 50) as $index) {
-            DB::table('proyek')->insert([
+            $proyekId = DB::table('proyek')->insertGetId([
                 'kode_proyek' => strtoupper($faker->bothify('PRJ-###??')),
                 'nama_proyek' => $faker->randomElement($namaProyekList),
                 'tahun' => $faker->year('now'),
@@ -52,6 +52,21 @@ class CreateProyekDummy extends Seeder
                 'anggaran' => $faker->randomFloat(2, 100000000, 5000000000),
                 'sumber_dana' => $faker->randomElement(['APBN', 'APBD', 'Swasta', 'Hibah']),
                 'deskripsi' => $faker->randomElement($deskripsiList),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            $lat = 1.823857;
+            $lng = 100.581518;
+
+            DB::table('lokasi_proyek')->insert([
+                'proyek_id' => $proyekId,
+                'lat' => $lat,
+                'lng' => $lng,
+                'geojson' => json_encode([
+                    "type" => "Point",
+                    "coordinates" => [$lng, $lat]
+                ]),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
