@@ -35,10 +35,16 @@ class DashboardController extends Controller
         return view("pages/about");
     }
 
-    public function detailPengembang()
+    public function developer()
     {
-        return view("pages/detail-pengembang");
+        return view("pages/developer");
     }
+
+    public function services()
+    {
+        return view("pages/services");
+    }
+
     /**
      * Show the form for creating a new resource.
      */

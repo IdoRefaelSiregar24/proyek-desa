@@ -42,8 +42,8 @@
                     <h3>Perusahaan</h3>
                     <ul>
                         <li><a href="{{ route('about') }}">Tentang Kami</a></li>
-                        <li><a href="{{route('detail-pengembang')}}">Profil Pengembang</a></li>
-                        <li><a href="#">Layanan</a></li>
+                        <li><a href="{{route('developer')}}">Profil Pengembang</a></li>
+                        <li><a href="{{ route('services') }}">Layanan</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a href="#">FAQ</a></li>
                         <li><a href="#">Kontak</a></li>

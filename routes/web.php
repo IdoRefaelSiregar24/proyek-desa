@@ -23,13 +23,16 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // Route Halaman About
-Route::get('about', [DashboardController::class, 'about'])->name('about');
+Route::get('tentang', [DashboardController::class, 'about'])->name('about');
 
 // Route Halaman Contact
-Route::get('contact', [DashboardController::class, 'contact'])->name('contact');
+Route::get('kontak', [DashboardController::class, 'contact'])->name('contact');
+
+// Route Halaman Layanan
+Route::get('layanan', [DashboardController::class, 'services'])->name('services');
 
 // Route Halaman Detail Pengembang
-Route::get('pengembang', [DashboardController::class, 'detailPengembang'])->name('detail-pengembang');
+Route::get('pengembang', [DashboardController::class, 'developer'])->name('developer');
 
 // Auth Routhes
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login.show');

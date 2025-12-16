@@ -44,13 +44,13 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->routeIs('detail-pengembang') ? 'active' : '' }}"
-                                        href="{{ route('detail-pengembang') }}">Profil Pengembang</a>
+                                    <a class="nav-link {{ request()->routeIs('developer') ? 'active' : '' }}"
+                                        href="{{ route('developer') }}">Profil Pengembang</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link {{ request()->routeIs('service') ? 'active' : '' }}"
-                                        href="">Layanan</a>
+                                    <a class="nav-link {{ request()->routeIs('services') ? 'active' : '' }}"
+                                        href="{{ route('services') }}">Layanan</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}"
