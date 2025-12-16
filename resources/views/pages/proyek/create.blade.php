@@ -89,7 +89,27 @@
                     @enderror
                 </div>
 
+                <!-- Lokasi Proyek (Koordinat) -->
+                <div class="form-group col-md-6 mb-4">
+                    <input type="text" name="lat" class="form-control" id="lat"
+                        placeholder="Latitude (contoh: -0.507068)" value="{{ old('lat') }}" readonly required>
+                </div>
 
+                <div class="form-group col-md-6 mb-4">
+                    <input type="text" name="lng" class="form-control" id="lng"
+                        placeholder="Longitude (contoh: 101.447779)" value="{{ old('lng') }}" readonly required>
+                </div>
+
+                <div class="form-group col-md-12 mb-4">
+                    <label class="fw-bold">Tentukan Lokasi Proyek</label>
+                    <div id="map" style="height:400px; border-radius:10px;"></div>
+                </div>
+
+                <!-- GeoJSON hasil dari peta -->
+                <input type="hidden" name="geojson" id="geojson">
+
+
+                {{-- Deskripsi --}}
                 <div class="form-group col-md-12 mb-5">
                     <textarea name="deskripsi" class="form-control" id="deskripsi" rows="3" placeholder="Deskripsi" required>{{ old('deskripsi') }}</textarea>
                     @error('deskripsi')
@@ -100,7 +120,8 @@
                 <!-- Upload Thumbnail -->
                 <div class="form-group col-md-6 mb-4">
                     <label for="thumbnail" class="form-label fw-bold">Thumbnail Proyek</label>
-                    <input type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/*" required>
+                    <input type="file" class="form-control" id="thumbnail" name="thumbnail" accept="image/*"
+                        required>
                     <small class="text-muted">Pilih gambar untuk thumbnail (jpg, jpeg, png, max 50MB)</small>
                     <div class="mt-2">
                         <img id="previewThumbnail" src="{{ asset('storage/default-thumbnail.jpg') }}"
@@ -127,4 +148,5 @@
     </div>
     <!-- End Form Section -->
     @include('layouts.guest.media-script')
+    @include('layouts.guest.maps-script')
 @endsection

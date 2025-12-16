@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Media;
 use App\Models\Proyek;
 use App\Models\Tahapan;
+use App\Models\LokasiProyek;
 use Illuminate\Http\Request;
 
 class ProyekController extends Controller
@@ -63,6 +64,24 @@ class ProyekController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'kode_proyek' => 'required',
+            'nama_proyek' => 'required',
+            'tahun' => 'required|numeric',
+            'lokasi' => 'required',
+            'anggaran' => 'required|numeric',
+            'sumber_dana' => 'required',
+            'deskripsi' => 'required',
+
+            'lat' => 'required|numeric',
+            'lng' => 'required|numeric',
+            'geojson' => 'nullable|json',
+
+            'thumbnail' => 'required|image',
+        ]);
+
+
         $proyek = Proyek::create([
             'kode_proyek' => $request->kode_proyek,
             'nama_proyek' => $request->nama_proyek,
@@ -71,6 +90,13 @@ class ProyekController extends Controller
             'anggaran' => $request->anggaran,
             'sumber_dana' => $request->sumber_dana,
             'deskripsi' => $request->deskripsi,
+        ]);
+
+        LokasiProyek::create([
+            'proyek_id' => $proyek->proyek_id,
+            'lat' => $request->lat,
+            'lng' => $request->lng,
+            'geojson' => $request->geojson,
         ]);
 
         if ($request->hasFile('thumbnail')) {

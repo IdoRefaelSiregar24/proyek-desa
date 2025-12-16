@@ -36,6 +36,9 @@
     <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
     <!-- GLightbox JS -->
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <!-- Leaflet & Draw -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css" />
 
     <style>
         .btn-default, .preloader, .testimonial-slider .swiper-pagination .swiper-pagination-bullet, .btn-default.btn-highlighted::after, .main-menu ul ul
