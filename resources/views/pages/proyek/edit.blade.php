@@ -171,7 +171,7 @@
                 <div class="col-md-12 mb-4">
                     <label class="fw-bold">Tentukan Lokasi Proyek</label><br>
                     <div id="map" style="height:400px; border-radius:10px;"></div>
-                </div>
+                </div> <br>
 
                 <input type="hidden" name="geojson" id="geojson"
                     value='{{ old('geojson', optional($proyek->lokasi)->geojson) }}'>
