@@ -38,8 +38,6 @@
                                         </li>
                                     @endif
                                 @endauth
-
-
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
                                         href="{{ route('about') }}">Tentang</a>
@@ -54,7 +52,6 @@
                                     <a class="nav-link {{ request()->routeIs('service') ? 'active' : '' }}"
                                         href="">Layanan</a>
                                 </li>
-
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}"
                                         href="{{ route('contact') }}">Kontak</a>
