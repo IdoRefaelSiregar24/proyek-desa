@@ -26,10 +26,10 @@ class DashboardController extends Controller
 
         return view("pages.index", compact('dataProyek', 'thumbnails'));
     }
-
-
-
-
+    public function contact()
+    {
+        return view("pages/contact");
+    }
     public function about()
     {
         return view("pages/about");
