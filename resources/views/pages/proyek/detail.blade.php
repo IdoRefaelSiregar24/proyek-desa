@@ -88,7 +88,6 @@
 
 
         <!-- ------------- Informasi Umum Proyek ------------- -->
-
         <div class="contact-form wow fadeInUp mb-5" data-wow-delay="0.2s">
             <div class="section-title">
                 <h3>{{ $proyek->nama_proyek }}</h3>
@@ -114,23 +113,31 @@
                     </div>
                 @endforeach
 
+                <div class="col-md-6 mb-4">
+                    <label class="fw-bold">Latitude</label>
+                    <input type="text" class="form-control" value="{{ optional($proyek->lokasiProyek)->lat }}" disabled>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label class="fw-bold">Longtitude</label>
+                    <input type="text" class="form-control" value="{{ optional($proyek->lokasiProyek)->lng }}" disabled>
+                </div>
+
                 <div class="col-md-12 mb-4">
                     <label class="fw-bold">Deskripsi</label>
                     <textarea class="form-control" rows="4" disabled>{{ $proyek->deskripsi }}</textarea>
                 </div>
 
-                {{-- Lokasi Proyek --}}
-                <input  id="db-lat" value="{{ $proyek->lat }}">
-                <input  id="db-lng" value="{{ $proyek->lng }}">
-                <input type="hidden" id="db-geojson" value='{{ $proyek->geojson }}'>
+                {{-- DATA KOORDINAT --}}
+                <input type="hidden" id="db-lat" value="{{ optional($proyek->lokasiProyek)->lat }}">
+                <input type="hidden" id="db-lng" value="{{ optional($proyek->lokasiProyek)->lng }}">
+                <input type="hidden" id="db-geojson" value='{{ optional($proyek->lokasiProyek)->geojson }}'>
 
-
+                {{-- MAP --}}
                 <div class="col-md-12 mb-4">
                     <label class="fw-bold">Lokasi Proyek</label>
                     <div id="map" style="height:400px; border-radius:10px;"></div>
                 </div>
-
-
                 @if (auth()->user()->role !== 'user')
                     <div class="col-md-12 text-center mt-4">
                         <a href="{{ route('proyek-guest.edit', $proyek->proyek_id) }}"
@@ -142,7 +149,6 @@
                             class="d-inline-block" onsubmit="return confirm('Yakin ingin menghapus proyek ini?')">
                             @csrf
                             @method('DELETE')
-
                             <button class="btn-default d-inline-flex gap-2">
                                 <i data-feather="trash-2"></i> Hapus Proyek
                             </button>
@@ -151,6 +157,7 @@
                 @endif
             </div>
         </div>
+
 
         <!-- ------------- Tahapan Proyek ------------- -->
         <div class="contact-form wow fadeInUp mb-5" data-wow-delay="0.3s">
@@ -229,7 +236,6 @@
             </div>
         </div>
     </div>
-
-    @include('layouts.guest.maps-view')
     @include('layouts.guest.load-progress')
+    @include('layouts.guest.maps-view')
 @endsection

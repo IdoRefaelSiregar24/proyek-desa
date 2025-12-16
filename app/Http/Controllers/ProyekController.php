@@ -142,7 +142,7 @@ class ProyekController extends Controller
      */
     public function detail(Request $request, string $id)
     {
-        $proyek = Proyek::findOrFail($id);
+        $proyek = Proyek::with('lokasiProyek')->findOrFail($id);
 
         $tahapan = $proyek->tahapan()
             ->filter($request)
@@ -157,11 +157,6 @@ class ProyekController extends Controller
 
         return view('pages.proyek.detail', compact('proyek', 'tahapan', 'medias'));
     }
-
-
-
-
-
 
 
 

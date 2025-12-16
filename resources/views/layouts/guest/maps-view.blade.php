@@ -1,40 +1,52 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    if (!document.getElementById('map')) {
-        console.error('DIV #map tidak ditemukan');
-        return;
-    }
+    const mapEl = document.getElementById('map');
+    if (!mapEl) return;
 
-    const lat = parseFloat(document.getElementById('db-lat')?.value);
-    const lng = parseFloat(document.getElementById('db-lng')?.value);
-    const geojsonStr = document.getElementById('db-geojson')?.value;
+    // Ambil koordinat dari DB
+    let lat = parseFloat(document.getElementById('db-lat')?.value);
+    let lng = parseFloat(document.getElementById('db-lng')?.value);
 
+    // 🔴 FALLBACK JIKA DATA KOSONG / TIDAK VALID
     if (isNaN(lat) || isNaN(lng)) {
-        console.error('Koordinat tidak valid:', lat, lng);
-        return;
+        console.warn("Koordinat proyek tidak valid, menggunakan default lokasi");
+        lat = -0.507068;      // default Desa / Indonesia
+        lng = 101.447779;
     }
 
-    const map = L.map('map').setView([lat, lng], 15);
+    // Init Map
+    const map = L.map(mapEl).setView([lat, lng], 15);
 
+    // Tile Layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
+        attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    L.marker([lat, lng]).addTo(map);
+    // Marker
+    L.marker([lat, lng])
+        .addTo(map)
+        .bindPopup("Lokasi Proyek");
 
-    if (geojsonStr) {
+    /* ================= GEOJSON (OPSIONAL) ================= */
+    const geojsonInput = document.getElementById('db-geojson');
+    if (geojsonInput && geojsonInput.value) {
         try {
-            const geojson = JSON.parse(geojsonStr);
-            const layer = L.geoJSON(geojson).addTo(map);
-            map.fitBounds(layer.getBounds());
+            const geojsonData = JSON.parse(geojsonInput.value);
+
+            const geoLayer = L.geoJSON(geojsonData, {
+                style: {
+                    color: '#EF151B',
+                    weight: 2,
+                    fillOpacity: 0.3
+                }
+            }).addTo(map);
+
+            map.fitBounds(geoLayer.getBounds());
         } catch (e) {
-            console.warn('GeoJSON invalid');
+            console.error("GeoJSON tidak valid", e);
         }
     }
 
-    setTimeout(() => {
-        map.invalidateSize();
-    }, 500);
 });
 </script>
