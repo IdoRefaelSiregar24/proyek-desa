@@ -184,16 +184,16 @@ class ProyekController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $tahap_id)
+    public function edit(string $proyek_id)
     {
-        $data['proyek'] = Proyek::findOrFail($tahap_id);
+        $data['proyek'] = Proyek::with('lokasiProyek')->findOrFail($proyek_id);
+
 
         $data['medias'] = Media::where('ref_table', 'proyek')
             ->where('ref_id', $data['proyek']->proyek_id)
             ->orderBy('sort_order', 'asc')
             ->get();
 
-        // Kirim ke view
         return view('pages.proyek.edit', $data);
     }
 
@@ -217,7 +217,7 @@ class ProyekController extends Controller
         ]);
 
         // Ambil proyek
-        $proyek = Proyek::findOrFail($id);
+        $proyek = Proyek::with('lokasiProyek')->findOrFail($id);
 
         // Update data proyek
         $proyek->update($request->only([
@@ -229,6 +229,14 @@ class ProyekController extends Controller
             'sumber_dana',
             'deskripsi',
         ]));
+
+        // Update lokasi proyek
+        if ($proyek->lokasiProyek) {
+            $proyek->lokasiProyek->update($request->only(['lat', 'lng', 'geojson']));
+        } else {
+            // Jika belum ada, buat baru
+            $proyek->lokasiProyek()->create($request->only(['lat', 'lng', 'geojson']));
+        }
 
         // Upload thumbnail baru jika ada
         if ($request->hasFile('thumbnail')) {
@@ -257,6 +265,8 @@ class ProyekController extends Controller
                 'sort_order' => 0,
             ]);
         }
+
+
 
         // Upload media tambahan
         if ($request->hasFile('media_files')) {

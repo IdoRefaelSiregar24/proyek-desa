@@ -157,6 +157,25 @@
                     @enderror
                 </div>
 
+                <!-- KOORDINAT -->
+                <div class="col-md-6 mb-4">
+                    <input type="text" name="lat" id="lat" class="form-control"
+                        value="{{ old('lat', optional($proyek->lokasiProyek)->lat) }}">
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <input type="text" name="lng" id="lng" class="form-control"
+                        value="{{ old('lng', optional($proyek->lokasiProyek)->lng) }}">
+                </div>
+
+                <div class="col-md-12 mb-4">
+                    <label class="fw-bold">Tentukan Lokasi Proyek</label><br>
+                    <div id="map" style="height:400px; border-radius:10px;"></div>
+                </div>
+
+                <input type="hidden" name="geojson" id="geojson"
+                    value='{{ old('geojson', optional($proyek->lokasi)->geojson) }}'>
+
                 <!-- Upload Media Baru -->
                 <!-- Upload Thumbnail -->
                 <div class="form-group col-md-6 mb-4">
@@ -206,5 +225,5 @@
     </div>
     <!-- End Form Section -->
     @include('layouts.guest.media-script')
-
+    @include('layouts.guest.maps-input')
 @endsection
