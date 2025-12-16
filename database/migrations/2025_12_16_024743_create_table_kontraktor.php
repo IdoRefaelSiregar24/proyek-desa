@@ -4,24 +4,27 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     */
+return new class extends Migration {
     public function up(): void
     {
-        Schema::create('table_kontraktor', function (Blueprint $table) {
-            $table->id();
+        Schema::create('kontraktor', function (Blueprint $table) {
+            $table->id('kontraktor_id');
+            $table->unsignedBigInteger('proyek_id');
+            $table->string('nama');
+            $table->string('penanggung_jawab');
+            $table->string('kontak');
+            $table->text('alamat');
             $table->timestamps();
+
+            $table->foreign('proyek_id')
+                  ->references('proyek_id')
+                  ->on('proyek')
+                  ->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('table_kontraktor');
+        Schema::dropIfExists('kontraktor');
     }
 };
