@@ -118,6 +118,19 @@
                     <label class="fw-bold">Deskripsi</label>
                     <textarea class="form-control" rows="4" disabled>{{ $proyek->deskripsi }}</textarea>
                 </div>
+
+                {{-- Lokasi Proyek --}}
+                <input  id="db-lat" value="{{ $proyek->lat }}">
+                <input  id="db-lng" value="{{ $proyek->lng }}">
+                <input type="hidden" id="db-geojson" value='{{ $proyek->geojson }}'>
+
+
+                <div class="col-md-12 mb-4">
+                    <label class="fw-bold">Lokasi Proyek</label>
+                    <div id="map" style="height:400px; border-radius:10px;"></div>
+                </div>
+
+
                 @if (auth()->user()->role !== 'user')
                     <div class="col-md-12 text-center mt-4">
                         <a href="{{ route('proyek-guest.edit', $proyek->proyek_id) }}"
@@ -147,10 +160,10 @@
                     <h2 class="text-anime-style-3">Daftar Tahapan</h2>
                 </div>
                 @if (auth()->user()->role !== 'user')
-                <a href="{{ route('tahapan-guest.show', $proyek->proyek_id) }}"
-                    class="btn-default d-flex align-items-center gap-2 order-3 order-md-2">
-                    <i data-feather="plus-circle"></i> Tambah Tahapan
-                </a>
+                    <a href="{{ route('tahapan-guest.show', $proyek->proyek_id) }}"
+                        class="btn-default d-flex align-items-center gap-2 order-3 order-md-2">
+                        <i data-feather="plus-circle"></i> Tambah Tahapan
+                    </a>
                 @endif
             </div>
 
@@ -187,7 +200,8 @@
                 <!-- FILTER -->
                 <form method="GET" action="" class="d-flex flex-wrap gap-2">
                     <!-- FILTER TANGGAL MULAI -->
-                    <input type="date" name="tahapan_mulai" value="{{ request('tahapan_mulai') }}" class="form-control">
+                    <input type="date" name="tahapan_mulai" value="{{ request('tahapan_mulai') }}"
+                        class="form-control">
 
                     <!-- FILTER TANGGAL SELESAI -->
                     <input type="date" name="tahapan_selesai" value="{{ request('tahapan_selesai') }}"
@@ -216,22 +230,6 @@
         </div>
     </div>
 
-    <script>
-        function loadProgress(tahapId, page = 1) {
-
-            const params = new URLSearchParams(window.location.search);
-            params.set("page", page);
-
-            fetch(`/tahapan/${tahapId}/progress?` + params.toString(), {
-                    headers: {
-                        "X-Requested-With": "XMLHttpRequest"
-                    }
-                })
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('progress-container-' + tahapId).innerHTML = html;
-                })
-                .catch(err => console.error('Error:', err));
-        }
-    </script>
+    @include('layouts.guest.maps-view')
+    @include('layouts.guest.load-progress')
 @endsection

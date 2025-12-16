@@ -148,5 +148,5 @@
     </div>
     <!-- End Form Section -->
     @include('layouts.guest.media-script')
-    @include('layouts.guest.maps-script')
+    @include('layouts.guest.maps-input')
 @endsection

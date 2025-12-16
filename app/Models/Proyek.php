@@ -34,6 +34,12 @@ class Proyek extends Model
         return $this->belongsTo(Proyek::class, 'proyek_id', 'proyek_id');
     }
 
+    public function lokasi()
+{
+    return $this->hasOne(LokasiProyek::class, 'proyek_id', 'proyek_id');
+}
+
+
     public function scopeFilter(Builder $query, $request, array $filterableColumns): Builder
     {
         foreach ($filterableColumns as $column) {

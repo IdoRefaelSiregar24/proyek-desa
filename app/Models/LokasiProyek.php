@@ -28,7 +28,6 @@ class LokasiProyek extends Model
         'geojson' => 'array',
     ];
 
-    // 🔗 Relasi ke Proyek
     public function proyek()
     {
         return $this->belongsTo(Proyek::class, 'proyek_id');
