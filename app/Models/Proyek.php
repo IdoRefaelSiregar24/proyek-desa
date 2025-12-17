@@ -39,6 +39,12 @@ class Proyek extends Model
         return $this->hasOne(LokasiProyek::class, 'proyek_id', 'proyek_id');
     }
 
+    public function kontraktor()
+    {
+        return $this->hasOne(Kontraktor::class, 'proyek_id', 'proyek_id');
+    }
+
+
     public function scopeFilter(Builder $query, $request, array $filterableColumns): Builder
     {
         foreach ($filterableColumns as $column) {

@@ -13,6 +13,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\WargaAdminController;
 use App\Http\Controllers\ProyekAdminController;
 use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\KontraktorController;
 
 
 // Route Dashboard
@@ -46,6 +47,7 @@ Route::delete('delete', [AuthController::class, 'destroy'])->name('auth.destroy'
 Route::group(['middleware' => ['checkislogin', 'checkrole:admin_proyek']], function () {
 
     // Route::resource('proyek-guest', ProyekController::class);
+    Route::resource('kontraktor', KontraktorController::class);
     Route::resource('proyek-guest', ProyekController::class);
     Route::resource('tahapan-guest', TahapanController::class);
     Route::resource('progress-guest', ProgressController::class);
@@ -67,6 +69,7 @@ Route::group(['middleware' => ['checkislogin', 'checkrole:super_admin']], functi
 
 Route::group(['middleware' => ['checkislogin', 'checkrole:manajer_lapangan']], function () {
 
+    
     Route::resource('proyek-guest', ProyekController::class);
     Route::resource('tahapan-guest', TahapanController::class);
     Route::resource('progress-guest', ProgressController::class);

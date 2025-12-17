@@ -39,6 +39,11 @@
                                     @endif
                                 @endauth
                                 <li class="nav-item">
+                                    <a class="nav-link {{ request()->routeIs('kontraktor.index') ? 'active' : '' }}"
+                                        href="{{ route('kontraktor.index') }}">kontraktor</a>
+                                </li>
+
+                                <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}"
                                         href="{{ route('about') }}">Tentang</a>
                                 </li>
