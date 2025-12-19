@@ -138,6 +138,44 @@
                     <label class="fw-bold">Lokasi Proyek</label>
                     <div id="map" style="height:400px; border-radius:10px;"></div>
                 </div>
+
+                <div class="row g-2">
+                    @foreach ($medias as $media)
+                        @php
+                            $ext = strtolower(pathinfo($media->file_name, PATHINFO_EXTENSION));
+                        @endphp
+
+                        {{-- Filter media lokasi proyek --}}
+                        @if ($media->ref_table == 'media_lokasi_proyek')
+                            <div class="col-6 col-md-3 col-lg-3">
+                                @if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif']))
+                                    <a href="{{ asset('storage/' . $media->file_name) }}" class="glightbox"
+                                        data-gallery="project-{{ $proyek->proyek_id }}">
+                                        <img src="{{ asset('storage/' . $media->file_name) }}"
+                                            alt="Media {{ $loop->iteration }}" class="img-fluid rounded mb-2"
+                                            style="height:200px; width:100%; object-fit:cover;">
+                                    </a>
+                                @elseif($ext === 'pdf')
+                                    <div class="border rounded p-2 text-center bg-light mb-2"
+                                        style="height:200px; display:flex; align-items:center; justify-content:center;">
+                                        <a href="{{ asset('storage/' . $media->file_name) }}" target="_blank">
+                                            {{ $media->file_name }}
+                                        </a>
+                                    </div>
+                                @else
+                                    <div class="border rounded p-2 text-center bg-light mb-2"
+                                        style="height:200px; display:flex; align-items:center; justify-content:center;">
+                                        {{ $media->file_name }}
+                                    </div>
+                                @endif
+                            </div>
+                        @endif
+                    @endforeach
+
+                </div>
+
+
+
                 @if (auth()->user()->role !== 'user')
                     <div class="col-md-12 text-center mt-4">
                         <a href="{{ route('proyek-guest.edit', $proyek->proyek_id) }}"

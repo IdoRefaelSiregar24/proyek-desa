@@ -86,6 +86,7 @@
                 <p class="text-center text-muted">Belum ada media yang diupload untuk proyek ini.</p>
             @endif
         </div>
+        
 
         <div class="section-title">
             <h3 class="wow fadeInUp">Desa Balam Sempurna</h3>
@@ -176,7 +177,16 @@
                 <input type="hidden" name="geojson" id="geojson"
                     value='{{ old('geojson', optional($proyek->lokasi)->geojson) }}'>
 
-                <!-- Upload Media Baru -->
+                <!-- Upload Media Lokasi Baru -->
+`                <div class="form-group col-md-12 mb-4">
+                    <label for="media_lokasi" class="form-label fw-bold">Media Lokasi Proyek Baru</label>
+                    <input type="file" class="form-control" id="media_lokasi" name="media_lokasi[]" multiple
+                        accept="image/*,application/pdf">
+                    <small class="text-muted">Peta / denah / gambar tambahan lokasi proyek</small>
+                    <div id="previewMediaLokasi" class="mt-2 d-flex flex-wrap gap-2"></div>
+                </div>
+
+
                 <!-- Upload Thumbnail -->
                 <div class="form-group col-md-6 mb-4">
                     <label for="thumbnail" class="form-label fw-bold">Thumbnail Proyek Baru</label>
@@ -218,8 +228,6 @@
                         </button>
                     </form>
                 </div>
-
-
             </div>
 
     </div>

@@ -79,6 +79,8 @@ class ProyekController extends Controller
             'geojson' => 'nullable|json',
 
             'thumbnail' => 'required|image',
+            'media_files.*' => 'nullable|file|mimes:jpg,jpeg,png,gif,pdf',
+            'media_lokasi.*' => 'nullable|file|mimes:jpg,jpeg,png,gif,pdf',
         ]);
 
 
@@ -126,6 +128,20 @@ class ProyekController extends Controller
             }
         }
 
+        if ($request->hasFile('media_lokasi')) {
+            foreach ($request->file('media_lokasi') as $index => $file) {
+                $path = $file->store('media/lokasi_proyek', 'public');
+
+                Media::create([
+                    'ref_table' => 'media_lokasi_proyek',
+                    'ref_id' => $proyek->proyek_id,
+                    'file_name' => $path,
+                    'mime_type' => $file->getClientMimeType(),
+                    'sort_order' => $index + 1,
+                ]);
+            }
+        }
+
         return redirect()->route('proyek-guest.index')->with('success', 'Penambahan Data Berhasil!');
     }
 
@@ -150,10 +166,24 @@ class ProyekController extends Controller
             ->paginate(2)
             ->withQueryString();
 
-        $medias = Media::where('ref_table', 'proyek')
+        // Media proyek
+        $mediaProyek = Media::where('ref_table', 'proyek')
             ->where('ref_id', $proyek->proyek_id)
             ->orderBy('sort_order', 'asc')
             ->get();
+
+        // Media lokasi proyek
+        $mediaLokasi = $proyek->lokasiProyek
+            ? $proyek->lokasiProyek->medias()->get()
+            : collect();
+
+        // Media lain (misal: dokumen kontrak)
+        $mediaLain = Media::where('ref_table', 'kontrak')
+            ->where('ref_id', $proyek->proyek_id)
+            ->get();
+
+        // Gabungkan semua media
+        $medias = $mediaProyek->merge($mediaLokasi)->merge($mediaLain);
 
         return view('pages.proyek.detail', compact('proyek', 'tahapan', 'medias'));
     }
@@ -186,16 +216,32 @@ class ProyekController extends Controller
      */
     public function edit(string $proyek_id)
     {
-        $data['proyek'] = Proyek::with('lokasiProyek')->findOrFail($proyek_id);
+        // Ambil proyek beserta lokasiProyek
+        $proyek = Proyek::with('lokasiProyek')->findOrFail($proyek_id);
 
-
-        $data['medias'] = Media::where('ref_table', 'proyek')
-            ->where('ref_id', $data['proyek']->proyek_id)
+        // Media proyek
+        $mediaProyek = Media::where('ref_table', 'proyek')
+            ->where('ref_id', $proyek->proyek_id)
             ->orderBy('sort_order', 'asc')
             ->get();
 
-        return view('pages.proyek.edit', $data);
+        // Media lokasi proyek
+        $mediaLokasi = $proyek->lokasiProyek
+            ? $proyek->lokasiProyek->medias()->orderBy('sort_order', 'asc')->get()
+            : collect();
+
+        // Media lain (misal dokumen kontrak)
+        $mediaLain = Media::where('ref_table', 'kontrak')
+            ->where('ref_id', $proyek->proyek_id)
+            ->get();
+
+        // Gabungkan semua media menjadi satu koleksi (jika diperlukan)
+        $medias = $mediaProyek->merge($mediaLokasi)->merge($mediaLain);
+
+        // Kirim semua variabel ke view
+        return view('pages.proyek.edit', compact('proyek', 'medias', 'mediaProyek', 'mediaLokasi', 'mediaLain'));
     }
+
 
 
     /**
@@ -203,7 +249,9 @@ class ProyekController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // Validasi input
+        // =======================
+        // VALIDASI
+        // =======================
         $request->validate([
             'kode_proyek' => 'required|string|max:50',
             'nama_proyek' => 'required|string|max:255',
@@ -212,14 +260,24 @@ class ProyekController extends Controller
             'anggaran' => 'required|numeric',
             'sumber_dana' => 'required|string|max:255',
             'deskripsi' => 'required|string',
+
+            'lat' => 'required|numeric',
+            'lng' => 'required|numeric',
+            'geojson' => 'nullable|json',
+
             'thumbnail' => 'nullable|image|max:50000',
             'media_files.*' => 'nullable|file|mimes:jpg,jpeg,png,gif,pdf|max:50000',
+            'media_lokasi.*' => 'nullable|file|mimes:jpg,jpeg,png,gif,pdf|max:50000',
         ]);
 
-        // Ambil proyek
+        // =======================
+        // AMBIL DATA PROYEK
+        // =======================
         $proyek = Proyek::with('lokasiProyek')->findOrFail($id);
 
-        // Update data proyek
+        // =======================
+        // UPDATE DATA PROYEK
+        // =======================
         $proyek->update($request->only([
             'kode_proyek',
             'nama_proyek',
@@ -230,20 +288,32 @@ class ProyekController extends Controller
             'deskripsi',
         ]));
 
-        // Update lokasi proyek
+        // =======================
+        // UPDATE / CREATE LOKASI
+        // =======================
         if ($proyek->lokasiProyek) {
-            $proyek->lokasiProyek->update($request->only(['lat', 'lng', 'geojson']));
+            $proyek->lokasiProyek->update($request->only([
+                'lat',
+                'lng',
+                'geojson'
+            ]));
         } else {
-            // Jika belum ada, buat baru
-            $proyek->lokasiProyek()->create($request->only(['lat', 'lng', 'geojson']));
+            $proyek->lokasiProyek()->create($request->only([
+                'lat',
+                'lng',
+                'geojson'
+            ]));
         }
 
-        // Upload thumbnail baru jika ada
+        // =======================
+        // UPDATE THUMBNAIL
+        // =======================
         if ($request->hasFile('thumbnail')) {
+
             $thumb = $request->file('thumbnail');
             $thumbPath = $thumb->store('media', 'public');
 
-            // Hapus thumbnail lama (sort_order = 0) jika ada
+            // Hapus thumbnail lama
             $oldThumb = Media::where('ref_table', 'proyek')
                 ->where('ref_id', $proyek->proyek_id)
                 ->where('sort_order', 0)
@@ -266,11 +336,19 @@ class ProyekController extends Controller
             ]);
         }
 
-
-
-        // Upload media tambahan
+        // =======================
+        // TAMBAH MEDIA PROYEK
+        // =======================
         if ($request->hasFile('media_files')) {
-            foreach ($request->file('media_files') as $index => $file) {
+
+            $lastSort = Media::where('ref_table', 'proyek')
+                ->where('ref_id', $proyek->proyek_id)
+                ->max('sort_order') ?? 0;
+
+            foreach ($request->file('media_files') as $file) {
+
+                $lastSort++;
+
                 $path = $file->store('media', 'public');
 
                 Media::create([
@@ -278,16 +356,44 @@ class ProyekController extends Controller
                     'ref_id' => $proyek->proyek_id,
                     'file_name' => $path,
                     'mime_type' => $file->getClientMimeType(),
-                    'sort_order' => Media::where('ref_table', 'proyek')
-                        ->where('ref_id', $proyek->proyek_id)
-                        ->max('sort_order') + 1,
+                    'sort_order' => $lastSort,
                 ]);
             }
         }
 
-        return redirect()->route('detail-proyek', $proyek->proyek_id)
+        // =======================
+        // TAMBAH MEDIA LOKASI PROYEK
+        // =======================
+        if ($request->hasFile('media_lokasi')) {
+
+            $lastSort = Media::where('ref_table', 'media_lokasi_proyek')
+                ->where('ref_id', $proyek->proyek_id)
+                ->max('sort_order') ?? 0;
+
+            foreach ($request->file('media_lokasi') as $file) {
+
+                $lastSort++;
+
+                $path = $file->store('media/lokasi_proyek', 'public');
+
+                Media::create([
+                    'ref_table' => 'media_lokasi_proyek',
+                    'ref_id' => $proyek->proyek_id,
+                    'file_name' => $path,
+                    'mime_type' => $file->getClientMimeType(),
+                    'sort_order' => $lastSort,
+                ]);
+            }
+        }
+
+        // =======================
+        // REDIRECT
+        // =======================
+        return redirect()
+            ->route('detail-proyek', $proyek->proyek_id)
             ->with('success', 'Perubahan proyek berhasil disimpan!');
     }
+
 
     /**
      * Remove the specified resource from storage.

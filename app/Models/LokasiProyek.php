@@ -15,5 +15,13 @@ class LokasiProyek extends Model
     {
         return $this->belongsTo(Proyek::class, 'proyek_id', 'proyek_id');
     }
+
+    public function medias()
+    {
+        return $this->hasMany(Media::class, 'ref_id', 'lokasi_id')
+            ->where('ref_table', 'media_lokasi_proyek')
+            ->orderBy('sort_order', 'asc');
+    }
+
 }
 

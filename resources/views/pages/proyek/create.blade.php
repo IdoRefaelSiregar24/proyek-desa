@@ -108,6 +108,20 @@
                 <!-- GeoJSON hasil dari peta -->
                 <input type="hidden" name="geojson" id="geojson">
 
+                <!-- Media Lokasi Proyek -->
+                <div class="form-group col-md-12 mb-4">
+                    <label class="form-label fw-bold">Media Lokasi Proyek</label>
+
+                    <input type="file" class="form-control" id="media_lokasi" name="media_lokasi[]" multiple
+                        accept="image/*,application/pdf">
+
+                    <small class="text-muted">
+                        Peta / denah / gambar tambahan lokasi proyek
+                    </small>
+
+                    <div id="previewMediaLokasi" class="mt-2 d-flex flex-wrap gap-2"></div>
+                </div>
+
 
                 {{-- Deskripsi --}}
                 <div class="form-group col-md-12 mb-5">
