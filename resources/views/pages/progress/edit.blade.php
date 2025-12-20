@@ -112,18 +112,17 @@
             <div class="row">
 
                 <!-- Tahap -->
+                <!-- Tahap Proyek -->
                 <div class="col-md-12 mb-3">
                     <label class="fw-bold mb-1">Tahap Proyek</label>
-                    <select name="tahap_id" class="form-control" required>
-                        <option value="">-- Pilih Tahap --</option>
-                        @foreach ($tahapan as $t)
-                            <option value="{{ $t->tahap_id }}"
-                                {{ $progress->tahap_id == $t->tahap_id ? 'selected' : '' }}>
-                                {{ $t->nama_tahap }} (Target: {{ $t->target_persen }}%)
-                            </option>
-                        @endforeach
-                    </select>
+
+                    <input type="text" class="form-control"
+                        value="{{ $progress->tahap->nama_tahap }} (Target: {{ $progress->tahap->target_persen }}%)"
+                        readonly>
+
+                    <input type="hidden" name="tahap_id" value="{{ $progress->tahap_id }}">
                 </div>
+
 
                 <div class="col-md-6 mb-3">
                     <input type="number" name="persen_real" class="form-control" min="0" max="100"
