@@ -19,10 +19,6 @@ use App\Http\Controllers\KontraktorController;
 // Route Dashboard
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-
-// Route Dashboard
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
 // Route Halaman About
 Route::get('tentang', [DashboardController::class, 'about'])->name('about');
 
@@ -69,7 +65,7 @@ Route::group(['middleware' => ['checkislogin', 'checkrole:super_admin']], functi
 
 Route::group(['middleware' => ['checkislogin', 'checkrole:manajer_lapangan']], function () {
 
-    
+
     Route::resource('proyek-guest', ProyekController::class);
     Route::resource('tahapan-guest', TahapanController::class);
     Route::resource('progress-guest', ProgressController::class);
