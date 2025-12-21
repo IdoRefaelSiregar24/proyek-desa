@@ -89,6 +89,14 @@
                     @enderror
                 </div>
 
+                {{-- Deskripsi --}}
+                <div class="form-group col-md-12 mb-5">
+                    <textarea name="deskripsi" class="form-control" id="deskripsi" rows="3" placeholder="Deskripsi" required>{{ old('deskripsi') }}</textarea>
+                    @error('deskripsi')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 <!-- Lokasi Proyek (Koordinat) -->
                 <div class="form-group col-md-6 mb-4">
                     <input type="text" name="lat" class="form-control" id="lat"
@@ -120,15 +128,6 @@
                     </small>
 
                     <div id="previewMediaLokasi" class="mt-2 d-flex flex-wrap gap-2"></div>
-                </div>
-
-
-                {{-- Deskripsi --}}
-                <div class="form-group col-md-12 mb-5">
-                    <textarea name="deskripsi" class="form-control" id="deskripsi" rows="3" placeholder="Deskripsi" required>{{ old('deskripsi') }}</textarea>
-                    @error('deskripsi')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
                 </div>
 
                 <!-- Upload Thumbnail -->
