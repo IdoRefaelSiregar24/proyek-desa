@@ -9,7 +9,7 @@
                     <!-- Hero Content Start -->
                     <div class="hero-content">
                         <div class="section-title">
-                            <h1 class="text-anime-style-3" data-cursor="-opaque">Progress Proyek</h1>
+                            <h1 class="text-anime-style-3" data-cursor="-opaque">Daftar Proyek</h1>
                             <p class="wow fadeInUp" data-wow-delay="0.25s">Berikut Beberapa Data Progress Proyek</p>
                         </div>
                     </div>
