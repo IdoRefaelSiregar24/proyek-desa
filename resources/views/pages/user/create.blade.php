@@ -22,6 +22,28 @@
     <!-- FORM -->
     <section class="py-5">
         <div class="container">
+            {{-- SUCCESS MESSAGE --}}
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fa fa-check-circle me-1"></i>
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @endif
+
+            {{-- ERROR VALIDATION MESSAGE --}}
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <i class="fa fa-exclamation-triangle me-1"></i>
+                    <strong>Terjadi kesalahan!</strong>
+                    <ul class="mb-0 mt-2">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form action="{{ route('users.store') }}" method="POST">
                 @csrf
 
@@ -38,28 +60,24 @@
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Nama User</label>
-                                    <input type="text" name="name"
-                                           class="form-control"
-                                           value="{{ old('name') }}" required>
+                                    <input type="text" name="name" class="form-control" value="{{ old('name') }}"
+                                        required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Email</label>
-                                    <input type="email" name="email"
-                                           class="form-control"
-                                           value="{{ old('email') }}" required>
+                                    <input type="email" name="email" class="form-control" value="{{ old('email') }}"
+                                        required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Password</label>
-                                    <input type="password" name="password"
-                                           class="form-control" required>
+                                    <input type="password" name="password" class="form-control" required>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Konfirmasi Password</label>
-                                    <input type="password" name="password_confirmation"
-                                           class="form-control" required>
+                                    <input type="password" name="password_confirmation" class="form-control" required>
                                 </div>
 
                                 <div class="mb-3">
@@ -92,16 +110,12 @@
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">No KTP</label>
-                                    <input type="text" name="no_ktp"
-                                           class="form-control"
-                                           value="{{ old('no_ktp') }}">
+                                    <input type="text" name="no_ktp" class="form-control" value="{{ old('no_ktp') }}">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Nama Lengkap</label>
-                                    <input type="text" name="nama"
-                                           class="form-control"
-                                           value="{{ old('nama') }}">
+                                    <input type="text" name="nama" class="form-control" value="{{ old('nama') }}">
                                 </div>
 
                                 <div class="mb-3">
@@ -115,30 +129,24 @@
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Agama</label>
-                                    <input type="text" name="agama"
-                                           class="form-control"
-                                           value="{{ old('agama') }}">
+                                    <input type="text" name="agama" class="form-control" value="{{ old('agama') }}">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Pekerjaan</label>
-                                    <input type="text" name="pekerjaan"
-                                           class="form-control"
-                                           value="{{ old('pekerjaan') }}">
+                                    <input type="text" name="pekerjaan" class="form-control"
+                                        value="{{ old('pekerjaan') }}">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">No Telepon</label>
-                                    <input type="text" name="telp"
-                                           class="form-control"
-                                           value="{{ old('telp') }}">
+                                    <input type="text" name="telp" class="form-control" value="{{ old('telp') }}">
                                 </div>
 
                                 <div class="mb-0">
                                     <label class="form-label fw-semibold">Email Warga</label>
-                                    <input type="email" name="email_warga"
-                                           class="form-control"
-                                           value="{{ old('email_warga') }}">
+                                    <input type="email" name="email_warga" class="form-control"
+                                        value="{{ old('email_warga') }}">
                                 </div>
 
                             </div>

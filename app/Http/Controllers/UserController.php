@@ -44,22 +44,49 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            // USER
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6|confirmed',
-            'role' => 'required|string',
+        $request->validate(
+            [
+                // USER
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|string|min:6|confirmed',
+                'role' => 'required|string',
 
-            // WARGA
-            'no_ktp' => 'nullable|string|max:50',
-            'nama' => 'nullable|string|max:255',
-            'jenis_kelamin' => 'nullable|in:laki-laki,perempuan',
-            'agama' => 'nullable|string|max:50',
-            'pekerjaan' => 'nullable|string|max:100',
-            'telp' => 'nullable|string|max:20',
-            'email_warga' => 'nullable|email|max:255',
-        ]);
+                // WARGA
+                'no_ktp' => 'nullable|string|max:50',
+                'nama' => 'nullable|string|max:255',
+                'jenis_kelamin' => 'nullable|in:laki-laki,perempuan',
+                'agama' => 'nullable|string|max:50',
+                'pekerjaan' => 'nullable|string|max:100',
+                'telp' => 'nullable|string|max:20',
+                'email_warga' => 'nullable|email|max:255',
+            ],
+            [
+                // USER
+                'name.required' => 'Nama user wajib diisi.',
+                'name.string' => 'Nama user harus berupa teks.',
+                'name.max' => 'Nama user maksimal 255 karakter.',
+                'email.required' => 'Email user wajib diisi.',
+                'email.email' => 'Format email user tidak valid.',
+                'email.unique' => 'Email user sudah terdaftar.',
+                'password.required' => 'Password wajib diisi.',
+                'password.string' => 'Password harus berupa teks.',
+                'password.min' => 'Password minimal 6 karakter.',
+                'password.confirmed' => 'Konfirmasi password tidak sesuai.',
+                'role.required' => 'Role wajib dipilih.',
+
+                // WARGA
+                'no_ktp.max' => 'Nomor KTP maksimal 50 karakter.',
+                'nama.max' => 'Nama lengkap maksimal 255 karakter.',
+                'jenis_kelamin.in' => 'Jenis kelamin harus laki-laki atau perempuan.',
+                'agama.max' => 'Agama maksimal 50 karakter.',
+                'pekerjaan.max' => 'Pekerjaan maksimal 100 karakter.',
+                'telp.max' => 'Nomor telepon maksimal 20 karakter.',
+                'email_warga.email' => 'Format email warga tidak valid.',
+                'email_warga.max' => 'Email warga maksimal 255 karakter.',
+            ]
+        );
+
 
         DB::beginTransaction();
 
