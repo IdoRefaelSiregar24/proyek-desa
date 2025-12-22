@@ -36,23 +36,60 @@
         </div>
     @endif
 
-
-    <!-- Search -->
+    {{-- button create,filter, dan search --}}
     <div class="container py-4">
-        <form method="GET" class="d-flex justify-content-between align-items-center">
-            <div class="search-box-group">
-                <input type="text" name="search" placeholder="Cari nama user / NIK..." value="{{ request('search') }}"
-                    class="search-box-input">
-                <button type="submit" class="search-box-button">
-                    <i class="fa fa-search"></i>
-                </button>
-            </div>
+        <div class="d-flex justify-content-between align-items-center">
 
-            <a href="{{ route('users.create') }}" class="btn-default">
-                <i class="fa fa-plus me-2"></i> Tambah User
+            <!-- ==================== SEARCH (KIRI) ==================== -->
+            <form method="GET" action="" class="d-flex align-items-center">
+
+                <div class="search-box-group">
+                    <input type="text" name="search" placeholder="Cari nama user / NIK..."
+                        value="{{ request('search') }}" class="search-box-input">
+
+                    <button type="submit" class="search-box-button">
+                        <i class="fa fa-search"></i>
+                    </button>
+
+                    @if (request('search'))
+                        <a href="{{ url()->current() }}?{{ http_build_query(request()->except('search')) }}"
+                            class="search-box-clear">
+                            Clear
+                        </a>
+                    @endif
+                </div>
+
+                <!-- Hidden filter role -->
+                @if (request('role'))
+                    <input type="hidden" name="role" value="{{ request('role') }}">
+                @endif
+
+            </form>
+
+            <!-- ================= FILTER ROLE (KANAN) ================= -->
+            <form method="GET" action="" class="d-flex gap-3">
+
+                <!-- menjaga search -->
+                <input type="hidden" name="search" value="{{ request('search') }}">
+
+                <select name="role" class="select-default" onchange="this.form.submit()">
+                    <option value="">Semua Role</option>
+                    <option value="super_admin" {{ request('role') == 'super_dmin' ? 'selected' : '' }}>Super Admin</option>
+                    <option value="admin_proyek" {{ request('role') == 'admin_proyek' ? 'selected' : '' }}>Admin Proyek</option>
+                    <option value="user" {{ request('role') == 'user' ? 'selected' : '' }}>User</option>
+                </select>
+            </form>
+
+            <!-- ==================== CREATE BUTTON ==================== -->
+            <a href="{{ route('users.create') }}">
+                <button type="button" class="btn-default">
+                    <i class="fa fa-plus me-2"></i> Tambah User
+                </button>
             </a>
-        </form>
+
+        </div>
     </div>
+
 
     <!-- Start User Cards -->
     <section>

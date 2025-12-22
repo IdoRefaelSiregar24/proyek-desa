@@ -29,6 +29,21 @@ class UserController extends Controller
             });
         }
 
+        // SEARCH (nama user / no KTP)
+        if ($request->filled('search')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->search . '%')
+                    ->orWhereHas('warga', function ($w) use ($request) {
+                        $w->where('no_ktp', 'like', '%' . $request->search . '%');
+                    });
+            });
+        }
+
+        // FILTER ROLE
+        if ($request->filled('role')) {
+            $query->where('role', $request->role);
+        }
+
         $dataUser = $query->paginate(12)->withQueryString();
 
         return view('pages.user.index', compact('dataUser'));
