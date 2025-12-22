@@ -15,7 +15,7 @@ class UserController extends Controller
     {
         $query = User::with('warga');
 
-        // 🔍 Search (nama user, email, NIK warga)
+
         if ($request->filled('search')) {
             $search = $request->search;
 
@@ -25,16 +25,6 @@ class UserController extends Controller
                     ->orWhereHas('warga', function ($w) use ($search) {
                         $w->where('no_ktp', 'like', "%{$search}%")
                             ->orWhere('pekerjaan', 'like', "%{$search}%");
-                    });
-            });
-        }
-
-        // SEARCH (nama user / no KTP)
-        if ($request->filled('search')) {
-            $query->where(function ($q) use ($request) {
-                $q->where('name', 'like', '%' . $request->search . '%')
-                    ->orWhereHas('warga', function ($w) use ($request) {
-                        $w->where('no_ktp', 'like', '%' . $request->search . '%');
                     });
             });
         }
