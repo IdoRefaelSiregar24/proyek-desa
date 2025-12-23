@@ -24,33 +24,36 @@
                 <!-- About Footer End -->
             </div>
 
-            <div class="col-lg-3 col-md-4 col-12">
-                <!-- Footer Quick Links Start -->
+            <!-- Footer Menu Start -->
+            <div class="col-lg-3 col-md-3 col-12">
                 <div class="footer-links">
-                    <h3>Layanan</h3>
-                    <ul>
-                        <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li><a href="{{ route('proyek-guest.index') }}">Manajemen Proyek</a></li>
+                    <h3>Menu Utama</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="{{ route('dashboard') }}">Beranda</a></li>
+                        <li><a href="{{ route('proyek-guest.index') }}">Proyek</a></li>
+                        @auth
+                            @if (auth()->user()->role === 'super_admin')
+                                <li><a href="{{ route('users.index') }}">Manajemen Data User & Warga</a></li>
+                            @endif
+                        @endauth
+                        <li><a href="{{ route('kontraktor.index') }}">Kontraktor</a></li>
                     </ul>
                 </div>
-                <!-- Footer Quick Links End -->
             </div>
 
-            <div class="col-lg-3 col-md-4 col-12">
-                <!-- Footer Links Start -->
+            <div class="col-lg-3 col-md-3 col-12">
                 <div class="footer-links">
-                    <h3>Perusahaan</h3>
-                    <ul>
+                    <h3>Perusahaan & Layanan</h3>
+                    <ul class="list-unstyled">
                         <li><a href="{{ route('about') }}">Tentang Kami</a></li>
-                        <li><a href="{{route('developer')}}">Profil Pengembang</a></li>
+                        <li><a href="{{ route('developer') }}">Profil Pengembang</a></li>
                         <li><a href="{{ route('services') }}">Layanan</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Kontak</a></li>
+                        <li><a href="{{ route('contact') }}">Kontak</a></li>
                     </ul>
                 </div>
-                <!-- Footer Links End -->
             </div>
+            <!-- Footer Menu End -->
+
 
             <div class="col-lg-3 col-md-4 col-12">
                 <!-- Footer Contact Info Box Start -->
@@ -98,15 +101,17 @@
                 <div class="col-lg-6 col-md-5">
                     <div class="footer-social-links">
                         <ul>
-                            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                            <li><a href="https://www.instagram.com/ido_refsiregar?igsh=dWQwYWhvZzlyMThy"><i
+                                        class="fa-brands fa-instagram"></i></a></li>
+                            <li><a href="https://github.com/IdoRefaelSiregar24"><i class="fa-brands fa-github"></i></a>
+                            </li>
+                            <li><a href="https://www.linkedin.com/in/ido-refael-siregar-b27920367"><i
+                                        class="fa-brands fa-linkedin-in"></i></a></li>
+                            <li><a href="mailto:ido24si@mahasiswa.pcr.ac.id"><i
+                                        class="fa-solid fa-envelope fa-2x"></i></a></li>
                         </ul>
                     </div>
                 </div>
-
             </div>
         </div>
         <!-- Footer Copyright Section End -->
