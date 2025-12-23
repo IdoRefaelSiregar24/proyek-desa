@@ -31,6 +31,8 @@ Route::get('layanan', [DashboardController::class, 'services'])->name('services'
 // Route Halaman Detail Pengembang
 Route::get('pengembang', [DashboardController::class, 'developer'])->name('developer');
 
+
+
 // Auth Routhes
 Route::get('login', [AuthController::class, 'showLoginForm'])->name('login.show');
 Route::get('register', [AuthController::class, 'showRegisterFrom'])->name('register.show');
@@ -43,6 +45,8 @@ Route::delete('delete', [AuthController::class, 'destroy'])->name('auth.destroy'
 Route::group(['middleware' => ['checkislogin', 'checkrole:admin_proyek']], function () {
 
     // Route::resource('proyek-guest', ProyekController::class);
+    Route::get('/kontraktor/terbanyak', [KontraktorController::class, 'Kontraktor'])
+        ->name('kontraktor-terbanyak');
     Route::resource('kontraktor', KontraktorController::class);
     Route::resource('proyek-guest', ProyekController::class);
     Route::resource('tahapan-guest', TahapanController::class);
@@ -56,6 +60,7 @@ Route::group(['middleware' => ['checkislogin', 'checkrole:admin_proyek']], funct
 
 Route::group(['middleware' => ['checkislogin', 'checkrole:super_admin']], function () {
 
+
     Route::resource('users', UserController::class);
     // Update Tahapan
     Route::put('/tahapan-guest/{proyek}/{tahapan}', [TahapanController::class, 'update2'])
@@ -63,46 +68,9 @@ Route::group(['middleware' => ['checkislogin', 'checkrole:super_admin']], functi
     // Route::resource('role-management', RoleController::class);byukan
 });
 
-Route::group(['middleware' => ['checkislogin', 'checkrole:manajer_lapangan']], function () {
-
-
-    Route::resource('proyek-guest', ProyekController::class);
-    Route::resource('tahapan-guest', TahapanController::class);
-    Route::resource('progress-guest', ProgressController::class);
-    Route::resource('warga-guest', WargaController::class);
-    Route::get('/detail/{proyek_id}', [ProyekController::class, 'detail'])->name('detail-proyek');
-
-    // Media delete
-    Route::delete('media/{id}', [MediaController::class, 'destroy'])->name('media.destroy');
-});
-
 // if(auth()->user()->role == 'super_admin'){
 
 // }
-Route::group(['middleware' => ['checkislogin', 'checkrole:super_admin']], function () {
-
-    Route::resource('users', UserController::class);
-    // Update Tahapan
-    Route::put('/tahapan-guest/{proyek}/{tahapan}', [TahapanController::class, 'update2'])
-        ->name('tahapan-guest.update2');
-    // Route::resource('role-management', RoleController::class);
-});
-
-
-// ==================================================================
-// SURVEYOR
-// ==================================================================
-Route::group(['middleware' => ['checkislogin', 'checkrole:surveyor']], function () {
-
-    // Input Progress
-    Route::get('/createProgress/{proyek_id}', [ProgressController::class, 'createProgress'])
-        ->name('createProgress');
-    Route::post('/progress-guest', [ProgressController::class, 'store'])
-        ->name('progress-guest.store');
-
-    // Upload media progress
-    Route::post('/media/upload', [MediaController::class, 'upload'])->name('media.upload');
-});
 
 
 Route::group(['middleware' => ['checkislogin', 'checkrole:user']], function () {

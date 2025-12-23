@@ -6,6 +6,7 @@ use App\Models\Media;
 use App\Models\Proyek;
 use App\Models\Kontraktor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class KontraktorController extends Controller
@@ -28,7 +29,15 @@ class KontraktorController extends Controller
         return view('pages.kontraktor.index', compact('dataKontraktor'));
     }
 
+    public function Kontraktor()
+    {
+        $proyekTerbanyak = DB::table('proyek')->select(
+            'proyek.*',
+            DB::raw('(SELECT COUNT(*) FROM kontraktor WHERE kontraktor.proyek_id = proyek.proyek_id) as total_kontraktor')
+        )->orderByDesc('total_kontraktor')->take(5)->get();
 
+        return view('pages.kontraktor.kontraktor', compact('proyekTerbanyak'));
+    }
 
 
     /**

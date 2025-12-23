@@ -47,6 +47,11 @@
                     <i class="fa-solid fa-plus me-2"></i> Tambah Kontraktor
                 </button>
             </a>
+            <a href="{{ route('kontraktor-terbanyak') }}" class="btn-default d-inline-block">
+                <i class="fa-solid fa-chart-bar me-2"></i>
+                Lihat Proyek Dengan Kontraktor Terbanyak
+            </a>
+
         </div>
     </div>
 
