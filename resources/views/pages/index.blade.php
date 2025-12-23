@@ -103,8 +103,65 @@
                 </div>
             </div>
         </div>
+        <div class="row text-center mt-5 g-4">
+
+            <div class="col-md-3">
+    <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+            <i class="fa-solid fa-folder-open fa-2x text-primary mb-2"></i>
+            <h2 class="fw-bold counter" data-target="{{ $totalProyek }}">0</h2>
+            <p class="text-muted mb-0">Total Proyek</p>
+        </div>
+    </div>
+</div>
+@include('layouts.guest.totalProyekJS')
+            <!-- Total Anggaran -->
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <i class="fa-solid fa-wallet fa-2x text-success mb-2"></i>
+                        <h2 class="fw-bold">
+                            Rp {{ number_format($totalAnggaran, 0, ',', '.') }}
+                        </h2>
+                        <p class="text-muted mb-0">Total Anggaran</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rata-rata Anggaran -->
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <i class="fa-solid fa-chart-line fa-2x text-warning mb-2"></i>
+                        <h2 class="fw-bold">
+                            Rp {{ number_format($rataAnggaran, 0, ',', '.') }}
+                        </h2>
+                        <p class="text-muted mb-0">Rata-rata Anggaran</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proyek Terbesar -->
+            <div class="col-md-3">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <i class="fa-solid fa-star fa-2x text-danger mb-2"></i>
+                        <h2 class="fw-bold">
+                            Rp {{ number_format($anggaranMax, 0, ',', '.') }}
+                        </h2>
+                        <p class="text-muted mb-0">Proyek Terbesar</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
     </div>
     <!-- About Section End -->
+
+
+
 
     <!-- Cta Box Section Start -->
     <div class="cta-box">
@@ -425,4 +482,6 @@
         </div>
     </div>
     <!-- Our Testiminial End -->
+
+
 @endsection

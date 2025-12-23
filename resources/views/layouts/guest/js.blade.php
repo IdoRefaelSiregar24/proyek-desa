@@ -32,3 +32,5 @@
 <!-- Leaflet & Draw -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+
+{{-- JS Untuk menampikan total proyek --}}

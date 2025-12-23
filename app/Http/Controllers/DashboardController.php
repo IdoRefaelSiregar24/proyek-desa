@@ -4,26 +4,64 @@ namespace App\Http\Controllers;
 use App\Models\Media;
 use App\Models\Proyek;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
-        // Ambil semua proyek terbaru (limit 12)
+        // 1️⃣ Ambil 12 proyek terbaru
         $dataProyek = Proyek::latest()->take(12)->get();
 
-        // Ambil thumbnail utama untuk setiap proyek
+        // 2️⃣ Statistik utama (MULTIPLE ROW FUNCTION)
+        $totalProyek = Proyek::count();
+        $totalAnggaran = Proyek::sum('anggaran');
+        $rataAnggaran = Proyek::avg('anggaran');
+        $anggaranMax = Proyek::max('anggaran');
+        $anggaranMin = Proyek::min('anggaran');
+
+        // 3️⃣ Proyek per tahun
+        $proyekPerTahun = Proyek::select(
+            'tahun',
+            DB::raw('count(*) as total')
+        )
+            ->groupBy('tahun')
+            ->orderBy('tahun', 'desc')
+            ->get();
+
+        // 4️⃣ Proyek per sumber dana
+        $proyekPerSumberDana = Proyek::select(
+            'sumber_dana',
+            DB::raw('count(*) as total')
+        )
+            ->groupBy('sumber_dana')
+            ->get();
+
+        // 5️⃣ Ambil thumbnail utama untuk setiap proyek
         $thumbnails = Media::where('ref_table', 'proyek')
             ->whereIn('ref_id', $dataProyek->pluck('proyek_id'))
             ->where('sort_order', 0)
             ->get()
             ->keyBy(fn($item) => (int) $item->ref_id);
 
-        return view("pages.index", compact('dataProyek', 'thumbnails'));
+        return view('pages.index', compact(
+            'dataProyek',
+            'thumbnails',
+            'totalProyek',
+            'totalAnggaran',
+            'rataAnggaran',
+            'anggaranMax',
+            'anggaranMin',
+            'proyekPerTahun',
+            'proyekPerSumberDana'
+        ));
     }
+
+
     public function contact()
     {
         return view("pages/contact");
