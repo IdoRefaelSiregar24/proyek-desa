@@ -22,7 +22,6 @@ class DashboardController extends Controller
         $totalAnggaran = Proyek::sum('anggaran');
         $rataAnggaran = Proyek::avg('anggaran');
         $anggaranMax = Proyek::max('anggaran');
-        $anggaranMin = Proyek::min('anggaran');
 
         // 3️⃣ Proyek per tahun
         $proyekPerTahun = Proyek::select(
@@ -55,7 +54,6 @@ class DashboardController extends Controller
             'totalAnggaran',
             'rataAnggaran',
             'anggaranMax',
-            'anggaranMin',
             'proyekPerTahun',
             'proyekPerSumberDana'
         ));

@@ -104,17 +104,16 @@
             </div>
         </div>
         <div class="row text-center mt-5 g-4">
-
             <div class="col-md-3">
-    <div class="card shadow-sm border-0 h-100">
-        <div class="card-body">
-            <i class="fa-solid fa-folder-open fa-2x text-primary mb-2"></i>
-            <h2 class="fw-bold counter" data-target="{{ $totalProyek }}">0</h2>
-            <p class="text-muted mb-0">Total Proyek</p>
-        </div>
-    </div>
-</div>
-@include('layouts.guest.totalProyekJS')
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <i class="fa-solid fa-folder-open fa-2x text-primary mb-2"></i>
+                        <h2 class="fw-bold counter" data-target="{{ $totalProyek }}">0</h2>
+                        <p class="text-muted mb-0">Total Proyek</p>
+                    </div>
+                </div>
+            </div>
+            @include('layouts.guest.totalProyekJS')
             <!-- Total Anggaran -->
             <div class="col-md-3">
                 <div class="card shadow-sm border-0 h-100">
@@ -153,7 +152,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
 
@@ -482,6 +480,4 @@
         </div>
     </div>
     <!-- Our Testiminial End -->
-
-
 @endsection
