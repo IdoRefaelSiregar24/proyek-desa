@@ -159,6 +159,7 @@ class ProyekController extends Controller
     public function detail(Request $request, string $id)
     {
         $proyek = Proyek::with('lokasiProyek')->findOrFail($id);
+        $total = $proyek->getTotalKontraktor();
 
         $tahapan = $proyek->tahapan()
             ->filter($request)
@@ -185,7 +186,8 @@ class ProyekController extends Controller
         // Gabungkan semua media
         $medias = $mediaProyek->merge($mediaLokasi)->merge($mediaLain);
 
-        return view('pages.proyek.detail', compact('proyek', 'tahapan', 'medias'));
+        return view('pages.proyek.detail', compact('proyek', 'tahapan', 'medias', 'total'));
+
     }
 
 

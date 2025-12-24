@@ -94,6 +94,19 @@
                 <h2 class="text-anime-style-3">Informasi Umum</h2>
             </div>
 
+            {{-- Menampilkan Kontraktor Pada Proyek --}}
+            <div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h6 class="text-muted">Total Kontraktor</h6>
+                <h2 class="fw-bold">{{ $total }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+
             <div class="row">
                 @php
                     $fields = [

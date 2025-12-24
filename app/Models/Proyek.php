@@ -44,6 +44,11 @@ class Proyek extends Model
         return $this->hasOne(Kontraktor::class, 'proyek_id', 'proyek_id');
     }
 
+    public function getTotalKontraktor()
+    {
+        return $this->kontraktor()->count();
+    }
+
 
     public function scopeFilter(Builder $query, $request, array $filterableColumns): Builder
     {
