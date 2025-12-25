@@ -3418,8 +3418,12 @@ header.main-header .header-sticky.active{
 	}
 
 	header.main-header{
-		margin: 0px;
-	}
+	background-color: #FFB703; /* KUNING */
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	position: relative;
+	z-index: 100;
+	margin: 0;
+}
 
 	.navbar{
 		padding: 20px 0px;

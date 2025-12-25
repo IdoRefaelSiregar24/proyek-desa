@@ -9,20 +9,19 @@
                         <img src="{{ asset('/images/logoHorizontal.svg') }}" alt="Logo">
                     </a>
 
+                    <!-- Toggle -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+
                     <!-- Menu -->
-                    <div class="collapse navbar-collapse main-menu">
+                   <div class="collapse navbar-collapse main-menu" id="mainNavbar">
                         <div class="nav-menu-wrapper">
                             <ul class="navbar-nav me-auto" id="menu">
-                                <li class="nav-item submenu">
+                                <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}"
                                         href="{{ route('dashboard') }}">Beranda</a>
-                                    <ul class="sub-menu">
-                                        <li class="nav-item"><a class="nav-link" href="index.html">Home - Image</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="index-2.html">Home - Slider</a>
-                                        </li>
-                                        <li class="nav-item"><a class="nav-link" href="index-3.html">Home - Video</a>
-                                        </li>
-                                    </ul>
                                 </li>
 
                                 <li class="nav-item">
@@ -104,27 +103,11 @@
                             @endif
                         </div>
                     </div>
-                    <div class="navbar-toggle"></div>
                 </div>
             </nav>
             <div class="responsive-menu"></div>
         </div>
     </header>
-    <script>
-        const btn = document.getElementById("dropdownButton");
-        const menu = document.getElementById("dropdownMenu");
 
-        if (btn) {
-            btn.addEventListener("click", function(event) {
-                event.stopPropagation();
-                menu.style.display = (menu.style.display === "block") ? "none" : "block";
-            });
-        }
-
-        // Tutup dropdown jika klik di luar
-        document.addEventListener("click", function() {
-            if (menu) menu.style.display = "none";
-        });
-    </script>
 
     <!-- Header End -->
