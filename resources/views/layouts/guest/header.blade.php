@@ -9,7 +9,7 @@
 	<!-- Page Title -->
 	<title>Desa Balam Sempurna</title>
 	<!-- Favicon Icon -->
-	<link rel="shortcut icon" type="image/x-icon" href="{{{ asset('assets-guest/images/favicon.png') }}}">
+	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon-balam-sempurna.svg') }}">
 	<!-- Google Fonts Css-->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
