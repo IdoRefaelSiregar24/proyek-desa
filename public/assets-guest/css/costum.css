@@ -449,6 +449,7 @@ body{
 /**** 	   03. Header css		 ****/
 /************************************/
 
+
 header.main-header{
 	background-color: transparent;
 	border-bottom: 1px solid var(--dark-divider-color);
@@ -528,6 +529,10 @@ header.main-header .header-sticky.active{
 .main-menu ul li a:focus{
 	color: var(--accent-color);
 }
+
+/* .main-menu ul li a:active{
+    color: #e65757;
+} */
 
 .main-menu ul ul{
 	visibility: hidden;
@@ -3418,7 +3423,7 @@ header.main-header .header-sticky.active{
 	}
 
 	header.main-header{
-	background-color: #decf02; /* KUNING */
+	background-color: #ffcc00; /* KUNING */
 	border-bottom: 1px solid rgba(0,0,0,0.1);
 	position: relative;
 	z-index: 100;

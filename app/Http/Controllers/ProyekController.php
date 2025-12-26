@@ -29,7 +29,7 @@ class ProyekController extends Controller
         // Filter sumber_dana & tahun
         $query = $query->filter($request, $filterableColumn);
 
-        // SEARCH
+        // SEARCH   
         if ($request->filled('search')) {
             $search = $request->search;
 
