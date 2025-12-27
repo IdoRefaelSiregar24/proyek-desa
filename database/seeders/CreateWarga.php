@@ -13,22 +13,26 @@ class CreateWarga extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        // Ambil semua user_id
-        $userIds = DB::table('users')->pluck('id');
+        /**
+         * Ambil user yang BELUM memiliki data warga
+         * Ini menjamin relasi one-to-one
+         */
+        $users = DB::table('users')
+            ->leftJoin('warga', 'users.id', '=', 'warga.user_id')
+            ->whereNull('warga.user_id')
+            ->select('users.id', 'users.name', 'users.email')
+            ->get();
 
-        // Tentukan jumlah data
-        $jumlahData = 50;
-
-        for ($i = 0; $i < $jumlahData; $i++) {
+        foreach ($users as $user) {
             DB::table('warga')->insert([
-                'user_id' => $userIds->random(),
-                'no_ktp' => $faker->nik(),
+                'user_id' => $user->id,
+                'no_ktp' => $faker->unique()->nik(),
                 'nama' => $faker->name(),
                 'jenis_kelamin' => $faker->randomElement(['Laki-laki', 'Perempuan']),
                 'agama' => $faker->randomElement(['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha']),
                 'pekerjaan' => $faker->jobTitle(),
                 'telp' => $faker->phoneNumber(),
-                'email' => $faker->unique()->safeEmail(),
+                'email' => $user->email,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]);
