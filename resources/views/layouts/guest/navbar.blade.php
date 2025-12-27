@@ -30,7 +30,7 @@
                                 </li>
 
                                 @auth
-                                    @if (auth()->user()->role === 'super_admin')
+                                    @if (auth()->user()->role === 'Super Admin')
                                         <li class="nav-item">
                                             <a class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}"
                                                 href="{{ route('users.index') }}">Manajemen Data User & Warga</a>

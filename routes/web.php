@@ -42,7 +42,7 @@ Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::delete('delete', [AuthController::class, 'destroy'])->name('auth.destroy');
 
 
-Route::group(['middleware' => ['checkislogin', 'checkrole:admin_proyek']], function () {
+Route::group(['middleware' => ['checkislogin', 'checkrole:Admin']], function () {
 
     // Route::resource('proyek-guest', ProyekController::class);
     Route::get('/kontraktor/terbanyak', [KontraktorController::class, 'Kontraktor'])
@@ -58,7 +58,7 @@ Route::group(['middleware' => ['checkislogin', 'checkrole:admin_proyek']], funct
     Route::delete('media/{id}', [MediaController::class, 'destroy'])->name('media.destroy');
 });
 
-Route::group(['middleware' => ['checkislogin', 'checkrole:super_admin']], function () {
+Route::group(['middleware' => ['checkislogin', 'checkrole:Super Admin']], function () {
 
 
     Route::resource('users', UserController::class);
@@ -73,7 +73,7 @@ Route::group(['middleware' => ['checkislogin', 'checkrole:super_admin']], functi
 // }
 
 
-Route::group(['middleware' => ['checkislogin', 'checkrole:user']], function () {
+Route::group(['middleware' => ['checkislogin', 'checkrole:User']], function () {
 
     // ============================
     // Proyek Guest (READ ONLY)

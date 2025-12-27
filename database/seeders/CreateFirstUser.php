@@ -17,31 +17,24 @@ class CreateFirstUser extends Seeder
 
 
         User::create([
-            'name' => 'manajer_lapangan',
-            'email' => 'manajerlapangan@gmail.com',
-            'password' => Hash::make('Asdfg123'),
-            'role' => 'manajer_lapangan',
-        ]);
-
-        User::create([
             'name' => 'User Binda Desa',
             'email' => 'userbinadesa@gmail.com',
             'password' => Hash::make('Asdfg123'),
-            'role' => 'user',
+            'role' => 'User',
         ]);
 
         User::create([
             'name' => 'admin_royek',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('Asdfg123'),
-            'role' => 'admin_proyek',
+            'role' => 'Admin',
         ]);
 
         User::create([
             'name' => 'Ido Refael Siregar',
             'email' => 'ido24si@mahasiswa.pcr.ac.id',
             'password' => Hash::make('Asdfg123'),
-            'role' => 'super_admin',
+            'role' => 'Super Admin',
         ]);
     }
 }
