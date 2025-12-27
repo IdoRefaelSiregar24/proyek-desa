@@ -23,11 +23,11 @@ class CheckRole
         $userRole = Auth::user()->role;
 
         // Super Admin boleh akses semua halaman
-        if ($userRole === 'super_admin') {
+        if ($userRole === 'Super Admin') {
             return $next($request);
         }
 
-        if ($userRole === 'admin_proyek') {
+        if ($userRole === 'Admin') {
             return $next($request);
         }
 
