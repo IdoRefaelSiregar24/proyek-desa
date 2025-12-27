@@ -16,7 +16,7 @@
 
 
                     <!-- Menu -->
-                   <div class="collapse navbar-collapse main-menu" id="mainNavbar">
+                    <div class="collapse navbar-collapse main-menu" id="mainNavbar">
                         <div class="nav-menu-wrapper">
                             <ul class="navbar-nav me-auto" id="menu">
                                 <li class="nav-item">
@@ -63,45 +63,45 @@
                             </ul>
                         </div>
 
-                        <div class="position-relative ms-auto">
+                        <div class="dropdown ms-auto position-relative">
                             @if (Auth::check())
-                                <button id="dropdownButton"
-                                    class="d-flex align-items-center gap-2 px-3 py-2 bg-danger text-white rounded-pill border-0 shadow-sm">
-                                    <span class="fw-semibold">
-                                        Hai, {{ Auth::user()->name }}!
-                                    </span>
-                                    <i class="bi bi-caret-down-fill"></i>
+                                <button class="btn bg-danger text-white rounded-pill dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Hai, {{ Auth::user()->name }}!
                                 </button>
-                                <div id="dropdownMenu"
-                                    class="dropdown-menu dropdown-menu-end shadow mt-2 rounded-3 border-0"
-                                    style="display: none; position: absolute; right: 0;">
 
-                                    <a class="dropdown-item d-flex align-items-center {{ request()->routeIs('dashboard') ? 'active' : '' }}"
-                                        href="{{ route('dashboard') }}">
-                                        <i class="fa-solid fa-gauge-high me-2 text-dark"></i> Dashboard Warga</i>
-                                    </a>
-
-                                    <a class="dropdown-item d-flex align-items-center {{ request()->routeIs('warga-guest.index') ? 'active' : '' }}"
-                                        href="{{ route('warga-guest.index') }}">
-                                        <i class="fa-regular fa-id-card me-2 text-success"></i> Data Diri
-                                    </a>
-
-                                    <div class="dropdown-divider"></div>
-
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <button type="submit"
-                                            class="dropdown-item d-flex align-items-center text-danger">
-                                            <i class="fa-solid fa-right-from-bracket me-2"></i> Keluar
-                                        </button>
-                                    </form>
-                                </div>
+                                <ul class="dropdown-menu dropdown-menu-end shadow rounded-3">
+                                    <li>
+                                        <a class="dropdown-item {{ request()->routeIs('dashboard') ? 'active' : '' }}"
+                                            href="{{ route('dashboard') }}">
+                                            <i class="fa-solid fa-gauge-high me-2"></i> Dashboard Warga
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item {{ request()->routeIs('warga-guest.index') ? 'active' : '' }}"
+                                            href="{{ route('warga-guest.index') }}">
+                                            <i class="fa-regular fa-id-card me-2"></i> Data Diri
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item text-danger">
+                                                <i class="fa-solid fa-right-from-bracket me-2"></i> Keluar
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
                             @else
-                                <a href="{{ route('login') }}" class="btn btn-outline-danger px-3 py-2">
+                                <a href="{{ route('login') }}" class="btn btn-outline-danger">
                                     Login
                                 </a>
                             @endif
                         </div>
+
                     </div>
                 </div>
             </nav>
