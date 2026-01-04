@@ -16,10 +16,10 @@ class CreateUser extends Seeder
         $faker = Factory::create('id_ID');
 
         // Role yang tersedia
-        $roles = ['user', 'surveyor', 'manajer_lapangan', 'admin_proyek', 'super_admin'];
+        $roles = ['User','Admin', 'Super Admin'];
 
         // Generate 10 user baru
-        for ($i = 0; $i < 200; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             User::create([
                 'name' => $faker->name(),
                 'email' => $faker->unique()->safeEmail(),
