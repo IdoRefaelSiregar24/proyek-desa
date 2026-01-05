@@ -4,39 +4,35 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\Response;
 
 class CheckRole
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle($request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, $role)
     {
-        if (!Auth::check()) {
-            return redirect('/login');
+        // 1. CEK LOGIN DARI SESSION (BUKAN AUTH)
+        if (!session('is_login')) {
+            return redirect('/login')
+                ->withErrors('Silakan login terlebih dahulu');
         }
 
-        $userRole = Auth::user()->role;
+        $userRole = session('role');
 
-        // Super Admin boleh akses semua halaman
+        // 2. SUPER ADMIN AKSES SEMUA
         if ($userRole === 'Super Admin') {
             return $next($request);
         }
 
+        // 3. ADMIN AKSES SEMUA
         if ($userRole === 'Admin') {
             return $next($request);
         }
 
-        // Role biasa dicek ketat
+        // 4. ROLE BIASA HARUS SESUAI
         if ($userRole === $role) {
             return $next($request);
         }
 
-        return abort(403, 'Anda tidak memiliki akses ke halaman ini.');
+        // 5. DITOLAK
+        abort(403, 'Anda tidak memiliki akses ke halaman ini.');
     }
-
 }

@@ -56,35 +56,79 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        // $request->validate([
+        //     'email' => 'required|email',
+        //     'password' => 'required',
+        // ], [
+        //     'email.required' => 'Email wajib diisi.',
+        //     'email.email' => 'Format email tidak valid.',
+        //     'password.required' => 'Password wajib diisi.',
+        // ]);
+
+        // $user = User::where('email', $request->email)->first();
+
+        // if (!$user) {
+        //     return back()->withErrors([
+        //         'email' => 'Email tidak terdaftar.',
+        //     ])->withInput();
+        // }
+
+        // if (!Hash::check($request->password, $user->password)) {
+        //     return back()->withErrors([
+        //         'password' => 'Password salah.',
+        //     ])->withInput();
+        // }
+
+        // Auth::login($user);
+
+        // $request->session()->regenerate();
+
+        // return redirect()->intended(route('dashboard'))
+        //     ->with('success', 'Berhasil login!');
+
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required',
             'password' => 'required',
         ], [
-            'email.required' => 'Email wajib diisi.',
-            'email.email' => 'Format email tidak valid.',
+            'email.required' => 'Username wajib diisi.',
             'password.required' => 'Password wajib diisi.',
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        $username = $request->email;
+        $password = $request->password;
 
-        if (!$user) {
-            return back()->withErrors([
-                'email' => 'Email tidak terdaftar.',
-            ])->withInput();
+        // SUPER ADMIN
+        if ($username === 'fmi' && $password === 'fmi') {
+
+            session([
+                'is_login' => true,
+                'username' => 'fmi',
+                'role' => 'Super Admin'
+            ]);
+
+            return redirect()->route('dashboard')
+                ->with('success', 'Login sebagai Super Admin');
         }
 
-        if (!Hash::check($request->password, $user->password)) {
-            return back()->withErrors([
-                'password' => 'Password salah.',
-            ])->withInput();
+        // USER
+        if (
+            ($username === 'hmn' && $password === 'hmn') ||
+            ($username === 'fmihmn' && $password === 'fmihmn')
+        ) {
+
+            session([
+                'is_login' => true,
+                'username' => $username,
+                'role' => 'User'
+            ]);
+
+            return redirect()->route('dashboard')
+                ->with('success', 'Login sebagai User');
         }
 
-        Auth::login($user);
-
-        $request->session()->regenerate();
-
-        return redirect()->intended(route('dashboard'))
-            ->with('success', 'Berhasil login!');
+        return back()
+            ->withErrors(['login' => 'Username atau password salah'])
+            ->withInput();
     }
 
 

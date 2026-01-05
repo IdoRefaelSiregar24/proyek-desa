@@ -20,12 +20,17 @@ class CreateWarga extends Seeder
         $users = DB::table('users')
             ->leftJoin('warga', 'users.id', '=', 'warga.user_id')
             ->whereNull('warga.user_id')
-            ->select('users.id', 'users.name', 'users.email')
+            ->select(
+                'users.id as user_id',
+                'users.name',
+                'users.email'
+            )
             ->get();
+
 
         foreach ($users as $user) {
             DB::table('warga')->insert([
-                'user_id' => $user->id,
+                'user_id' => $user->user_id,
                 'no_ktp' => $faker->unique()->nik(),
                 'nama' => $faker->name(),
                 'jenis_kelamin' => $faker->randomElement(['Laki-laki', 'Perempuan']),
