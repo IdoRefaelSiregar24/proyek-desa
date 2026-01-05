@@ -1490,7 +1490,7 @@ header.main-header .header-sticky.active{
 .faq-accordion .accordion-item .accordion-button.collapsed::after{
 	content: '';
 	position: absolute;
-	right: 0;
+	right: 16px;
 	top: 50%;
 	bottom: auto;
 	transform: translate(0px, -50%) rotate(-90deg);

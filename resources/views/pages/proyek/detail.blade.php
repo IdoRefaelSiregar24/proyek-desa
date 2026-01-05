@@ -281,6 +281,8 @@
                 <p class="text-center text-muted">Belum ada tahapan.</p>
             @endforelse
 
+            <br>
+
             {{-- PAGINATION TAHAPAN --}}
             <div class="d-flex justify-content-center">
                 {{ $tahapan->links('pagination::bootstrap-5') }}
