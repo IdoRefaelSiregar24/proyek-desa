@@ -30,13 +30,13 @@
                                 </li>
 
 
-                                    @if (session('role') == 'Super Admin')
-                                        <li class="nav-item">
-                                            <a class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}"
-                                                href="{{ route('users.index') }}">Manajemen Data User & Warga</a>
-                                        </li>
-                                    @endif
-                             =
+                                @if (session('role') == 'Super Admin')
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}"
+                                            href="{{ route('users.index') }}">Manajemen Data User & Warga</a>
+                                    </li>
+                                @endif
+
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('kontraktor.index') ? 'active' : '' }}"
                                         href="{{ route('kontraktor.index') }}">kontraktor</a>

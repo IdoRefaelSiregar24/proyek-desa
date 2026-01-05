@@ -86,52 +86,41 @@ class AuthController extends Controller
         // return redirect()->intended(route('dashboard'))
         //     ->with('success', 'Berhasil login!');
 
-        $request->validate([
+        request()->validate([
             'email' => 'required',
             'password' => 'required',
         ], [
-            'email.required' => 'Username wajib diisi.',
+            'email.required' => 'Email wajib diisi.',
             'password.required' => 'Password wajib diisi.',
         ]);
 
-        $username = $request->email;
-        $password = $request->password;
+        $email = request('email');
+        $pass = request('password');
 
-        // SUPER ADMIN
-        if ($username === 'fmi' && $password === 'fmi') {
-
-            session([
-                'is_login' => true,
-                'username' => 'fmi',
-                'role' => 'Super Admin'
-            ]);
-
-            return redirect()->route('dashboard')
-                ->with('success', 'Login sebagai Super Admin');
+        if ($email == 'fmi' | $pass == 'fmi') {
+            request()->session()->regenerate();
+            session(['is_login' => true]);
+            session(['role' => 'Super Admin']);
+            return redirect()->route('dashboard')->with('success', 'Berhasil login sebagai Super Admin!');
+        } elseif ($email == 'hmn' | $pass == 'hmn') {
+            request()->session()->regenerate();
+            session(['is_login' => true]);
+            session(['role' => 'Admin']);
+            return redirect()->route('dashboard')->with('success', 'Berhasil login sebagai Admin!');
+        } elseif ($email == 'fmihmn' | $pass == 'fmihmn') {
+            request()->session()->regenerate();
+            session(['is_login' => true]);
+            session(['role' => 'Admin']);
+            return redirect()->route('dashboard')->with('success', 'Berhasil login sebagai User!');
         }
 
-        // USER
-        if (
-            ($username === 'hmn' && $password === 'hmn') ||
-            ($username === 'fmihmn' && $password === 'fmihmn')
-        ) {
-
-            session([
-                'is_login' => true,
-                'username' => $username,
-                'role' => 'User'
-            ]);
-
-            return redirect()->route('dashboard')
-                ->with('success', 'Login sebagai User');
+        else{
+            return back()->withErrors([
+                'email' => 'Email atau Password Tidak dikenali',
+            ])->withInput();
         }
 
-        return back()
-            ->withErrors(['login' => 'Username atau password salah'])
-            ->withInput();
     }
-
-
 
     public function logout(Request $request)
     {
