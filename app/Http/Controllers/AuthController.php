@@ -82,8 +82,9 @@ class AuthController extends Controller
 
         return redirect()->intended(route('dashboard'))
             ->with('success', 'Berhasil login!');
-    }
 
+
+    }
 
     public function bypassfmi(Request $request)
     {

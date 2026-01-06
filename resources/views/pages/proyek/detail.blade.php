@@ -189,7 +189,7 @@
 
 
 
-                @if (auth()->user()->role !== 'user')
+                @if (session('role')== 'Super Admin' || session('role')== 'Admin')
                     <div class="col-md-12 text-center mt-4">
                         <a href="{{ route('proyek-guest.edit', $proyek->proyek_id) }}"
                             class="btn-default d-inline-flex gap-2">
@@ -217,7 +217,7 @@
                     <h3>Tahapan Proyek</h3>
                     <h2 class="text-anime-style-3">Daftar Tahapan</h2>
                 </div>
-                @if (auth()->user()->role !== 'user')
+                @if (session('role')== 'Super Admin' || session('role')== 'Admin')
                     <a href="{{ route('tahapan-guest.show', $proyek->proyek_id) }}"
                         class="btn-default d-flex align-items-center gap-2 order-3 order-md-2">
                         <i data-feather="plus-circle"></i> Tambah Tahapan
@@ -280,6 +280,8 @@
             @empty
                 <p class="text-center text-muted">Belum ada tahapan.</p>
             @endforelse
+
+            <br>
 
             {{-- PAGINATION TAHAPAN --}}
             <div class="d-flex justify-content-center">

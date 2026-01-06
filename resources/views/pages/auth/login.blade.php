@@ -39,7 +39,7 @@
                             @csrf
                             <div class="mb-3 text-start">
                                 <label for="email" class="form-label text-light">Email</label>
-                                <input type="email" name="email" id="email" class="form-control rounded-3"
+                                <input  name="email" id="email" class="form-control rounded-3"
                                     value="{{ old('email') }}" placeholder="Masukkan Email" required>
                             </div>
 

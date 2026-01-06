@@ -30,12 +30,21 @@
                                 </li>
 
 
+<<<<<<< HEAD
                                     @if (session('role') === 'Super Admin')
                                         <li class="nav-item">
                                             <a class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}"
                                                 href="{{ route('users.index') }}">Manajemen Data User & Warga</a>
                                         </li>
                                     @endif
+=======
+                                @if (session('role') == 'Super Admin')
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}"
+                                            href="{{ route('users.index') }}">Manajemen Data User & Warga</a>
+                                    </li>
+                                @endif
+>>>>>>> d5e8210755ef730304e729a8eac8f75bab6a9724
 
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('kontraktor.index') ? 'active' : '' }}"
@@ -67,7 +76,11 @@
                             @if (session('is_login'))
                                 <button class="btn bg-danger text-white rounded-pill dropdown-toggle" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
+<<<<<<< HEAD
                                     Selamat Datang!
+=======
+                                    {{-- Hai, {{ Auth::user()->name }}! --}}
+>>>>>>> d5e8210755ef730304e729a8eac8f75bab6a9724
                                 </button>
 
                                 <ul class="dropdown-menu dropdown-menu-end shadow rounded-3">
