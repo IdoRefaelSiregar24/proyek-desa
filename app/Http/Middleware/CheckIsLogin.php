@@ -16,7 +16,7 @@ class CheckIsLogin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check()) {
+        if (session()->get('is_login') != true) {
             return redirect()->route('dashboard')->withErrors('Silahkan login terlebih dahulu!');
         }
 

@@ -29,14 +29,14 @@
                                         href="{{ route('proyek-guest.index') }}">Proyek</a>
                                 </li>
 
-                                @auth
-                                    @if (auth()->user()->role === 'Super Admin')
+
+                                    @if (session('role') === 'Super Admin')
                                         <li class="nav-item">
                                             <a class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}"
                                                 href="{{ route('users.index') }}">Manajemen Data User & Warga</a>
                                         </li>
                                     @endif
-                                @endauth
+
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('kontraktor.index') ? 'active' : '' }}"
                                         href="{{ route('kontraktor.index') }}">kontraktor</a>
@@ -64,10 +64,10 @@
                         </div>
 
                         <div class="dropdown ms-auto position-relative">
-                            @if (Auth::check())
+                            @if (session('is_login'))
                                 <button class="btn bg-danger text-white rounded-pill dropdown-toggle" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    Hai, {{ Auth::user()->name }}!
+                                    Selamat Datang!
                                 </button>
 
                                 <ul class="dropdown-menu dropdown-menu-end shadow rounded-3">

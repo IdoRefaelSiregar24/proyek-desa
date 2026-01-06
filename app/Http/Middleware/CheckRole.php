@@ -16,11 +16,11 @@ class CheckRole
      */
     public function handle($request, Closure $next, $role)
     {
-        if (!Auth::check()) {
+        if (!session()->get('is_login')) {
             return redirect('/login');
         }
-
-        $userRole = Auth::user()->role;
+        
+        $userRole = session()->get('role');
 
         // Super Admin boleh akses semua halaman
         if ($userRole === 'Super Admin') {
