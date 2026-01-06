@@ -29,22 +29,12 @@
                                         href="{{ route('proyek-guest.index') }}">Proyek</a>
                                 </li>
 
-
-<<<<<<< HEAD
-                                    @if (session('role') === 'Super Admin')
-                                        <li class="nav-item">
-                                            <a class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}"
-                                                href="{{ route('users.index') }}">Manajemen Data User & Warga</a>
-                                        </li>
-                                    @endif
-=======
                                 @if (session('role') == 'Super Admin')
                                     <li class="nav-item">
                                         <a class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}"
                                             href="{{ route('users.index') }}">Manajemen Data User & Warga</a>
                                     </li>
                                 @endif
->>>>>>> d5e8210755ef730304e729a8eac8f75bab6a9724
 
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('kontraktor.index') ? 'active' : '' }}"
