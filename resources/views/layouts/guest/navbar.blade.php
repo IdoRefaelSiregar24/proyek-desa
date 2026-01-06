@@ -66,11 +66,8 @@
                             @if (session('is_login'))
                                 <button class="btn bg-danger text-white rounded-pill dropdown-toggle" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-<<<<<<< HEAD
                                     Selamat Datang!
-=======
                                     {{-- Hai, {{ Auth::user()->name }}! --}}
->>>>>>> d5e8210755ef730304e729a8eac8f75bab6a9724
                                 </button>
 
                                 <ul class="dropdown-menu dropdown-menu-end shadow rounded-3">
