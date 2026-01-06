@@ -16,22 +16,21 @@ class CheckRole
 
         $userRole = session()->get('role');
 
-        // 2. SUPER ADMIN AKSES SEMUA
+        // 1. SUPER ADMIN AKSES SEMUA
         if ($userRole === 'Super Admin') {
             return $next($request);
         }
 
-        // 3. ADMIN AKSES SEMUA
+        // 2. ADMIN AKSES SEMUA
         if ($userRole === 'Admin') {
             return $next($request);
         }
 
-        // 4. ROLE BIASA HARUS SESUAI
+        // 3. ROLE USER BIASA
         if ($userRole === $role) {
             return $next($request);
         }
 
-        // 5. DITOLAK
         abort(403, 'Anda tidak memiliki akses ke halaman ini.');
     }
 }

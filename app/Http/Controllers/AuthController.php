@@ -168,7 +168,7 @@ class AuthController extends Controller
             Warga::where('user_id', $user->id)->delete();
 
             // Hapus akun user
-            $user->delete();
+            // $user->delete();
 
             // Logout setelah dihapus
             Auth::logout();
