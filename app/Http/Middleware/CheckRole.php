@@ -10,11 +10,11 @@ class CheckRole
     public function handle(Request $request, Closure $next, $role)
     {
 
-        if (!session()->get('is_login')) {
+        if (!Auth()->check()) {
             return redirect('/login');
         }
 
-        $userRole = session()->get('role');
+        $userRole = Auth()->user()->role;
 
         // 1. SUPER ADMIN AKSES SEMUA
         if ($userRole === 'Super Admin') {

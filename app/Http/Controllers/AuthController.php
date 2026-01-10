@@ -14,7 +14,10 @@ class AuthController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() {}
+    public function index()
+    {
+
+    }
 
     public function showLoginForm()
     {
@@ -82,29 +85,8 @@ class AuthController extends Controller
 
         return redirect()->intended(route('dashboard'))
             ->with('success', 'Berhasil login!');
-
-
     }
 
-    public function bypassfmi(Request $request)
-    {
-        $request->session()->regenerate();
-        session(['is_login' => true]);
-        session(['role' => 'Super Admin']);
-
-        return redirect()->intended(route('dashboard'))
-            ->with('success', 'Berhasil login!');
-    }
-
-    public function bypasshmn(Request $request)
-    {
-        $request->session()->regenerate();
-        session(['is_login' => true]);
-        session(['role' => 'Admin']);
-
-        return redirect()->intended(route('dashboard'))
-            ->with('success', 'Berhasil login!');
-    }
 
 
     public function logout(Request $request)
@@ -168,7 +150,7 @@ class AuthController extends Controller
             Warga::where('user_id', $user->id)->delete();
 
             // Hapus akun user
-            // $user->delete();
+            $user->delete();
 
             // Logout setelah dihapus
             Auth::logout();

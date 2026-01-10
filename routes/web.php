@@ -16,10 +16,6 @@ use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\KontraktorController;
 
 
-// Bypass Routes
-Route::get('/bypass-fmi', [AuthController::class, 'bypassfmi']);
-Route::get('/bypass-hmn', [AuthController::class, 'bypasshmn']);
-
 // Route Dashboard
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 

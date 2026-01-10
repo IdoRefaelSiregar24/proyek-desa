@@ -189,7 +189,7 @@
 
 
 
-                @if (session('role')== 'Super Admin' || session('role')== 'Admin')
+                @if (auth()->user()->role !== 'user')
                     <div class="col-md-12 text-center mt-4">
                         <a href="{{ route('proyek-guest.edit', $proyek->proyek_id) }}"
                             class="btn-default d-inline-flex gap-2">
